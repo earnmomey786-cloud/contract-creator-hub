@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { FileText, Download, Plus, Trash2, Building, Users, DollarSign, ChevronRight, ChevronLeft, Check, Home, FileCheck, FileDown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { FileText, Download, Plus, Trash2, Building, Users, DollarSign, ChevronRight, ChevronLeft, Check, Home, FileCheck, FileDown, ArrowLeft } from 'lucide-react';
 import { saveAs } from 'file-saver';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,6 +15,7 @@ import {
 import { euroEnLetras, euroEnLetrasPl, diasEnLetras, diasEnLetrasPl } from '@/lib/numberToWords';
 
 const GeneradorContratoIRNR = () => {
+  const navigate = useNavigate();
   const [paso, setPaso] = useState(1);
   const [provinciasDisponibles, setProvinciasDisponibles] = useState(['Alicante', 'Castellón', 'Valencia']);
   const [formData, setFormData] = useState<ContractFormData>(initialFormData);
@@ -569,6 +571,19 @@ const GeneradorContratoIRNR = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 py-8 px-4">
       <div className="max-w-4xl mx-auto">
+        {/* Botón volver al Dashboard */}
+        <div className="mb-4">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={() => navigate('/dashboard')}
+            className="gap-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Volver al Panel
+          </Button>
+        </div>
+        
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">Generador de Contrato IRNR Bilingüe</h1>
           <p className="text-muted-foreground">Modelo 210 – Español / Polski</p>
