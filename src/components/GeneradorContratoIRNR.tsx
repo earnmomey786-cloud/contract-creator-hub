@@ -189,9 +189,9 @@ const GeneradorContratoIRNR = () => {
           {/* ==================== PORTADA ELEGANTE ==================== */}
           <div className="cover-page text-center" style={{ pageBreakAfter: 'always', minHeight: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '40px' }}>
             
-            {/* Logo banner horizontal */}
+            {/* Logo banner horizontal - 25% más grande */}
             <div className="mb-16">
-              <img src="/images/pgk-banner.png" alt="Polska Grupa Konsultingowa" style={{ height: '120px', width: 'auto' }} />
+              <img src="/images/pgk-banner.png" alt="Polska Grupa Konsultingowa" style={{ height: '150px', width: 'auto' }} />
             </div>
             
             {/* Línea decorativa superior */}
@@ -259,20 +259,19 @@ const GeneradorContratoIRNR = () => {
               </h2>
             </div>
             
-            {/* Lista del índice - solo español con líneas de puntos */}
-            <div className="max-w-xl mx-auto space-y-1" style={{ color: '#1e3a5f' }}>
+            {/* Lista del índice - texto y líneas del mismo tamaño para armonía */}
+            <div className="max-w-lg mx-auto" style={{ color: '#1e3a5f' }}>
               {contractIndex.items.map((item, i) => (
-                <div key={i} className="flex items-baseline text-xs">
+                <div key={i} className="flex items-end leading-tight" style={{ fontSize: '10px', lineHeight: '1.6' }}>
                   <span className="font-medium uppercase whitespace-nowrap">{item.es}</span>
                   <span 
-                    className="flex-1 mx-1 overflow-hidden" 
+                    className="flex-1 mx-1" 
                     style={{ 
                       borderBottom: '1px dotted currentColor',
-                      marginBottom: '0.3em',
-                      minWidth: '20px'
+                      marginBottom: '2px'
                     }}
                   ></span>
-                  <span className="whitespace-nowrap">{item.page}</span>
+                  <span className="font-medium">{item.page}</span>
                 </div>
               ))}
             </div>
