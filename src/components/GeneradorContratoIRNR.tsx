@@ -189,61 +189,46 @@ const GeneradorContratoIRNR = () => {
           {/* ==================== PORTADA ELEGANTE ==================== */}
           <div className="cover-page text-center" style={{ pageBreakAfter: 'always', minHeight: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '40px' }}>
             
-            {/* Logo banner horizontal - 25% más grande */}
-            <div className="mb-16">
-              <img src="/images/pgk-banner.png" alt="Polska Grupa Konsultingowa" style={{ height: '150px', width: 'auto' }} />
+            {/* Logo banner horizontal - 50% más grande */}
+            <div className="mb-10">
+              <img src="/images/pgk-banner.png" alt="Polska Grupa Konsultingowa" style={{ height: '225px', width: 'auto' }} />
             </div>
             
             {/* Línea decorativa superior */}
-            <div className="w-full max-w-md mb-10">
-              <div className="h-0.5 bg-[#c9a962]"></div>
-            </div>
+            <div className="w-64 mx-auto mb-6" style={{ borderTop: '2px solid #c9a227' }}></div>
             
-            {/* Título principal */}
-            <div className="mb-8">
-              <h1 className="text-2xl font-bold uppercase tracking-widest mb-4" style={{ color: '#1e3a5f', letterSpacing: '0.15em' }}>
-                {coverPage.titleEs}
-              </h1>
-              <p className="text-lg italic text-muted-foreground tracking-wide">
-                {coverPage.titlePl}
-              </p>
-            </div>
+            {/* Título principal en español - compacto */}
+            <h1 className="font-semibold tracking-wide uppercase leading-relaxed" style={{ 
+              color: '#1e3a5f', 
+              fontSize: '14px',
+              letterSpacing: '0.12em',
+              maxWidth: '480px',
+              lineHeight: '1.7'
+            }}>
+              CONTRATO DE PRESTACIÓN DE SERVICIOS PROFESIONALES PARA LA CONFECCIÓN Y PRESENTACIÓN DEL MODELO 210 – IMPUESTO SOBRE LA RENTA DE NO RESIDENTES
+            </h1>
             
-            {/* Subtítulo - Modelo */}
-            <div className="mb-10">
-              <h2 className="text-lg font-semibold uppercase tracking-widest" style={{ color: '#1e3a5f' }}>
+            {/* Título en polaco */}
+            <p className="mt-4 italic leading-relaxed" style={{ 
+              color: '#1e3a5f', 
+              fontSize: '12px',
+              maxWidth: '460px',
+              lineHeight: '1.6'
+            }}>
+              Umowa o Świadczenie Usług Profesjonalnych w zakresie Sporządzenia i Złożenia Formularza 210 – Podatek Dochodowy od Nierezydentów
+            </p>
+            
+            {/* Línea decorativa inferior */}
+            <div className="w-64 mx-auto mt-6 mb-5" style={{ borderTop: '2px solid #c9a227' }}></div>
+            
+            {/* Subtítulos compactos */}
+            <div className="space-y-0.5">
+              <p className="font-semibold tracking-widest uppercase" style={{ color: '#1e3a5f', fontSize: '12px', letterSpacing: '0.15em' }}>
                 MODELO 210 – IRNR
-              </h2>
-              <p className="text-sm text-muted-foreground tracking-wide mt-1">
+              </p>
+              <p className="italic" style={{ color: '#1e3a5f', fontSize: '10px' }}>
                 Impuesto sobre la Renta de No Residentes
               </p>
-            </div>
-            
-            {/* Línea decorativa */}
-            <div className="w-full max-w-md mb-10">
-              <div className="h-0.5 bg-[#c9a962]"></div>
-            </div>
-            
-            {/* Datos del cliente */}
-            <div className="mb-6">
-              <p className="text-base font-semibold mb-1" style={{ color: '#1e3a5f' }}>{formData.clienteNombre || '_______________'}</p>
-              <p className="text-sm text-muted-foreground">NIE: {formData.clienteNIE || '_______________'}</p>
-              {formData.titulares.length > 1 && (
-                <p className="text-sm text-muted-foreground mt-2 italic">
-                  y {formData.titulares.length - 1} cotitular{formData.titulares.length > 2 ? 'es' : ''} más
-                </p>
-              )}
-            </div>
-            
-            {/* Ejercicio fiscal */}
-            <div className="mb-10">
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Ejercicio Fiscal / Rok podatkowy</p>
-              <p className="text-3xl font-bold" style={{ color: '#1e3a5f' }}>{formData.ejercicioFiscal}</p>
-            </div>
-            
-            {/* Pie de página con fecha y año de firma */}
-            <div className="mt-auto pt-8">
-              <p className="text-sm text-muted-foreground">{formData.lugar}, {fechaFormateada.es}</p>
             </div>
           </div>
 
