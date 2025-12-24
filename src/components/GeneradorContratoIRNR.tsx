@@ -251,27 +251,18 @@ const GeneradorContratoIRNR = () => {
           <div className="index-page" style={{ pageBreakAfter: 'always' }}>
             {/* Cabecera del índice */}
             <div className="text-center mb-10">
-              <h2 className="text-lg font-bold uppercase tracking-widest mb-1">{contractIndex.titleEs}</h2>
-              <p className="text-base text-muted-foreground italic">{contractIndex.titlePl}</p>
-              <div className="w-24 h-0.5 bg-primary mx-auto mt-4"></div>
+              <h2 className="text-lg font-bold uppercase tracking-widest mb-1 underline decoration-2 underline-offset-4" style={{ color: '#1e3a5f' }}>{contractIndex.titleEs}</h2>
             </div>
             
-            {/* Lista del índice */}
-            <div className="max-w-3xl mx-auto">
-              <table className="w-full" style={{ borderCollapse: 'collapse' }}>
-                <tbody>
-                  {contractIndex.items.map((item, i) => (
-                    <tr key={i} className="border-b border-muted/30">
-                      <td className="py-3 pr-4 text-sm" style={{ width: '50%' }}>
-                        <span className="font-medium">{item.es}</span>
-                      </td>
-                      <td className="py-3 pl-4 text-sm text-muted-foreground italic" style={{ width: '50%' }}>
-                        {item.pl}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            {/* Lista del índice con líneas de puntos */}
+            <div className="max-w-2xl mx-auto">
+              {contractIndex.items.map((item, i) => (
+                <div key={i} className="flex items-baseline text-sm mb-1" style={{ color: '#1e3a5f' }}>
+                  <span className="font-medium uppercase whitespace-nowrap">{item.es}</span>
+                  <span className="flex-1 mx-1 border-b border-dotted border-current" style={{ marginBottom: '0.25em' }}></span>
+                  <span className="whitespace-nowrap">{i + 2}</span>
+                </div>
+              ))}
             </div>
           </div>
 
