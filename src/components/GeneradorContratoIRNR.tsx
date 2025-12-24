@@ -247,20 +247,57 @@ const GeneradorContratoIRNR = () => {
             </div>
           </div>
 
-          {/* ==================== ÍNDICE ELEGANTE ==================== */}
-          <div className="index-page" style={{ pageBreakAfter: 'always' }}>
+          {/* ==================== ÍNDICE BILINGÜE CON LÍNEAS DE PUNTOS ==================== */}
+          <div className="index-page relative" style={{ pageBreakAfter: 'always' }}>
+            {/* Número de página */}
+            <div className="absolute bottom-4 right-0 left-0 text-center text-xs text-muted-foreground">2</div>
+            
             {/* Cabecera del índice */}
-            <div className="text-center mb-10">
-              <h2 className="text-lg font-bold uppercase tracking-widest mb-1 underline decoration-2 underline-offset-4" style={{ color: '#1e3a5f' }}>{contractIndex.titleEs}</h2>
+            <div className="text-center mb-8">
+              <h2 className="text-lg font-bold uppercase tracking-widest underline decoration-2 underline-offset-4" style={{ color: '#1e3a5f' }}>
+                {contractIndex.titleEs}
+              </h2>
             </div>
             
-            {/* Lista del índice con líneas de puntos */}
-            <div className="max-w-2xl mx-auto">
+            {/* Lista del índice - solo español con líneas de puntos */}
+            <div className="max-w-xl mx-auto space-y-1" style={{ color: '#1e3a5f' }}>
               {contractIndex.items.map((item, i) => (
-                <div key={i} className="flex items-baseline text-sm mb-1" style={{ color: '#1e3a5f' }}>
+                <div key={i} className="flex items-baseline text-xs">
                   <span className="font-medium uppercase whitespace-nowrap">{item.es}</span>
-                  <span className="flex-1 mx-1 border-b border-dotted border-current" style={{ marginBottom: '0.25em' }}></span>
-                  <span className="whitespace-nowrap">{i + 2}</span>
+                  <span 
+                    className="flex-1 mx-1 overflow-hidden" 
+                    style={{ 
+                      borderBottom: '1px dotted currentColor',
+                      marginBottom: '0.3em',
+                      minWidth: '20px'
+                    }}
+                  ></span>
+                  <span className="whitespace-nowrap">{item.page}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Espacio y luego versión polaca */}
+            <div className="mt-10 text-center mb-8">
+              <h2 className="text-lg font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 text-muted-foreground italic">
+                {contractIndex.titlePl}
+              </h2>
+            </div>
+            
+            {/* Lista del índice - polaco */}
+            <div className="max-w-xl mx-auto space-y-1 text-muted-foreground italic">
+              {contractIndex.items.map((item, i) => (
+                <div key={i} className="flex items-baseline text-xs">
+                  <span className="font-medium uppercase whitespace-nowrap">{item.pl}</span>
+                  <span 
+                    className="flex-1 mx-1 overflow-hidden" 
+                    style={{ 
+                      borderBottom: '1px dotted currentColor',
+                      marginBottom: '0.3em',
+                      minWidth: '20px'
+                    }}
+                  ></span>
+                  <span className="whitespace-nowrap">{item.page}</span>
                 </div>
               ))}
             </div>

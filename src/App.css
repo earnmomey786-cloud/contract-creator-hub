@@ -40,3 +40,43 @@
 .read-the-docs {
   color: #888;
 }
+
+/* =============== ESTILOS DE IMPRESIÓN PARA CONTRATO =============== */
+@media print {
+  @page {
+    size: A4;
+    margin: 20mm 15mm 25mm 15mm;
+    @bottom-center {
+      content: counter(page);
+      font-size: 10pt;
+      color: #1e3a5f;
+    }
+  }
+  
+  /* La portada no tiene número de página */
+  .cover-page {
+    page: cover;
+  }
+  
+  @page cover {
+    @bottom-center {
+      content: none;
+    }
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  .contract-content {
+    box-shadow: none !important;
+  }
+  
+  .page-break {
+    page-break-before: always;
+  }
+  
+  body {
+    counter-reset: page;
+  }
+}
