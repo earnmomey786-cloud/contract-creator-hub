@@ -220,18 +220,18 @@ export const clauses: ContractClause[] = [
       },
       {
         id: "5.2a",
-        contentEs: "a) Modelo 210 – Imputación de rentas inmobiliarias: Presentación de una declaración individual por cada cotitular correspondiente al ejercicio indicado. Cálculo de la base imponible conforme a la normativa vigente (valor catastral o porcentaje aplicable). Aplicación del tipo impositivo correspondiente según residencia fiscal (UE/EEE o terceros países). Presentación telemática dentro del plazo reglamentario.",
-        contentPl: "a) Formularz 210 – Przypisanie dochodów z nieruchomości: Złożenie indywidualnej deklaracji za każdego współwłaściciela za wskazany rok podatkowy. Obliczenie podstawy opodatkowania zgodnie z obowiązującymi przepisami (wartość katastralna lub odpowiedni procent). Zastosowanie odpowiedniej stawki podatkowej według rezydencji podatkowej (UE/EOG lub państwa trzecie). Elektroniczne złożenie w ustawowym terminie."
+        contentEs: "a) Modelo 210 – Imputación de rentas inmobiliarias:\n- Presentación de una declaración individual por cada cotitular correspondiente al ejercicio indicado.\n- Cálculo de la base imponible conforme a la normativa vigente (valor catastral o porcentaje aplicable).\n- Aplicación del tipo impositivo correspondiente según residencia fiscal (UE/EEE o terceros países).\n- Presentación telemática dentro del plazo reglamentario.",
+        contentPl: "a) Formularz 210 – Przypisanie dochodów z nieruchomości:\n- Złożenie indywidualnej deklaracji za każdego współwłaściciela za wskazany rok podatkowy.\n- Obliczenie podstawy opodatkowania zgodnie z obowiązującymi przepisami (wartość katastralna lub odpowiedni procent).\n- Zastosowanie odpowiedniej stawki podatkowej według rezydencji podatkowej (UE/EOG lub państwa trzecie).\n- Elektroniczne złożenie w ustawowym terminie."
       },
       {
         id: "5.2b",
-        contentEs: "b) Modelo 210 – Rendimientos derivados del arrendamiento (si procede): Presentación de las declaraciones individuales correspondientes a cada cotitular. Determinación del rendimiento conforme a la normativa aplicable, incluyendo ingresos y gastos deducibles que procedan, distribuidos según los porcentajes de titularidad. Aplicación del tipo impositivo conforme a la residencia fiscal.",
-        contentPl: "b) Formularz 210 – Dochody z najmu (jeśli dotyczy): Złożenie indywidualnych deklaracji odpowiadających każdemu współwłaścicielowi. Ustalenie dochodu zgodnie z obowiązującymi przepisami, w tym przychodów i kosztów podlegających odliczeniu, rozdzielonych według udziałów własnościowych. Zastosowanie stawki podatkowej zgodnej z rezydencją podatkową."
+        contentEs: "b) Modelo 210 – Rendimientos derivados del arrendamiento (si procede):\n- Presentación de las declaraciones individuales correspondientes a cada cotitular.\n- Determinación del rendimiento conforme a la normativa aplicable, incluyendo ingresos y gastos deducibles que procedan, distribuidos según los porcentajes de titularidad.\n- Aplicación del tipo impositivo conforme a la residencia fiscal.",
+        contentPl: "b) Formularz 210 – Dochody z najmu (jeśli dotyczy):\n- Złożenie indywidualnych deklaracji odpowiadających każdemu współwłaścicielowi.\n- Ustalenie dochodu zgodnie z obowiązującymi przepisami, w tym przychodów i kosztów podlegających odliczeniu, rozdzielonych według udziałów własnościowych.\n- Zastosowanie stawki podatkowej zgodnej z rezydencją podatkową."
       },
       {
         id: "5.2c",
-        contentEs: "c) Servicios administrativos y técnicos asociados: Revisión preliminar de la documentación facilitada por EL CLIENTE. Tramitación de apoderamientos ante la AEAT, cuando resulte necesario para la presentación en nombre del CLIENTE. Remisión al CLIENTE de los justificantes oficiales de presentación. Custodia digital de la documentación durante el plazo legal de conservación.",
-        contentPl: "c) Powiązane usługi administracyjne i techniczne: Wstępny przegląd dokumentacji dostarczonej przez KLIENTA. Przetwarzanie pełnomocnictw przed AEAT, gdy będzie to konieczne do składania w imieniu KLIENTA. Przesłanie KLIENTOWI oficjalnych potwierdzeń złożenia. Cyfrowe przechowywanie dokumentacji przez ustawowy okres przechowywania."
+        contentEs: "c) Servicios administrativos y técnicos asociados:\n- Revisión preliminar de la documentación facilitada por EL CLIENTE.\n- Tramitación de apoderamientos ante la AEAT, cuando resulte necesario para la presentación en nombre del CLIENTE.\n- Remisión al CLIENTE de los justificantes oficiales de presentación.\n- Custodia digital de la documentación durante el plazo legal de conservación.",
+        contentPl: "c) Powiązane usługi administracyjne i techniczne:\n- Wstępny przegląd dokumentacji dostarczonej przez KLIENTA.\n- Przetwarzanie pełnomocnictw przed AEAT, gdy będzie to konieczne do składania w imieniu KLIENTA.\n- Przesłanie KLIENTOWI oficjalnych potwierdzeń złożenia.\n- Cyfrowe przechowywanie dokumentacji przez ustawowy okres przechowywania."
       },
       {
         id: "5.3",
@@ -260,8 +260,8 @@ export const clauses: ContractClause[] = [
       },
       {
         id: "5.8",
-        contentEs: "No se incluyen: Modelo 210 por ganancias patrimoniales (venta), Impuesto sobre el Patrimonio (714), tributos locales (p. ej., IIVTNU), representación en comprobaciones y/o inspecciones, recursos y requerimientos no imputables al PRESTADOR, planificación fiscal internacional, contabilidad o auditoría, ni cualquier otro servicio no descrito en 5.2. Estos servicios requerirán presupuesto independiente.",
-        contentPl: "Nie obejmuje: Formularza 210 za zyski kapitałowe (sprzedaż), Podatku od Majątku (714), podatków lokalnych (np. IIVTNU), reprezentacji w kontrolach i/lub inspekcjach, odwołań i wymogów nieleżących po stronie USŁUGODAWCY, międzynarodowego planowania podatkowego, księgowości lub audytu, ani żadnych innych usług nieopisanych w pkt 5.2. Usługi te wymagają odrębnej wyceny."
+        contentEs: "No se incluyen:\n- Modelo 210 por ganancias patrimoniales (venta).\n- Impuesto sobre el Patrimonio (714).\n- Tributos locales (p. ej., IIVTNU).\n- Representación en comprobaciones y/o inspecciones.\n- Recursos y requerimientos no imputables al PRESTADOR.\n- Planificación fiscal internacional.\n- Contabilidad o auditoría.\n- Cualquier otro servicio no descrito en 5.2.\nEstos servicios requerirán presupuesto independiente.",
+        contentPl: "Nie obejmuje:\n- Formularza 210 za zyski kapitałowe (sprzedaż).\n- Podatku od Majątku (714).\n- Podatków lokalnych (np. IIVTNU).\n- Reprezentacji w kontrolach i/lub inspekcjach.\n- Odwołań i wymogów nieleżących po stronie USŁUGODAWCY.\n- Międzynarodowego planowania podatkowego.\n- Księgowości lub audytu.\n- Żadnych innych usług nieopisanych w pkt 5.2.\nUsługi te wymagają odrębnej wyceny."
       },
       {
         id: "5.9",
