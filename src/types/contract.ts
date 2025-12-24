@@ -12,6 +12,7 @@ export interface Anexo {
 export interface ContractFormData {
   lugar: string;
   fecha: string;
+  anoFirma: string;
   ejercicioFiscal: string;
   tipoServicio: 'imputacion' | 'alquiler' | 'mixto';
   clienteNombre: string;
@@ -55,7 +56,8 @@ export const COMUNIDADES_PROVINCIAS: Record<string, string[]> = {
 export const initialFormData: ContractFormData = {
   lugar: 'Torrevieja',
   fecha: new Date().toISOString().split('T')[0],
-  ejercicioFiscal: new Date().getFullYear().toString(),
+  anoFirma: new Date().getFullYear().toString(),
+  ejercicioFiscal: (new Date().getFullYear() - 1).toString(),
   tipoServicio: 'imputacion',
   clienteNombre: '',
   clienteNIE: '',

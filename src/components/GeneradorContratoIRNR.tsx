@@ -73,7 +73,7 @@ const GeneradorContratoIRNR = () => {
 
   const validarPaso = (pasoActual: number) => {
     switch (pasoActual) {
-      case 1: return formData.lugar && formData.fecha && formData.ejercicioFiscal;
+      case 1: return formData.lugar && formData.fecha && formData.anoFirma && formData.ejercicioFiscal;
       case 2: return formData.clienteNombre && formData.clienteNIE && formData.clienteEmail && formData.clienteDomicilioFiscal;
       case 3: return formData.titulares.every(t => t.nombre && t.nie && t.participacion);
       case 4: return formData.inmuebleDireccion && formData.inmuebleCP && formData.inmuebleProvincia && formData.inmuebleComunidad && formData.inmuebleRefCatastral;
@@ -189,13 +189,13 @@ const GeneradorContratoIRNR = () => {
           {/* ==================== PORTADA ELEGANTE ==================== */}
           <div className="cover-page text-center" style={{ pageBreakAfter: 'always', minHeight: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '40px' }}>
             
-            {/* Logo de la empresa */}
-            <div className="mb-12">
-              <img src="/images/pgk-logo.png" alt="PGK Logo" style={{ height: '180px', width: 'auto' }} />
+            {/* Logo banner horizontal */}
+            <div className="mb-16">
+              <img src="/images/pgk-banner.png" alt="Polska Grupa Konsultingowa" style={{ height: '120px', width: 'auto' }} />
             </div>
             
             {/* Línea decorativa superior */}
-            <div className="w-full max-w-md mb-8">
+            <div className="w-full max-w-md mb-10">
               <div className="h-0.5 bg-[#c9a962]"></div>
             </div>
             
@@ -210,7 +210,7 @@ const GeneradorContratoIRNR = () => {
             </div>
             
             {/* Subtítulo - Modelo */}
-            <div className="mb-8">
+            <div className="mb-10">
               <h2 className="text-lg font-semibold uppercase tracking-widest" style={{ color: '#1e3a5f' }}>
                 MODELO 210 – IRNR
               </h2>
@@ -219,7 +219,7 @@ const GeneradorContratoIRNR = () => {
               </p>
             </div>
             
-            {/* Línea decorativa inferior */}
+            {/* Línea decorativa */}
             <div className="w-full max-w-md mb-10">
               <div className="h-0.5 bg-[#c9a962]"></div>
             </div>
@@ -237,11 +237,11 @@ const GeneradorContratoIRNR = () => {
             
             {/* Ejercicio fiscal */}
             <div className="mb-10">
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Ejercicio Fiscal</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Ejercicio Fiscal / Rok podatkowy</p>
               <p className="text-3xl font-bold" style={{ color: '#1e3a5f' }}>{formData.ejercicioFiscal}</p>
             </div>
             
-            {/* Pie de página con fecha */}
+            {/* Pie de página con fecha y año de firma */}
             <div className="mt-auto pt-8">
               <p className="text-sm text-muted-foreground">{formData.lugar}, {fechaFormateada.es}</p>
             </div>
@@ -411,15 +411,29 @@ const GeneradorContratoIRNR = () => {
                       );
                     }
 
-                    // Contenido dinámico para honorarios
+                    // Contenido dinámico para honorarios con detalle de servicios
                     if (clause.number === 'QUINTA' && section.id === '5.4') {
                       return (
                         <tr key={section.id}>
                           <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
-                            <span className="font-semibold">{section.id}.</span> Como contraprestación por los servicios descritos, los honorarios profesionales de EL PRESTADOR ascienden a <strong>{euroEnLetras(formData.honorarios)}</strong> (más los impuestos indirectos que resulten aplicables). Este importe incluye: La gestión integral de las declaraciones de los {formData.titulares.length} cotitular{formData.titulares.length > 1 ? 'es' : ''} (imputación{formData.tipoServicio !== 'imputacion' ? ', alquiler' : ''}{formData.anexos.length > 0 ? ` y ${formData.anexos.length} anexo${formData.anexos.length > 1 ? 's' : ''}` : ''}). Emisión de un informe técnico-fiscal. Custodia digital de la documentación durante el plazo legal de 4 años.
+                            <span className="font-semibold">{section.id}.</span> Como contraprestación por los servicios descritos, los honorarios profesionales de EL PRESTADOR ascienden a <strong>{euroEnLetras(formData.honorarios)}</strong> (más los impuestos indirectos que resulten aplicables). Este importe incluye:
+                            <ul className="list-none mt-2 ml-2">
+                              <li className="mb-1">– Presentación de una declaración individual por cada cotitular correspondiente al ejercicio fiscal <strong>{formData.ejercicioFiscal}</strong>.</li>
+                              <li className="mb-1">– Cálculo de la base imponible conforme a la normativa vigente (valor catastral o porcentaje aplicable).</li>
+                              <li className="mb-1">– Gestión integral de {formData.titulares.length} cotitular{formData.titulares.length > 1 ? 'es' : ''} ({formData.tipoServicio === 'imputacion' ? 'imputación' : formData.tipoServicio === 'alquiler' ? 'alquiler' : 'imputación y alquiler'}{formData.anexos.length > 0 ? `, ${formData.anexos.length} anexo${formData.anexos.length > 1 ? 's' : ''}` : ''}).</li>
+                              <li className="mb-1">– Emisión de un informe técnico-fiscal.</li>
+                              <li className="mb-1">– Custodia digital de la documentación durante el plazo legal de 4 años.</li>
+                            </ul>
                           </td>
                           <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
-                            <span className="font-semibold">{section.id}.</span> Jako wynagrodzenie za opisane usługi, honoraria zawodowe USŁUGODAWCY wynoszą <strong>{euroEnLetrasPl(formData.honorarios)}</strong> (plus odpowiednie podatki pośrednie). Kwota ta obejmuje: Kompleksowe zarządzanie deklaracjami {formData.titulares.length} współwłaściciel{formData.titulares.length > 1 ? 'i' : 'a'} (przypisanie{formData.tipoServicio !== 'imputacion' ? ', najem' : ''}{formData.anexos.length > 0 ? ` i ${formData.anexos.length} aneks${formData.anexos.length > 1 ? 'y' : ''}` : ''}). Wydanie raportu techniczno-podatkowego. Cyfrowe przechowywanie dokumentacji przez ustawowy okres 4 lat.
+                            <span className="font-semibold">{section.id}.</span> Jako wynagrodzenie za opisane usługi, honoraria zawodowe USŁUGODAWCY wynoszą <strong>{euroEnLetrasPl(formData.honorarios)}</strong> (plus odpowiednie podatki pośrednie). Kwota ta obejmuje:
+                            <ul className="list-none mt-2 ml-2">
+                              <li className="mb-1">– Złożenie indywidualnej deklaracji dla każdego współwłaściciela za rok podatkowy <strong>{formData.ejercicioFiscal}</strong>.</li>
+                              <li className="mb-1">– Obliczenie podstawy opodatkowania zgodnie z obowiązującymi przepisami (wartość katastralna lub stosowny procent).</li>
+                              <li className="mb-1">– Kompleksowa obsługa {formData.titulares.length} współwłaściciel{formData.titulares.length > 1 ? 'i' : 'a'} ({formData.tipoServicio === 'imputacion' ? 'przypisanie' : formData.tipoServicio === 'alquiler' ? 'najem' : 'przypisanie i najem'}{formData.anexos.length > 0 ? `, ${formData.anexos.length} aneks${formData.anexos.length > 1 ? 'y' : ''}` : ''}).</li>
+                              <li className="mb-1">– Wydanie raportu techniczno-podatkowego.</li>
+                              <li className="mb-1">– Cyfrowe przechowywanie dokumentacji przez ustawowy okres 4 lat.</li>
+                            </ul>
                           </td>
                         </tr>
                       );
@@ -558,9 +572,17 @@ const GeneradorContratoIRNR = () => {
                 <div className="flex items-center gap-3 mb-4"><FileCheck className="text-primary" /><h2 className="text-xl font-bold">Datos Básicos</h2></div>
                 <div className="grid grid-cols-2 gap-4">
                   <div><Label>Lugar *</Label><Input value={formData.lugar} onChange={(e) => handleInputChange('lugar', e.target.value)} /></div>
-                  <div><Label>Fecha *</Label><Input type="date" value={formData.fecha} onChange={(e) => handleInputChange('fecha', e.target.value)} /></div>
-                  <div><Label>Ejercicio fiscal *</Label><Input value={formData.ejercicioFiscal} onChange={(e) => handleInputChange('ejercicioFiscal', e.target.value)} /></div>
+                  <div><Label>Fecha de firma *</Label><Input type="date" value={formData.fecha} onChange={(e) => handleInputChange('fecha', e.target.value)} /></div>
                   <div>
+                    <Label>Año de firma del contrato *</Label>
+                    <Input value={formData.anoFirma} onChange={(e) => handleInputChange('anoFirma', e.target.value)} placeholder="Ej: 2025" />
+                  </div>
+                  <div>
+                    <Label>Ejercicio fiscal (año del impuesto) *</Label>
+                    <Input value={formData.ejercicioFiscal} onChange={(e) => handleInputChange('ejercicioFiscal', e.target.value)} placeholder="Ej: 2024" />
+                    <p className="text-xs text-muted-foreground mt-1">Para regularizaciones puede ser un año anterior</p>
+                  </div>
+                  <div className="col-span-2">
                     <Label>Tipo de servicio *</Label>
                     <Select value={formData.tipoServicio} onValueChange={(v) => handleInputChange('tipoServicio', v)}>
                       <SelectTrigger><SelectValue /></SelectTrigger>
