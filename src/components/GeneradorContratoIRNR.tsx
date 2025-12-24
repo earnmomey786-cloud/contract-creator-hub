@@ -186,63 +186,64 @@ const GeneradorContratoIRNR = () => {
 
         <div className="contract-content bg-white p-8 text-sm leading-relaxed shadow-lg" style={{ fontSize: '10pt', textAlign: 'justify' }}>
           
-          {/* ==================== PORTADA ELEGANTE (estilo académico) ==================== */}
-          <div className="cover-page text-center" style={{ pageBreakAfter: 'always', minHeight: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '60px 40px' }}>
+          {/* ==================== PORTADA ELEGANTE ==================== */}
+          <div className="cover-page text-center" style={{ pageBreakAfter: 'always', minHeight: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '40px' }}>
             
-            {/* Cabecera con nombre de empresa */}
-            <div className="text-center">
-              <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-1">POLSKA GRUPA KONSULTINGOWA, S.L.</p>
-              <p className="text-[10px] tracking-widest uppercase text-muted-foreground/70">Asesoría Fiscal y Contable</p>
+            {/* Logo de la empresa */}
+            <div className="mb-12">
+              <img src="/images/pgk-logo.png" alt="PGK Logo" style={{ height: '180px', width: 'auto' }} />
             </div>
             
-            {/* Bloque central principal */}
-            <div className="flex-1 flex flex-col justify-center">
-              {/* Título principal con líneas decorativas */}
-              <div className="my-16">
-                <h1 className="text-xl font-bold uppercase tracking-wide leading-relaxed" style={{ letterSpacing: '0.08em' }}>
-                  {coverPage.titleEs}
-                </h1>
-                
-                {/* Líneas decorativas horizontales */}
-                <div className="flex items-center justify-center my-8">
-                  <div className="h-px bg-foreground/60 w-24"></div>
-                  <div className="mx-4 text-foreground/40">◆</div>
-                  <div className="h-px bg-foreground/60 w-24"></div>
-                </div>
-                
-                {/* Subtítulo - Modelo */}
-                <h2 className="text-lg font-semibold uppercase tracking-widest mb-2">
-                  MODELO 210 – IRNR
-                </h2>
-                <p className="text-sm text-muted-foreground tracking-wide">
-                  Impuesto sobre la Renta de No Residentes
+            {/* Línea decorativa superior */}
+            <div className="w-full max-w-md mb-8">
+              <div className="h-0.5 bg-[#c9a962]"></div>
+            </div>
+            
+            {/* Título principal */}
+            <div className="mb-8">
+              <h1 className="text-2xl font-bold uppercase tracking-widest mb-4" style={{ color: '#1e3a5f', letterSpacing: '0.15em' }}>
+                {coverPage.titleEs}
+              </h1>
+              <p className="text-lg italic text-muted-foreground tracking-wide">
+                {coverPage.titlePl}
+              </p>
+            </div>
+            
+            {/* Subtítulo - Modelo */}
+            <div className="mb-8">
+              <h2 className="text-lg font-semibold uppercase tracking-widest" style={{ color: '#1e3a5f' }}>
+                MODELO 210 – IRNR
+              </h2>
+              <p className="text-sm text-muted-foreground tracking-wide mt-1">
+                Impuesto sobre la Renta de No Residentes
+              </p>
+            </div>
+            
+            {/* Línea decorativa inferior */}
+            <div className="w-full max-w-md mb-10">
+              <div className="h-0.5 bg-[#c9a962]"></div>
+            </div>
+            
+            {/* Datos del cliente */}
+            <div className="mb-6">
+              <p className="text-base font-semibold mb-1" style={{ color: '#1e3a5f' }}>{formData.clienteNombre || '_______________'}</p>
+              <p className="text-sm text-muted-foreground">NIE: {formData.clienteNIE || '_______________'}</p>
+              {formData.titulares.length > 1 && (
+                <p className="text-sm text-muted-foreground mt-2 italic">
+                  y {formData.titulares.length - 1} cotitular{formData.titulares.length > 2 ? 'es' : ''} más
                 </p>
-              </div>
-              
-              {/* Línea separadora */}
-              <div className="w-64 h-px bg-foreground/30 mx-auto my-8"></div>
-              
-              {/* Datos del cliente */}
-              <div className="my-8">
-                <p className="text-sm font-semibold mb-2">{formData.clienteNombre || '_______________'}</p>
-                <p className="text-xs text-muted-foreground tracking-wide">NIE: {formData.clienteNIE || '_______________'}</p>
-                {formData.titulares.length > 1 && (
-                  <p className="text-xs text-muted-foreground mt-2 italic">
-                    y {formData.titulares.length - 1} cotitular{formData.titulares.length > 2 ? 'es' : ''} más
-                  </p>
-                )}
-              </div>
-              
-              {/* Ejercicio fiscal */}
-              <div className="my-8">
-                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Ejercicio Fiscal</p>
-                <p className="text-2xl font-bold tracking-wider">{formData.ejercicioFiscal}</p>
-              </div>
+              )}
+            </div>
+            
+            {/* Ejercicio fiscal */}
+            <div className="mb-10">
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Ejercicio Fiscal</p>
+              <p className="text-3xl font-bold" style={{ color: '#1e3a5f' }}>{formData.ejercicioFiscal}</p>
             </div>
             
             {/* Pie de página con fecha */}
-            <div className="text-center">
-              <p className="text-xs text-muted-foreground">{formData.lugar}, {fechaFormateada.es}</p>
+            <div className="mt-auto pt-8">
+              <p className="text-sm text-muted-foreground">{formData.lugar}, {fechaFormateada.es}</p>
             </div>
           </div>
 
