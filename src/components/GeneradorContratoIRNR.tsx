@@ -11,6 +11,7 @@ import {
   coverPage, contractIndex, partiesSection, manifestSection, 
   clauses, closingSection, bankDetails, months 
 } from '@/data/contractContent';
+import { euroEnLetras, euroEnLetrasPl, diasEnLetras, diasEnLetrasPl } from '@/lib/numberToWords';
 
 const GeneradorContratoIRNR = () => {
   const [paso, setPaso] = useState(1);
@@ -53,7 +54,7 @@ const GeneradorContratoIRNR = () => {
   const agregarAnexo = () => {
     setFormData(prev => ({
       ...prev,
-      anexos: [...prev.anexos, { tipo: 'Parking', refCatastral: '' }]
+      anexos: [...prev.anexos, { tipo: 'Garaje', refCatastral: '' }]
     }));
   };
 
@@ -113,9 +114,8 @@ const GeneradorContratoIRNR = () => {
     };
   };
 
-  // Traducciones de tipos de anexo
+  // Traducciones de tipos de anexo (sin Parking - era duplicado de Garaje)
   const tipoAnexoPl: Record<string, string> = {
-    'Parking': 'Parking',
     'Trastero': 'Komórka lokatorska',
     'Garaje': 'Garaż'
   };
@@ -186,57 +186,64 @@ const GeneradorContratoIRNR = () => {
 
         <div className="contract-content bg-white p-8 text-sm leading-relaxed shadow-lg" style={{ fontSize: '10pt', textAlign: 'justify' }}>
           
-          {/* ==================== PORTADA ELEGANTE ==================== */}
-          <div className="cover-page text-center" style={{ pageBreakAfter: 'always', minHeight: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            {/* Decoración superior */}
-            <div className="w-32 h-1 bg-primary mx-auto mb-8"></div>
-            <div className="w-20 h-0.5 bg-primary/50 mx-auto mb-16"></div>
+          {/* ==================== PORTADA ELEGANTE (estilo académico) ==================== */}
+          <div className="cover-page text-center" style={{ pageBreakAfter: 'always', minHeight: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '60px 40px' }}>
             
-            {/* Título principal */}
-            <div className="mb-12 px-8">
-              <h1 className="text-lg font-bold mb-4 leading-tight tracking-wide uppercase" style={{ letterSpacing: '0.05em' }}>
-                {coverPage.titleEs}
-              </h1>
-              <div className="w-16 h-px bg-muted-foreground/30 mx-auto my-4"></div>
-              <h2 className="text-base text-muted-foreground italic leading-tight">
-                {coverPage.titlePl}
-              </h2>
+            {/* Cabecera con nombre de empresa */}
+            <div className="text-center">
+              <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-1">POLSKA GRUPA KONSULTINGOWA, S.L.</p>
+              <p className="text-[10px] tracking-widest uppercase text-muted-foreground/70">Asesoría Fiscal y Contable</p>
             </div>
             
-            {/* Modelo */}
-            <div className="my-8">
-              <p className="text-xl font-semibold tracking-widest">MODELO 210 – IRNR</p>
-              <p className="text-base text-muted-foreground mt-1">Model 210 – IRNR</p>
-            </div>
-            
-            {/* Datos del cliente */}
-            <div className="my-12 py-10 mx-auto max-w-md" style={{ borderTop: '2px solid hsl(var(--primary))', borderBottom: '2px solid hsl(var(--primary))' }}>
-              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Cliente / Klient</p>
-              <p className="text-xl font-bold mb-2">{formData.clienteNombre || '_______________'}</p>
-              <p className="text-muted-foreground text-sm">NIE: {formData.clienteNIE || '_______________'}</p>
-              {formData.titulares.length > 1 && (
-                <p className="text-xs text-muted-foreground mt-3 italic">
-                  y {formData.titulares.length - 1} cotitular{formData.titulares.length > 2 ? 'es' : ''} más / 
-                  oraz {formData.titulares.length - 1} współwłaściciel{formData.titulares.length > 2 ? 'i' : ''}
+            {/* Bloque central principal */}
+            <div className="flex-1 flex flex-col justify-center">
+              {/* Título principal con líneas decorativas */}
+              <div className="my-16">
+                <h1 className="text-xl font-bold uppercase tracking-wide leading-relaxed" style={{ letterSpacing: '0.08em' }}>
+                  {coverPage.titleEs}
+                </h1>
+                
+                {/* Líneas decorativas horizontales */}
+                <div className="flex items-center justify-center my-8">
+                  <div className="h-px bg-foreground/60 w-24"></div>
+                  <div className="mx-4 text-foreground/40">◆</div>
+                  <div className="h-px bg-foreground/60 w-24"></div>
+                </div>
+                
+                {/* Subtítulo - Modelo */}
+                <h2 className="text-lg font-semibold uppercase tracking-widest mb-2">
+                  MODELO 210 – IRNR
+                </h2>
+                <p className="text-sm text-muted-foreground tracking-wide">
+                  Impuesto sobre la Renta de No Residentes
                 </p>
-              )}
+              </div>
+              
+              {/* Línea separadora */}
+              <div className="w-64 h-px bg-foreground/30 mx-auto my-8"></div>
+              
+              {/* Datos del cliente */}
+              <div className="my-8">
+                <p className="text-sm font-semibold mb-2">{formData.clienteNombre || '_______________'}</p>
+                <p className="text-xs text-muted-foreground tracking-wide">NIE: {formData.clienteNIE || '_______________'}</p>
+                {formData.titulares.length > 1 && (
+                  <p className="text-xs text-muted-foreground mt-2 italic">
+                    y {formData.titulares.length - 1} cotitular{formData.titulares.length > 2 ? 'es' : ''} más
+                  </p>
+                )}
+              </div>
+              
+              {/* Ejercicio fiscal */}
+              <div className="my-8">
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Ejercicio Fiscal</p>
+                <p className="text-2xl font-bold tracking-wider">{formData.ejercicioFiscal}</p>
+              </div>
             </div>
             
-            {/* Ejercicio fiscal */}
-            <div className="my-6">
-              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Ejercicio Fiscal / Rok Podatkowy</p>
-              <p className="text-3xl font-bold">{formData.ejercicioFiscal}</p>
+            {/* Pie de página con fecha */}
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground">{formData.lugar}, {fechaFormateada.es}</p>
             </div>
-            
-            {/* Fecha y lugar */}
-            <div className="mt-12">
-              <p className="text-sm">En {formData.lugar}, a {fechaFormateada.es}</p>
-              <p className="text-sm text-muted-foreground italic">W {formData.lugar}, dnia {fechaFormateada.pl}</p>
-            </div>
-            
-            {/* Decoración inferior */}
-            <div className="w-20 h-0.5 bg-primary/50 mx-auto mt-16"></div>
-            <div className="w-32 h-1 bg-primary mx-auto mt-2"></div>
           </div>
 
           {/* ==================== ÍNDICE ELEGANTE ==================== */}
@@ -408,10 +415,10 @@ const GeneradorContratoIRNR = () => {
                       return (
                         <tr key={section.id}>
                           <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
-                            <span className="font-semibold">{section.id}.</span> Como contraprestación por los servicios descritos, los honorarios profesionales de EL PRESTADOR ascienden a <strong>{formData.honorarios} EUROS</strong> (más los impuestos indirectos que resulten aplicables). Este importe incluye: La gestión integral de las declaraciones de los {formData.titulares.length} cotitular{formData.titulares.length > 1 ? 'es' : ''} (imputación{formData.tipoServicio !== 'imputacion' ? ', alquiler' : ''}{formData.anexos.length > 0 ? ` y ${formData.anexos.length} anexo${formData.anexos.length > 1 ? 's' : ''}` : ''}). Emisión de un informe técnico-fiscal. Custodia digital de la documentación durante el plazo legal de 4 años.
+                            <span className="font-semibold">{section.id}.</span> Como contraprestación por los servicios descritos, los honorarios profesionales de EL PRESTADOR ascienden a <strong>{euroEnLetras(formData.honorarios)}</strong> (más los impuestos indirectos que resulten aplicables). Este importe incluye: La gestión integral de las declaraciones de los {formData.titulares.length} cotitular{formData.titulares.length > 1 ? 'es' : ''} (imputación{formData.tipoServicio !== 'imputacion' ? ', alquiler' : ''}{formData.anexos.length > 0 ? ` y ${formData.anexos.length} anexo${formData.anexos.length > 1 ? 's' : ''}` : ''}). Emisión de un informe técnico-fiscal. Custodia digital de la documentación durante el plazo legal de 4 años.
                           </td>
                           <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
-                            <span className="font-semibold">{section.id}.</span> Jako wynagrodzenie za opisane usługi, honoraria zawodowe USŁUGODAWCY wynoszą <strong>{formData.honorarios} EURO</strong> (plus odpowiednie podatki pośrednie). Kwota ta obejmuje: Kompleksowe zarządzanie deklaracjami {formData.titulares.length} współwłaściciel{formData.titulares.length > 1 ? 'i' : 'a'} (przypisanie{formData.tipoServicio !== 'imputacion' ? ', najem' : ''}{formData.anexos.length > 0 ? ` i ${formData.anexos.length} aneks${formData.anexos.length > 1 ? 'y' : ''}` : ''}). Wydanie raportu techniczno-podatkowego. Cyfrowe przechowywanie dokumentacji przez ustawowy okres 4 lat.
+                            <span className="font-semibold">{section.id}.</span> Jako wynagrodzenie za opisane usługi, honoraria zawodowe USŁUGODAWCY wynoszą <strong>{euroEnLetrasPl(formData.honorarios)}</strong> (plus odpowiednie podatki pośrednie). Kwota ta obejmuje: Kompleksowe zarządzanie deklaracjami {formData.titulares.length} współwłaściciel{formData.titulares.length > 1 ? 'i' : 'a'} (przypisanie{formData.tipoServicio !== 'imputacion' ? ', najem' : ''}{formData.anexos.length > 0 ? ` i ${formData.anexos.length} aneks${formData.anexos.length > 1 ? 'y' : ''}` : ''}). Wydanie raportu techniczno-podatkowego. Cyfrowe przechowywanie dokumentacji przez ustawowy okres 4 lat.
                           </td>
                         </tr>
                       );
@@ -422,7 +429,7 @@ const GeneradorContratoIRNR = () => {
                       return (
                         <tr key={section.id}>
                           <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
-                            <span className="font-semibold">{section.id}.</span> Los honorarios se facturarán {formData.formaPago === 'adelantado' ? 'por adelantado' : 'a la entrega'}, y deberán abonarse en el plazo de <strong>{formData.plazoPago} días</strong> hábiles desde la emisión de la factura, mediante transferencia a:
+                            <span className="font-semibold">{section.id}.</span> Los honorarios se facturarán {formData.formaPago === 'adelantado' ? 'por adelantado' : 'a la entrega'}, y deberán abonarse en el plazo de <strong>{diasEnLetras(formData.plazoPago)}</strong> hábiles desde la emisión de la factura, mediante transferencia a:
                             <table className="w-full mt-2 text-xs">
                               <tbody>
                                 <tr><td className="py-1">Entidad:</td><td className="py-1 font-semibold">{bankDetails.entity}</td></tr>
@@ -434,7 +441,7 @@ const GeneradorContratoIRNR = () => {
                             </table>
                           </td>
                           <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
-                            <span className="font-semibold">{section.id}.</span> Honoraria będą fakturowane {formData.formaPago === 'adelantado' ? 'z góry' : 'przy odbiorze'} i muszą zostać uiszczone w terminie <strong>{formData.plazoPago} dni</strong> roboczych od wystawienia faktury, przelewem na:
+                            <span className="font-semibold">{section.id}.</span> Honoraria będą fakturowane {formData.formaPago === 'adelantado' ? 'z góry' : 'przy odbiorze'} i muszą zostać uiszczone w terminie <strong>{diasEnLetrasPl(formData.plazoPago)}</strong> roboczych od wystawienia faktury, przelewem na:
                             <table className="w-full mt-2 text-xs">
                               <tbody>
                                 <tr><td className="py-1">Bank:</td><td className="py-1 font-semibold">{bankDetails.entity}</td></tr>
@@ -645,9 +652,8 @@ const GeneradorContratoIRNR = () => {
                       <Select value={a.tipo} onValueChange={(v) => handleAnexoChange(i, 'tipo', v)}>
                         <SelectTrigger><SelectValue /></SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="Parking">Parking</SelectItem>
-                          <SelectItem value="Trastero">Trastero</SelectItem>
                           <SelectItem value="Garaje">Garaje</SelectItem>
+                          <SelectItem value="Trastero">Trastero</SelectItem>
                         </SelectContent>
                       </Select>
                       <Input placeholder="Referencia Catastral" value={a.refCatastral} onChange={(e) => handleAnexoChange(i, 'refCatastral', e.target.value)} />
