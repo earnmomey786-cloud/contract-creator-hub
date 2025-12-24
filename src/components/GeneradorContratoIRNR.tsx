@@ -200,11 +200,11 @@ const GeneradorContratoIRNR = () => {
             </div>
             
             {/* Título principal */}
-            <div className="mb-8">
-              <h1 className="text-2xl font-bold uppercase tracking-widest mb-4" style={{ color: '#1e3a5f', letterSpacing: '0.15em' }}>
+            <div className="mb-8 px-4">
+              <h1 className="text-xl font-bold uppercase tracking-widest mb-4" style={{ color: '#1e3a5f', letterSpacing: '0.12em', lineHeight: '1.4' }}>
                 {coverPage.titleEs}
               </h1>
-              <p className="text-lg italic text-muted-foreground tracking-wide">
+              <p className="text-base italic text-muted-foreground tracking-wide">
                 {coverPage.titlePl}
               </p>
             </div>
