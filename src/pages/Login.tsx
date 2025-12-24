@@ -23,7 +23,7 @@ const Login = () => {
       if (email.toUpperCase() === VALID_EMAIL && password === VALID_PASSWORD) {
         sessionStorage.setItem('isAuthenticated', 'true');
         toast.success('Acceso concedido');
-        navigate('/contrato');
+        navigate('/dashboard');
       } else {
         toast.error('Credenciales incorrectas');
       }
