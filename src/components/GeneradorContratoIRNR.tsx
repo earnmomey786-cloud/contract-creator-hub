@@ -120,6 +120,8 @@ const GeneradorContratoIRNR = () => {
     'Garaje': 'Garaż'
   };
 
+  const nombreArchivo = `PGK_M210_${formData.clienteNIE}_${formData.ejercicioFiscal}_V1`;
+
   const descargarWord = () => {
     const contenido = document.querySelector('.contract-content');
     if (!contenido) return;
@@ -132,29 +134,37 @@ const GeneradorContratoIRNR = () => {
         <!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->
         <style>
           @page { size: A4; margin: 2cm 1.5cm; }
-          body { font-family: 'Times New Roman', serif; font-size: 10pt; line-height: 1.3; }
-          .cover-page { page-break-after: always; text-align: center; padding-top: 150px; }
+          body { font-family: 'Times New Roman', serif; font-size: 10pt; line-height: 1.4; text-align: justify; }
+          .cover-page { page-break-after: always; text-align: center; padding-top: 80px; }
           .index-page { page-break-after: always; }
           .bilingual-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-          .bilingual-table td { width: 50%; padding: 6px 10px; vertical-align: top; border: 1px solid #999; font-size: 9pt; }
-          .col-es { background-color: #ffffff; }
-          .col-pl { background-color: #f8f8f8; }
-          .header-row td { font-weight: bold; text-align: center; background-color: #e8e8e8 !important; font-size: 10pt; padding: 8px; }
-          .section-header td { font-weight: bold; background-color: #f0f0f0 !important; padding: 10px 6px; }
+          .bilingual-table td { width: 50%; padding: 8px 12px; vertical-align: top; font-size: 9pt; text-align: justify; }
+          .col-es, .col-pl { background-color: #ffffff; }
+          .section-title td { font-weight: bold; text-align: center; font-size: 11pt; padding: 12px 8px; }
+          .clause-title td { font-weight: bold; text-align: left; font-size: 9pt; padding: 10px 12px; }
           .clause-id { font-weight: bold; }
           .signature-section { margin-top: 40px; page-break-inside: avoid; }
-          .signature-table { width: 100%; margin-top: 60px; }
-          .signature-table td { width: 45%; text-align: center; padding-top: 80px; border-top: 1px solid #000; vertical-align: top; }
           .page-break { page-break-before: always; }
           h1 { font-size: 14pt; margin: 10px 0; }
           h2 { font-size: 12pt; margin: 8px 0; }
+          .index-table { width: 80%; margin: 0 auto; }
+          .index-table td { padding: 6px 12px; font-size: 10pt; }
+          .index-num { width: 30px; font-weight: bold; }
         </style>
       </head>
       <body>${contenido.innerHTML}</body>
       </html>
     `;
     const blob = new Blob(['\ufeff', htmlWord], { type: 'application/msword' });
-    saveAs(blob, `PGK_M210_${formData.clienteNIE}_${formData.ejercicioFiscal}_V1.doc`);
+    saveAs(blob, `${nombreArchivo}.doc`);
+  };
+
+  const descargarPDF = () => {
+    // Cambia el título del documento para que el PDF tenga el mismo nombre
+    const tituloOriginal = document.title;
+    document.title = nombreArchivo;
+    window.print();
+    document.title = tituloOriginal;
   };
 
   if (mostrarContrato) {
@@ -168,118 +178,150 @@ const GeneradorContratoIRNR = () => {
             <Button onClick={descargarWord} className="bg-green-600 hover:bg-green-700">
               <FileDown className="mr-2 h-4 w-4" /> Descargar Word
             </Button>
-            <Button onClick={() => window.print()} className="bg-blue-600 hover:bg-blue-700">
-              <Download className="mr-2 h-4 w-4" /> Imprimir PDF
+            <Button onClick={descargarPDF} className="bg-blue-600 hover:bg-blue-700">
+              <Download className="mr-2 h-4 w-4" /> Descargar PDF
             </Button>
           </div>
         </div>
 
-        <div className="contract-content bg-white p-6 text-xs leading-relaxed shadow-lg" style={{ fontSize: '10pt' }}>
+        <div className="contract-content bg-white p-8 text-sm leading-relaxed shadow-lg" style={{ fontSize: '10pt', textAlign: 'justify' }}>
           
-          {/* ==================== PORTADA ==================== */}
-          <div className="cover-page text-center py-16 border-b-4 border-primary mb-8" style={{ pageBreakAfter: 'always' }}>
-            <div className="mb-12">
-              <h1 className="text-xl font-bold mb-2">{coverPage.titleEs}</h1>
-              <h1 className="text-lg font-bold text-muted-foreground italic">{coverPage.titlePl}</h1>
+          {/* ==================== PORTADA ELEGANTE ==================== */}
+          <div className="cover-page text-center" style={{ pageBreakAfter: 'always', minHeight: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            {/* Decoración superior */}
+            <div className="w-32 h-1 bg-primary mx-auto mb-8"></div>
+            <div className="w-20 h-0.5 bg-primary/50 mx-auto mb-16"></div>
+            
+            {/* Título principal */}
+            <div className="mb-12 px-8">
+              <h1 className="text-lg font-bold mb-4 leading-tight tracking-wide uppercase" style={{ letterSpacing: '0.05em' }}>
+                {coverPage.titleEs}
+              </h1>
+              <div className="w-16 h-px bg-muted-foreground/30 mx-auto my-4"></div>
+              <h2 className="text-base text-muted-foreground italic leading-tight">
+                {coverPage.titlePl}
+              </h2>
             </div>
             
+            {/* Modelo */}
             <div className="my-8">
-              <p className="text-base mb-1">Modelo 210 – IRNR</p>
-              <p className="text-base text-muted-foreground">Model 210 – IRNR</p>
+              <p className="text-xl font-semibold tracking-widest">MODELO 210 – IRNR</p>
+              <p className="text-base text-muted-foreground mt-1">Model 210 – IRNR</p>
             </div>
             
-            <div className="my-16 py-8 border-y-2 border-muted">
-              <p className="text-lg font-bold mb-2">{formData.clienteNombre}</p>
-              <p className="text-muted-foreground">NIE: {formData.clienteNIE}</p>
+            {/* Datos del cliente */}
+            <div className="my-12 py-10 mx-auto max-w-md" style={{ borderTop: '2px solid hsl(var(--primary))', borderBottom: '2px solid hsl(var(--primary))' }}>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Cliente / Klient</p>
+              <p className="text-xl font-bold mb-2">{formData.clienteNombre || '_______________'}</p>
+              <p className="text-muted-foreground text-sm">NIE: {formData.clienteNIE || '_______________'}</p>
               {formData.titulares.length > 1 && (
-                <p className="text-sm text-muted-foreground mt-2">
-                  y {formData.titulares.length - 1} cotitular{formData.titulares.length > 2 ? 'es' : ''} más
+                <p className="text-xs text-muted-foreground mt-3 italic">
+                  y {formData.titulares.length - 1} cotitular{formData.titulares.length > 2 ? 'es' : ''} más / 
+                  oraz {formData.titulares.length - 1} współwłaściciel{formData.titulares.length > 2 ? 'i' : ''}
                 </p>
               )}
             </div>
             
-            <div className="mt-12">
-              <p>En {formData.lugar}, a {fechaFormateada.es}</p>
-              <p className="text-muted-foreground">W {formData.lugar}, dnia {fechaFormateada.pl}</p>
+            {/* Ejercicio fiscal */}
+            <div className="my-6">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Ejercicio Fiscal / Rok Podatkowy</p>
+              <p className="text-3xl font-bold">{formData.ejercicioFiscal}</p>
             </div>
+            
+            {/* Fecha y lugar */}
+            <div className="mt-12">
+              <p className="text-sm">En {formData.lugar}, a {fechaFormateada.es}</p>
+              <p className="text-sm text-muted-foreground italic">W {formData.lugar}, dnia {fechaFormateada.pl}</p>
+            </div>
+            
+            {/* Decoración inferior */}
+            <div className="w-20 h-0.5 bg-primary/50 mx-auto mt-16"></div>
+            <div className="w-32 h-1 bg-primary mx-auto mt-2"></div>
           </div>
 
-          {/* ==================== ÍNDICE ==================== */}
-          <div className="index-page mb-8" style={{ pageBreakAfter: 'always' }}>
-            <table className="bilingual-table w-full border-collapse">
-              <thead>
-                <tr className="header-row">
-                  <td className="text-center py-3 font-bold bg-muted">{contractIndex.titleEs}</td>
-                  <td className="text-center py-3 font-bold bg-muted">{contractIndex.titlePl}</td>
-                </tr>
-              </thead>
-              <tbody>
-                {contractIndex.items.map((item, i) => (
-                  <tr key={i}>
-                    <td className="col-es py-2 border border-border">{item.es}</td>
-                    <td className="col-pl py-2 border border-border">{item.pl}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          {/* ==================== ÍNDICE ELEGANTE ==================== */}
+          <div className="index-page" style={{ pageBreakAfter: 'always' }}>
+            {/* Cabecera del índice */}
+            <div className="text-center mb-10">
+              <h2 className="text-lg font-bold uppercase tracking-widest mb-1">{contractIndex.titleEs}</h2>
+              <p className="text-base text-muted-foreground italic">{contractIndex.titlePl}</p>
+              <div className="w-24 h-0.5 bg-primary mx-auto mt-4"></div>
+            </div>
+            
+            {/* Lista del índice */}
+            <div className="max-w-3xl mx-auto">
+              <table className="w-full" style={{ borderCollapse: 'collapse' }}>
+                <tbody>
+                  {contractIndex.items.map((item, i) => (
+                    <tr key={i} className="border-b border-muted/30">
+                      <td className="py-3 pr-4 text-sm" style={{ width: '50%' }}>
+                        <span className="font-medium">{item.es}</span>
+                      </td>
+                      <td className="py-3 pl-4 text-sm text-muted-foreground italic" style={{ width: '50%' }}>
+                        {item.pl}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           {/* ==================== CONTENIDO BILINGÜE ==================== */}
           <div className="page-break" style={{ pageBreakBefore: 'always' }}></div>
           
-          <table className="bilingual-table w-full border-collapse" style={{ tableLayout: 'fixed' }}>
+          <table className="bilingual-table w-full" style={{ tableLayout: 'fixed', borderCollapse: 'collapse' }}>
             <colgroup>
               <col style={{ width: '50%' }} />
               <col style={{ width: '50%' }} />
             </colgroup>
             <tbody>
               {/* Fecha y lugar */}
-              <tr className="header-row">
-                <td className="py-3 text-center font-semibold bg-muted/50 border border-border">
-                  En {formData.lugar}, a {fechaFormateada.es}
-                </td>
-                <td className="py-3 text-center font-semibold bg-muted/50 border border-border">
-                  W {formData.lugar}, dnia {fechaFormateada.pl}
+              <tr>
+                <td className="py-4 text-center font-semibold" colSpan={2}>
+                  <span>En {formData.lugar}, a {fechaFormateada.es}</span>
+                  <span className="mx-4 text-muted-foreground">|</span>
+                  <span className="text-muted-foreground italic">W {formData.lugar}, dnia {fechaFormateada.pl}</span>
                 </td>
               </tr>
 
-              {/* LAS PARTES */}
-              <tr className="section-header">
-                <td className="py-3 text-center font-bold bg-muted border border-border">{partiesSection.titleEs}</td>
-                <td className="py-3 text-center font-bold bg-muted border border-border">{partiesSection.titlePl}</td>
+              {/* LAS PARTES - Título centrado y negrita */}
+              <tr className="section-title">
+                <td className="py-4 text-center font-bold text-base">{partiesSection.titleEs}</td>
+                <td className="py-4 text-center font-bold text-base text-muted-foreground">{partiesSection.titlePl}</td>
               </tr>
               <tr>
-                <td className="col-es p-3 border border-border align-top">
+                <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
                   <strong>De una parte</strong>, POLSKA GRUPA KONSULTINGOWA, S.L., NIF B-22682827, C/ Matilde Peñaranda, 27, 5.º A, 03183 Torrevieja (Alicante), inscrita en el Registro Mercantil de Alicante (S-8, H-A 199665, I/A-1 de 31.07.25), representada por D.ª Natalia Małgorzata Sikora (en adelante, <strong>"EL PRESTADOR"</strong>).
                 </td>
-                <td className="col-pl p-3 border border-border align-top">
+                <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
                   <strong>Z jednej strony</strong>, POLSKA GRUPA KONSULTINGOWA, S.L., NIF B-22682827, C/ Matilde Peñaranda, 27, 5.º A, 03183 Torrevieja (Alicante), wpisana do Rejestru Handlowego w Alicante (S-8, H-A 199665, I/A-1 z dnia 31.07.25), reprezentowana przez Panią Natalię Małgorzatę Sikorę (zwana dalej <strong>"USŁUGODAWCĄ"</strong>).
                 </td>
               </tr>
               <tr>
-                <td className="col-es p-3 border border-border align-top">
+                <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
                   <strong>Y de otra parte</strong>, D./D.ª <strong>{formData.clienteNombre}</strong>, identificado/a con NIE <strong>{formData.clienteNIE}</strong>, correo electrónico a efectos de notificaciones <strong>{formData.clienteEmail}</strong>, con domicilio fiscal en <strong>{formData.clienteDomicilioFiscal}</strong>, quien actúa en su propio nombre{formData.titulares.length > 1 ? ' y en nombre y representación del resto de cotitulares del inmueble descrito más adelante, manifestando contar con autorización suficiente para ello' : ''}, en adelante, <strong>"EL CLIENTE"</strong>.
                 </td>
-                <td className="col-pl p-3 border border-border align-top">
+                <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
                   <strong>Z drugiej strony</strong>, Pan/Pani <strong>{formData.clienteNombre}</strong>, legitymujący/a się numerem NIE <strong>{formData.clienteNIE}</strong>, adres e-mail do celów powiadomień <strong>{formData.clienteEmail}</strong>, z siedzibą podatkową pod adresem <strong>{formData.clienteDomicilioFiscal}</strong>, działający/a we własnym imieniu{formData.titulares.length > 1 ? ' oraz w imieniu i na rzecz pozostałych współwłaścicieli nieruchomości opisanej poniżej, oświadczając, że posiada wystarczające upoważnienie w tym zakresie' : ''}, zwany/a dalej <strong>"KLIENTEM"</strong>.
                 </td>
               </tr>
 
-              {/* MANIFIESTAN */}
-              <tr className="section-header">
-                <td className="py-3 text-center font-bold bg-muted border border-border">{manifestSection.titleEs}</td>
-                <td className="py-3 text-center font-bold bg-muted border border-border">{manifestSection.titlePl}</td>
+              {/* MANIFIESTAN - Título centrado y negrita */}
+              <tr className="section-title">
+                <td className="py-4 text-center font-bold text-base">{manifestSection.titleEs}</td>
+                <td className="py-4 text-center font-bold text-base text-muted-foreground">{manifestSection.titlePl}</td>
               </tr>
               {manifestSection.items.map((item, i) => (
                 <tr key={i}>
-                  <td className="col-es p-3 border border-border align-top">
+                  <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
                     <strong>{item.numeral}</strong>{' '}
                     {i === 1 
                       ? `Que EL CLIENTE declara su condición de no residente fiscal en España, conforme a lo dispuesto en el Real Decreto Legislativo 5/2004, y es titular${formData.titulares.length > 1 ? ', conjuntamente con otros cotitulares,' : ''} del bien inmueble sito en ${formData.inmuebleDireccion}, CP ${formData.inmuebleCP}, ${formData.inmuebleProvincia} (${formData.inmuebleComunidad}). Como titular de rentas inmobiliarias en territorio español, reconoce expresamente su condición de obligado tributario y su deber legal de autoliquidar el Impuesto sobre la Renta de No Residentes (Modelo 210), ante la AEAT, asumiendo que el incumplimiento de los plazos legales puede derivar en responsabilidades, sanciones o recargos según la Ley General Tributaria.`
                       : item.es
                     }
                   </td>
-                  <td className="col-pl p-3 border border-border align-top">
+                  <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
                     <strong>{item.numeral}</strong>{' '}
                     {i === 1 
                       ? `Że KLIENT oświadcza, iż posiada status nierezydenta podatkowego w Hiszpanii, zgodnie z postanowieniami Królewskiego Dekretu Legislacyjnego 5/2004, oraz jest właścicielem${formData.titulares.length > 1 ? ', wspólnie z innymi współwłaścicielami,' : ''} nieruchomości położonej pod adresem ${formData.inmuebleDireccion}, kod pocztowy ${formData.inmuebleCP}, ${formData.inmuebleProvincia} (${formData.inmuebleComunidad}). Jako posiadacz dochodów z nieruchomości na terytorium hiszpańskim, wyraźnie uznaje swój status podatnika oraz prawny obowiązek samodzielnego rozliczenia Podatku Dochodowego od Nierezydentów (Formularz 210) przed AEAT, przyjmując do wiadomości, że niedotrzymanie terminów ustawowych może skutkować odpowiedzialnością, sankcjami lub dopłatami zgodnie z Ogólną Ordynacją Podatkową.`
@@ -289,28 +331,34 @@ const GeneradorContratoIRNR = () => {
                 </tr>
               ))}
 
-              {/* CLÁUSULAS */}
+              {/* CLÁUSULAS - Título centrado y negrita (nuevo) */}
+              <tr className="section-title">
+                <td className="py-4 text-center font-bold text-base">CLÁUSULAS</td>
+                <td className="py-4 text-center font-bold text-base text-muted-foreground">KLAUZULE</td>
+              </tr>
+
+              {/* CLÁUSULAS - Títulos alineados a izquierda y tamaño menor */}
               {clauses.map((clause) => (
                 <>
-                  <tr key={`header-${clause.number}`} className="section-header">
-                    <td className="py-3 text-center font-bold bg-muted border border-border">{clause.titleEs}</td>
-                    <td className="py-3 text-center font-bold bg-muted border border-border">{clause.titlePl}</td>
+                  <tr key={`header-${clause.number}`} className="clause-title">
+                    <td className="py-2 px-3 text-left font-bold text-sm">{clause.titleEs}</td>
+                    <td className="py-2 px-3 text-left font-bold text-sm text-muted-foreground">{clause.titlePl}</td>
                   </tr>
                   {clause.sections.map((section) => {
                     // Contenido dinámico para cláusula QUINTA
                     if (clause.number === 'QUINTA' && section.id === '5.1') {
                       return (
                         <tr key={section.id}>
-                          <td className="col-es p-3 border border-border align-top">
-                            <span className="clause-id">{section.id}.</span> EL CLIENTE contrata a EL PRESTADOR la gestión fiscal del Impuesto sobre la Renta de No Residentes (IRNR) correspondiente al ejercicio <strong>{formData.ejercicioFiscal}</strong>, en relación con el inmueble sito en <strong>{formData.inmuebleDireccion}, {formData.inmuebleCP} {formData.inmuebleProvincia}</strong>, con referencia catastral <strong>{formData.inmuebleRefCatastral}</strong>, del que son cotitulares las siguientes personas físicas no residentes fiscales en España:
-                            <table className="w-full mt-2 text-xs border-collapse">
+                          <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
+                            <span className="font-semibold">{section.id}.</span> EL CLIENTE contrata a EL PRESTADOR la gestión fiscal del Impuesto sobre la Renta de No Residentes (IRNR) correspondiente al ejercicio <strong>{formData.ejercicioFiscal}</strong>, en relación con el inmueble sito en <strong>{formData.inmuebleDireccion}, {formData.inmuebleCP} {formData.inmuebleProvincia}</strong>, con referencia catastral <strong>{formData.inmuebleRefCatastral}</strong>, del que son cotitulares las siguientes personas físicas no residentes fiscales en España:
+                            <table className="w-full mt-2 text-xs">
                               <tbody>
                                 {formData.titulares.map((t, i) => (
                                   <tr key={i}>
-                                    <td className="border border-border/50 p-1">Titular {i+1}:</td>
-                                    <td className="border border-border/50 p-1">{t.nombre}</td>
-                                    <td className="border border-border/50 p-1">NIE {t.nie}</td>
-                                    <td className="border border-border/50 p-1">{t.participacion}%</td>
+                                    <td className="py-1">Titular {i+1}:</td>
+                                    <td className="py-1">{t.nombre}</td>
+                                    <td className="py-1">NIE {t.nie}</td>
+                                    <td className="py-1">{t.participacion}%</td>
                                   </tr>
                                 ))}
                               </tbody>
@@ -326,16 +374,16 @@ const GeneradorContratoIRNR = () => {
                               </>
                             )}
                           </td>
-                          <td className="col-pl p-3 border border-border align-top">
-                            <span className="clause-id">{section.id}.</span> KLIENT zleca USŁUGODAWCY zarządzanie podatkowe w zakresie Podatku Dochodowego od Nierezydentów (IRNR) za rok podatkowy <strong>{formData.ejercicioFiscal}</strong>, w odniesieniu do nieruchomości położonej pod adresem <strong>{formData.inmuebleDireccion}, {formData.inmuebleCP} {formData.inmuebleProvincia}</strong>, o numerze katastralnym <strong>{formData.inmuebleRefCatastral}</strong>, której współwłaścicielami są następujące osoby fizyczne niebędące rezydentami podatkowymi w Hiszpanii:
-                            <table className="w-full mt-2 text-xs border-collapse">
+                          <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
+                            <span className="font-semibold">{section.id}.</span> KLIENT zleca USŁUGODAWCY zarządzanie podatkowe w zakresie Podatku Dochodowego od Nierezydentów (IRNR) za rok podatkowy <strong>{formData.ejercicioFiscal}</strong>, w odniesieniu do nieruchomości położonej pod adresem <strong>{formData.inmuebleDireccion}, {formData.inmuebleCP} {formData.inmuebleProvincia}</strong>, o numerze katastralnym <strong>{formData.inmuebleRefCatastral}</strong>, której współwłaścicielami są następujące osoby fizyczne niebędące rezydentami podatkowymi w Hiszpanii:
+                            <table className="w-full mt-2 text-xs">
                               <tbody>
                                 {formData.titulares.map((t, i) => (
                                   <tr key={i}>
-                                    <td className="border border-border/50 p-1">Właściciel {i+1}:</td>
-                                    <td className="border border-border/50 p-1">{t.nombre}</td>
-                                    <td className="border border-border/50 p-1">NIE {t.nie}</td>
-                                    <td className="border border-border/50 p-1">{t.participacion}%</td>
+                                    <td className="py-1">Właściciel {i+1}:</td>
+                                    <td className="py-1">{t.nombre}</td>
+                                    <td className="py-1">NIE {t.nie}</td>
+                                    <td className="py-1">{t.participacion}%</td>
                                   </tr>
                                 ))}
                               </tbody>
@@ -359,11 +407,11 @@ const GeneradorContratoIRNR = () => {
                     if (clause.number === 'QUINTA' && section.id === '5.4') {
                       return (
                         <tr key={section.id}>
-                          <td className="col-es p-3 border border-border align-top">
-                            <span className="clause-id">{section.id}.</span> Como contraprestación por los servicios descritos, los honorarios profesionales de EL PRESTADOR ascienden a <strong>{formData.honorarios} EUROS</strong> (más los impuestos indirectos que resulten aplicables). Este importe incluye: La gestión integral de las declaraciones de los {formData.titulares.length} cotitular{formData.titulares.length > 1 ? 'es' : ''} (imputación{formData.tipoServicio !== 'imputacion' ? ', alquiler' : ''}{formData.anexos.length > 0 ? ` y ${formData.anexos.length} anexo${formData.anexos.length > 1 ? 's' : ''}` : ''}). Emisión de un informe técnico-fiscal. Custodia digital de la documentación durante el plazo legal de 4 años.
+                          <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
+                            <span className="font-semibold">{section.id}.</span> Como contraprestación por los servicios descritos, los honorarios profesionales de EL PRESTADOR ascienden a <strong>{formData.honorarios} EUROS</strong> (más los impuestos indirectos que resulten aplicables). Este importe incluye: La gestión integral de las declaraciones de los {formData.titulares.length} cotitular{formData.titulares.length > 1 ? 'es' : ''} (imputación{formData.tipoServicio !== 'imputacion' ? ', alquiler' : ''}{formData.anexos.length > 0 ? ` y ${formData.anexos.length} anexo${formData.anexos.length > 1 ? 's' : ''}` : ''}). Emisión de un informe técnico-fiscal. Custodia digital de la documentación durante el plazo legal de 4 años.
                           </td>
-                          <td className="col-pl p-3 border border-border align-top">
-                            <span className="clause-id">{section.id}.</span> Jako wynagrodzenie za opisane usługi, honoraria zawodowe USŁUGODAWCY wynoszą <strong>{formData.honorarios} EURO</strong> (plus odpowiednie podatki pośrednie). Kwota ta obejmuje: Kompleksowe zarządzanie deklaracjami {formData.titulares.length} współwłaściciel{formData.titulares.length > 1 ? 'i' : 'a'} (przypisanie{formData.tipoServicio !== 'imputacion' ? ', najem' : ''}{formData.anexos.length > 0 ? ` i ${formData.anexos.length} aneks${formData.anexos.length > 1 ? 'y' : ''}` : ''}). Wydanie raportu techniczno-podatkowego. Cyfrowe przechowywanie dokumentacji przez ustawowy okres 4 lat.
+                          <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
+                            <span className="font-semibold">{section.id}.</span> Jako wynagrodzenie za opisane usługi, honoraria zawodowe USŁUGODAWCY wynoszą <strong>{formData.honorarios} EURO</strong> (plus odpowiednie podatki pośrednie). Kwota ta obejmuje: Kompleksowe zarządzanie deklaracjami {formData.titulares.length} współwłaściciel{formData.titulares.length > 1 ? 'i' : 'a'} (przypisanie{formData.tipoServicio !== 'imputacion' ? ', najem' : ''}{formData.anexos.length > 0 ? ` i ${formData.anexos.length} aneks${formData.anexos.length > 1 ? 'y' : ''}` : ''}). Wydanie raportu techniczno-podatkowego. Cyfrowe przechowywanie dokumentacji przez ustawowy okres 4 lat.
                           </td>
                         </tr>
                       );
@@ -373,27 +421,27 @@ const GeneradorContratoIRNR = () => {
                     if (clause.number === 'QUINTA' && section.id === '5.6') {
                       return (
                         <tr key={section.id}>
-                          <td className="col-es p-3 border border-border align-top">
-                            <span className="clause-id">{section.id}.</span> Los honorarios se facturarán {formData.formaPago === 'adelantado' ? 'por adelantado' : 'a la entrega'}, y deberán abonarse en el plazo de <strong>{formData.plazoPago} días</strong> hábiles desde la emisión de la factura, mediante transferencia a:
+                          <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
+                            <span className="font-semibold">{section.id}.</span> Los honorarios se facturarán {formData.formaPago === 'adelantado' ? 'por adelantado' : 'a la entrega'}, y deberán abonarse en el plazo de <strong>{formData.plazoPago} días</strong> hábiles desde la emisión de la factura, mediante transferencia a:
                             <table className="w-full mt-2 text-xs">
                               <tbody>
-                                <tr><td className="p-1">Entidad:</td><td className="p-1 font-semibold">{bankDetails.entity}</td></tr>
-                                <tr><td className="p-1">Titular:</td><td className="p-1">{bankDetails.holder}</td></tr>
-                                <tr><td className="p-1">IBAN:</td><td className="p-1 font-semibold">{bankDetails.iban}</td></tr>
-                                <tr><td className="p-1">BIC:</td><td className="p-1">{bankDetails.bic}</td></tr>
-                                <tr><td className="p-1">Concepto:</td><td className="p-1">IRNR {formData.ejercicioFiscal} – {formData.clienteNombre} {formData.clienteNIE}</td></tr>
+                                <tr><td className="py-1">Entidad:</td><td className="py-1 font-semibold">{bankDetails.entity}</td></tr>
+                                <tr><td className="py-1">Titular:</td><td className="py-1">{bankDetails.holder}</td></tr>
+                                <tr><td className="py-1">IBAN:</td><td className="py-1 font-semibold">{bankDetails.iban}</td></tr>
+                                <tr><td className="py-1">BIC:</td><td className="py-1">{bankDetails.bic}</td></tr>
+                                <tr><td className="py-1">Concepto:</td><td className="py-1">IRNR {formData.ejercicioFiscal} – {formData.clienteNombre} {formData.clienteNIE}</td></tr>
                               </tbody>
                             </table>
                           </td>
-                          <td className="col-pl p-3 border border-border align-top">
-                            <span className="clause-id">{section.id}.</span> Honoraria będą fakturowane {formData.formaPago === 'adelantado' ? 'z góry' : 'przy odbiorze'} i muszą zostać uiszczone w terminie <strong>{formData.plazoPago} dni</strong> roboczych od wystawienia faktury, przelewem na:
+                          <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
+                            <span className="font-semibold">{section.id}.</span> Honoraria będą fakturowane {formData.formaPago === 'adelantado' ? 'z góry' : 'przy odbiorze'} i muszą zostać uiszczone w terminie <strong>{formData.plazoPago} dni</strong> roboczych od wystawienia faktury, przelewem na:
                             <table className="w-full mt-2 text-xs">
                               <tbody>
-                                <tr><td className="p-1">Bank:</td><td className="p-1 font-semibold">{bankDetails.entity}</td></tr>
-                                <tr><td className="p-1">Odbiorca:</td><td className="p-1">{bankDetails.holder}</td></tr>
-                                <tr><td className="p-1">IBAN:</td><td className="p-1 font-semibold">{bankDetails.iban}</td></tr>
-                                <tr><td className="p-1">BIC:</td><td className="p-1">{bankDetails.bic}</td></tr>
-                                <tr><td className="p-1">Tytuł:</td><td className="p-1">IRNR {formData.ejercicioFiscal} – {formData.clienteNombre} {formData.clienteNIE}</td></tr>
+                                <tr><td className="py-1">Bank:</td><td className="py-1 font-semibold">{bankDetails.entity}</td></tr>
+                                <tr><td className="py-1">Odbiorca:</td><td className="py-1">{bankDetails.holder}</td></tr>
+                                <tr><td className="py-1">IBAN:</td><td className="py-1 font-semibold">{bankDetails.iban}</td></tr>
+                                <tr><td className="py-1">BIC:</td><td className="py-1">{bankDetails.bic}</td></tr>
+                                <tr><td className="py-1">Tytuł:</td><td className="py-1">IRNR {formData.ejercicioFiscal} – {formData.clienteNombre} {formData.clienteNIE}</td></tr>
                               </tbody>
                             </table>
                           </td>
@@ -404,11 +452,11 @@ const GeneradorContratoIRNR = () => {
                     // Cláusulas estándar
                     return (
                       <tr key={section.id}>
-                        <td className="col-es p-3 border border-border align-top">
-                          <span className="clause-id">{section.id}.</span> {section.contentEs}
+                        <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
+                          <span className="font-semibold">{section.id}.</span> {section.contentEs}
                         </td>
-                        <td className="col-pl p-3 border border-border align-top">
-                          <span className="clause-id">{section.id}.</span> {section.contentPl}
+                        <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
+                          <span className="font-semibold">{section.id}.</span> {section.contentPl}
                         </td>
                       </tr>
                     );
@@ -418,10 +466,10 @@ const GeneradorContratoIRNR = () => {
 
               {/* CIERRE */}
               <tr>
-                <td className="col-es p-4 border border-border align-top">
+                <td className="p-4 align-top" style={{ textAlign: 'justify' }}>
                   {closingSection.declarationEs}
                 </td>
-                <td className="col-pl p-4 border border-border align-top">
+                <td className="p-4 align-top" style={{ textAlign: 'justify' }}>
                   {closingSection.declarationPl}
                 </td>
               </tr>
@@ -456,15 +504,12 @@ const GeneradorContratoIRNR = () => {
             .cover-page { page-break-after: always; }
             .index-page { page-break-after: always; }
             .page-break { page-break-before: always; }
-            body { font-size: 9pt; }
+            body { font-size: 9pt; text-align: justify; }
           }
           .bilingual-table { border-collapse: collapse; table-layout: fixed; width: 100%; }
           .bilingual-table td { vertical-align: top; }
-          .col-es { background: hsl(var(--background)); }
-          .col-pl { background: hsl(var(--muted) / 0.3); }
-          .section-header td { background: hsl(var(--muted)) !important; }
-          .header-row td { background: hsl(var(--muted) / 0.5) !important; }
-          .clause-id { font-weight: 600; }
+          .section-title td { border-bottom: 1px solid hsl(var(--border)); }
+          .clause-title td { background: transparent; }
         `}</style>
       </div>
     );
