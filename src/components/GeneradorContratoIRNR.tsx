@@ -189,9 +189,9 @@ const GeneradorContratoIRNR = () => {
           {/* ==================== PORTADA ELEGANTE ==================== */}
           <div className="cover-page text-center" style={{ pageBreakAfter: 'always', minHeight: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '40px' }}>
             
-            {/* Logo banner horizontal - 50% más grande */}
+            {/* Logo banner horizontal - 30% más grande */}
             <div className="mb-10">
-              <img src="/images/pgk-banner.png" alt="Polska Grupa Konsultingowa" style={{ height: '225px', width: 'auto' }} />
+              <img src="/images/pgk-banner.png" alt="Polska Grupa Konsultingowa" style={{ height: '195px', width: 'auto' }} />
             </div>
             
             {/* Línea decorativa superior */}
