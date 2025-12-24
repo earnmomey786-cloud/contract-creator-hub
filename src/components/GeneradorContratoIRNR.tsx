@@ -191,7 +191,7 @@ const GeneradorContratoIRNR = () => {
             
             {/* Logo banner horizontal */}
             <div className="mb-16">
-              <img src="/images/pgk-banner.png" alt="Polska Grupa Konsultingowa" style={{ height: '120px', width: 'auto' }} />
+              <img src="/images/pgk-banner.png" alt="Polska Grupa Konsultingowa" style={{ height: '168px', width: 'auto' }} />
             </div>
             
             {/* Línea decorativa superior */}
