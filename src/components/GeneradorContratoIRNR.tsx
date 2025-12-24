@@ -502,10 +502,10 @@ const GeneradorContratoIRNR = () => {
                     // Cláusulas estándar
                     return (
                       <tr key={section.id}>
-                        <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
+                        <td className="p-3 align-top" style={{ textAlign: 'justify', whiteSpace: 'pre-line' }}>
                           <span className="font-semibold">{section.id}.</span> {section.contentEs}
                         </td>
-                        <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
+                        <td className="p-3 align-top" style={{ textAlign: 'justify', whiteSpace: 'pre-line' }}>
                           <span className="font-semibold">{section.id}.</span> {section.contentPl}
                         </td>
                       </tr>
