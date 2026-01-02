@@ -1,4 +1,5 @@
 // Contenido completo del contrato bilingüe ES-PL
+// Contrato DEFINITIVO IRNR - 28 Cláusulas
 // Traducción profesional al polaco jurídico
 
 export interface ContractSection {
@@ -24,10 +25,10 @@ export interface ContractClause {
 // PORTADA DEL CONTRATO
 // ===========================================
 export const coverPage = {
-  titleEs: "Contrato de Prestación de Servicios Profesionales para la Confección y Presentación del Modelo 210 – Impuesto sobre la Renta de No Residentes",
-  titlePl: "Umowa o Świadczenie Usług Profesjonalnych w zakresie Sporządzenia i Złożenia Formularza 210 – Podatek Dochodowy od Nierezydentów",
+  titleEs: "Contrato de Prestación de Servicios Profesionales\nConfección y Presentación del Modelo 210\nImpuesto sobre la Renta de No Residentes",
+  titlePl: "Umowa o Świadczenie Usług Profesjonalnych\nSporządzenie i Złożenie Formularza 210\nPodatek Dochodowy od Nierezydentów",
   dateFormatEs: (ciudad: string, dia: string, mes: string, anio: string) => 
-    `En ${ciudad} a ${dia} de ${mes} de ${anio}`,
+    `En ${ciudad}, a ${dia} de ${mes} de ${anio}`,
   dateFormatPl: (ciudad: string, dia: string, mes: string, anio: string) => 
     `W ${ciudad}, dnia ${dia} ${mes} ${anio}`,
 };
@@ -39,25 +40,36 @@ export const contractIndex = {
   titleEs: "ÍNDICE",
   titlePl: "SPIS TREŚCI",
   items: [
-    { es: "ÍNDICE", pl: "SPIS TREŚCI", page: 2 },
-    { es: "LAS PARTES", pl: "STRONY UMOWY", page: 3 },
-    { es: "MANIFIESTAN", pl: "OŚWIADCZENIA", page: 3 },
-    { es: "CLÁUSULAS", pl: "KLAUZULE", page: 4 },
-    { es: "PRIMERA. - OBJETO Y ALCANCE DEL CONTRATO", pl: "PIERWSZA. - PRZEDMIOT I ZAKRES UMOWY", page: 4 },
-    { es: "SEGUNDA. - SERVICIOS CONTRATADOS Y EJECUCIÓN TÉCNICA", pl: "DRUGA. - ZAKONTRAKTOWANE USŁUGI I REALIZACJA TECHNICZNA", page: 4 },
-    { es: "TERCERA. - OBLIGACIONES DEL PRESTADOR", pl: "TRZECIA. - OBOWIĄZKI USŁUGODAWCY", page: 5 },
-    { es: "CUARTA. - OBLIGACIONES DEL CLIENTE", pl: "CZWARTA. - OBOWIĄZKI KLIENTA", page: 5 },
-    { es: "QUINTA. – SERVICIOS CONTRATADOS, HONORARIOS Y FORMA DE PAGO", pl: "PIĄTA. – ZAKONTRAKTOWANE USŁUGI, HONORARIA I FORMA PŁATNOŚCI", page: 6 },
-    { es: "SEXTA. - DURACIÓN Y VIGENCIA", pl: "SZÓSTA. - CZAS TRWANIA I OBOWIĄZYWANIE", page: 7 },
-    { es: "SÉPTIMA. - DERECHO DE DESISTIMIENTO", pl: "SIÓDMA. - PRAWO DO ODSTĄPIENIA", page: 8 },
-    { es: "OCTAVA. - CAUSAS DE RESOLUCIÓN DEL CONTRATO", pl: "ÓSMA. - PRZYCZYNY ROZWIĄZANIA UMOWY", page: 8 },
-    { es: "NOVENA. – RESPONSABILIDAD Y AUTORIZACIONES", pl: "DZIEWIĄTA. – ODPOWIEDZIALNOŚĆ I UPOWAŻNIENIA", page: 9 },
-    { es: "DÉCIMA. - CONFIDENCIALIDAD Y PROTECCIÓN DE DATOS", pl: "DZIESIĄTA. - POUFNOŚĆ I OCHRONA DANYCH", page: 9 },
-    { es: "UNDÉCIMA. - COMUNICACIONES", pl: "JEDENASTA. - KOMUNIKACJA", page: 10 },
-    { es: "DUODÉCIMA. - PROPIEDAD INTELECTUAL", pl: "DWUNASTA. - WŁASNOŚĆ INTELEKTUALNA", page: 10 },
-    { es: "DECIMOTERCERA. - MODIFICACIONES DEL CONTRATO", pl: "TRZYNASTA. - ZMIANY UMOWY", page: 11 },
-    { es: "DECIMOCUARTA. - LEGISLACIÓN APLICABLE Y JURISDICCIÓN", pl: "CZTERNASTA. - PRAWO WŁAŚCIWE I JURYSDYKCJA", page: 11 },
-    { es: "DECIMOQUINTA. - IDIOMA DEL CONTRATO", pl: "PIĘTNASTA. - JĘZYK UMOWY", page: 11 },
+    { es: "LAS PARTES", pl: "STRONY UMOWY", page: 1 },
+    { es: "MANIFIESTAN", pl: "OŚWIADCZENIA", page: 1 },
+    { es: "PRIMERA. - OBJETO Y ALCANCE DEL CONTRATO", pl: "PIERWSZA. - PRZEDMIOT I ZAKRES UMOWY", page: 2 },
+    { es: "SEGUNDA. - SERVICIOS INCLUIDOS", pl: "DRUGA. - USŁUGI OBJĘTE UMOWĄ", page: 2 },
+    { es: "TERCERA. - EJECUCIÓN Y CUALIFICACIÓN PROFESIONAL", pl: "TRZECIA. - REALIZACJA I KWALIFIKACJE ZAWODOWE", page: 3 },
+    { es: "CUARTA. - OBLIGACIONES DE EL PRESTADOR", pl: "CZWARTA. - OBOWIĄZKI USŁUGODAWCY", page: 3 },
+    { es: "QUINTA. - OBLIGACIONES DE EL CLIENTE", pl: "PIĄTA. - OBOWIĄZKI KLIENTA", page: 4 },
+    { es: "SEXTA. - DOCUMENTACIÓN REQUERIDA", pl: "SZÓSTA. - WYMAGANA DOKUMENTACJA", page: 4 },
+    { es: "SÉPTIMA. - CONSECUENCIAS DE NO ENTREGA DE DOCUMENTACIÓN", pl: "SIÓDMA. - KONSEKWENCJE NIEDOSTARCZENIA DOKUMENTACJI", page: 5 },
+    { es: "OCTAVA. - HONORARIOS PROFESIONALES", pl: "ÓSMA. - HONORARIA PROFESJONALNE", page: 5 },
+    { es: "NOVENA. - FORMA Y PLAZO DE PAGO", pl: "DZIEWIĄTA. - FORMA I TERMIN PŁATNOŚCI", page: 6 },
+    { es: "DÉCIMA. - CONSECUENCIAS DEL IMPAGO", pl: "DZIESIĄTA. - KONSEKWENCJE BRAKU PŁATNOŚCI", page: 6 },
+    { es: "UNDÉCIMA. - SERVICIOS NO INCLUIDOS", pl: "JEDENASTA. - USŁUGI NIEOBJĘTE UMOWĄ", page: 7 },
+    { es: "DUODÉCIMA. - MODIFICACIONES DEL CONTRATO", pl: "DWUNASTA. - ZMIANY UMOWY", page: 7 },
+    { es: "DECIMOTERCERA. - DURACIÓN Y VIGENCIA", pl: "TRZYNASTA. - CZAS TRWANIA I OBOWIĄZYWANIE", page: 8 },
+    { es: "DECIMOCUARTA. - DERECHO DE DESISTIMIENTO", pl: "CZTERNASTA. - PRAWO DO ODSTĄPIENIA", page: 8 },
+    { es: "DECIMOQUINTA. - RESOLUCIÓN DEL CONTRATO", pl: "PIĘTNASTA. - ROZWIĄZANIE UMOWY", page: 9 },
+    { es: "DECIMOSEXTA. - EFECTOS DE LA RESOLUCIÓN", pl: "SZESNASTA. - SKUTKI ROZWIĄZANIA", page: 9 },
+    { es: "DECIMOSÉPTIMA. - RESPONSABILIDAD", pl: "SIEDEMNASTA. - ODPOWIEDZIALNOŚĆ", page: 10 },
+    { es: "DECIMOCTAVA. - AUTORIZACIÓN PARA PRESENTACIONES", pl: "OSIEMNASTA. - UPOWAŻNIENIE DO SKŁADANIA DEKLARACJI", page: 11 },
+    { es: "DECIMONOVENA. - RECTIFICACIÓN DE DECLARACIONES", pl: "DZIEWIĘTNASTA. - KOREKTA DEKLARACJI", page: 11 },
+    { es: "VIGÉSIMA. - CONFIDENCIALIDAD Y PROTECCIÓN DE DATOS", pl: "DWUDZIESTA. - POUFNOŚĆ I OCHRONA DANYCH", page: 12 },
+    { es: "VIGÉSIMA PRIMERA. - COMUNICACIONES", pl: "DWUDZIESTA PIERWSZA. - KOMUNIKACJA", page: 13 },
+    { es: "VIGÉSIMA SEGUNDA. - PROPIEDAD INTELECTUAL", pl: "DWUDZIESTA DRUGA. - WŁASNOŚĆ INTELEKTUALNA", page: 13 },
+    { es: "VIGÉSIMA TERCERA. - RESOLUCIÓN AMISTOSA DE CONFLICTOS", pl: "DWUDZIESTA TRZECIA. - POLUBOWNE ROZSTRZYGANIE SPORÓW", page: 14 },
+    { es: "VIGÉSIMA CUARTA. - FUERZA MAYOR", pl: "DWUDZIESTA CZWARTA. - SIŁA WYŻSZA", page: 14 },
+    { es: "VIGÉSIMA QUINTA. - CESIÓN", pl: "DWUDZIESTA PIĄTA. - CESJA", page: 15 },
+    { es: "VIGÉSIMA SEXTA. - INTEGRIDAD DEL CONTRATO", pl: "DWUDZIESTA SZÓSTA. - INTEGRALNOŚĆ UMOWY", page: 15 },
+    { es: "VIGÉSIMA SÉPTIMA. - LEGISLACIÓN APLICABLE Y JURISDICCIÓN", pl: "DWUDZIESTA SIÓDMA. - PRAWO WŁAŚCIWE I JURYSDYKCJA", page: 15 },
+    { es: "VIGÉSIMA OCTAVA. - IDIOMA DEL CONTRATO", pl: "DWUDZIESTA ÓSMA. - JĘZYK UMOWY", page: 16 },
   ]
 };
 
@@ -67,10 +79,10 @@ export const contractIndex = {
 export const partiesSection = {
   titleEs: "LAS PARTES",
   titlePl: "STRONY UMOWY",
-  prestadorEs: (ciudad: string, dia: string, mes: string, anio: string) => `De una parte, POLSKA GRUPA KONSULTINGOWA, S.L., NIF B-22682827, C/ Matilde Peñaranda, 27, 5.º A, 03183 Torrevieja (Alicante), inscrita en el Registro Mercantil de Alicante (S-8, H-A 199665, I/A-1 de 31.07.25), representada por D.ª Natalia Małgorzata Sikora (en adelante, "EL PRESTADOR")`,
-  prestadorPl: (ciudad: string, dia: string, mes: string, anio: string) => `Z jednej strony, POLSKA GRUPA KONSULTINGOWA, S.L., NIF B-22682827, C/ Matilde Peñaranda, 27, 5.º A, 03183 Torrevieja (Alicante), wpisana do Rejestru Handlowego w Alicante (S-8, H-A 199665, I/A-1 z dnia 31.07.25), reprezentowana przez Panią Natalię Małgorzatę Sikorę (zwana dalej "USŁUGODAWCĄ")`,
-  clienteEs: (nombre: string, nie: string, email: string, domicilio: string) => `Y de otra parte, D./D.ª ${nombre}, identificado/a con NIE ${nie}, correo electrónico a efectos de notificaciones ${email}, con domicilio fiscal en ${domicilio}, quien actúa en su propio nombre y, en su caso, en nombre y representación del resto de cotitulares del inmueble descrito más adelante, manifestando contar con autorización suficiente para ello, en adelante, "EL CLIENTE".`,
-  clientePl: (nombre: string, nie: string, email: string, domicilio: string) => `Z drugiej strony, Pan/Pani ${nombre}, legitymujący/a się numerem NIE ${nie}, adres e-mail do celów powiadomień ${email}, z siedzibą podatkową pod adresem ${domicilio}, działający/a we własnym imieniu oraz, w stosownych przypadkach, w imieniu i na rzecz pozostałych współwłaścicieli nieruchomości opisanej poniżej, oświadczając, że posiada wystarczające upoważnienie w tym zakresie, zwany/a dalej "KLIENTEM".`,
+  prestadorEs: () => `De una parte, POLSKA GRUPA KONSULTINGOWA, S.L., NIF B-22682827, C/ Matilde Peñaranda, 27, 5.º A, 03183 Torrevieja (Alicante), inscrita en el Registro Mercantil de Alicante (S-8, H-A 199665, I/A-1 de 31.07.25), representada por D.ª Natalia Małgorzata Sikora (en lo sucesivo, «EL PRESTADOR»).`,
+  prestadorPl: () => `Z jednej strony, POLSKA GRUPA KONSULTINGOWA, S.L., NIF B-22682827, C/ Matilde Peñaranda, 27, 5.º A, 03183 Torrevieja (Alicante), wpisana do Rejestru Handlowego w Alicante (S-8, H-A 199665, I/A-1 z dnia 31.07.25), reprezentowana przez Panią Natalię Małgorzatę Sikorę (zwana dalej «USŁUGODAWCĄ»).`,
+  clienteEs: (nombre: string, nie: string, email: string, domicilio: string) => `Y de otra parte, D./D.ª ${nombre} (nombre y apellidos completos), identificado/a con NIE ${nie}, correo electrónico ${email}, con domicilio fiscal en ${domicilio} (dirección completa, CP, localidad, provincia), quien actúa en su propio nombre y, en su caso, en representación de los cotitulares del inmueble mediante [poder notarial / autorización escrita] de fecha correspondiente, actuando en su condición de consumidor cuando legalmente proceda, conforme al Real Decreto Legislativo 1/2007 (en lo sucesivo, «EL CLIENTE»).`,
+  clientePl: (nombre: string, nie: string, email: string, domicilio: string) => `Z drugiej strony, Pan/Pani ${nombre} (pełne imię i nazwisko), legitymujący/a się numerem NIE ${nie}, adres e-mail ${email}, z siedzibą podatkową pod adresem ${domicilio} (pełny adres, kod pocztowy, miejscowość, prowincja), działający/a we własnym imieniu oraz, w stosownych przypadkach, w imieniu współwłaścicieli nieruchomości na podstawie [aktu notarialnego / pisemnego upoważnienia] z odpowiedniej daty, występujący/a w charakterze konsumenta, gdy wymaga tego prawo, zgodnie z Królewskim Dekretem Legislacyjnym 1/2007 (zwany/a dalej «KLIENTEM»).`,
 };
 
 // ===========================================
@@ -82,423 +94,594 @@ export const manifestSection = {
   items: [
     {
       numeral: "I.",
-      es: "Que EL PRESTADOR es una firma especializada en consultoría tributaria internacional con amplia experiencia en la fiscalidad de no residentes en España. Cuenta con el equipo técnico, la cualificación profesional y los medios telemáticos necesarios para la gestión y presentación de autoliquidaciones ante la Agencia Estatal de Administración Tributaria (AEAT).",
-      pl: "Że USŁUGODAWCA jest firmą specjalizującą się w międzynarodowym doradztwie podatkowym, posiadającą bogate doświadczenie w zakresie opodatkowania nierezydentów w Hiszpanii. Dysponuje zespołem technicznym, kwalifikacjami zawodowymi oraz środkami telematycznymi niezbędnymi do zarządzania i składania deklaracji podatkowych przed Państwową Agencją Administracji Podatkowej (AEAT)."
+      es: "Que EL PRESTADOR es una firma especializada en consultoría tributaria internacional con amplia experiencia en fiscalidad de no residentes en España. Cuenta con el equipo técnico y los medios necesarios para la gestión y presentación de autoliquidaciones ante la Agencia Estatal de Administración Tributaria (AEAT).",
+      pl: "Że USŁUGODAWCA jest firmą specjalizującą się w międzynarodowym doradztwie podatkowym, posiadającą bogate doświadczenie w zakresie opodatkowania nierezydentów w Hiszpanii. Dysponuje zespołem technicznym oraz środkami niezbędnymi do zarządzania i składania deklaracji podatkowych przed Państwową Agencją Administracji Podatkowej (AEAT)."
     },
     {
       numeral: "II.",
-      esTemplate: (direccion: string, cp: string, provincia: string, comunidad: string) => `Que EL CLIENTE declara su condición de no residente fiscal en España, conforme a lo dispuesto en el Real Decreto Legislativo 5/2004, y es titular, directa o conjuntamente con otros cotitulares, del bien inmueble sito en ${direccion}, CP ${cp}, ${provincia} (${comunidad}). Como titular de rentas inmobiliarias en territorio español, reconoce expresamente su condición de obligado tributario y su deber legal de autoliquidar el Impuesto sobre la Renta de No Residentes (Modelo 210), ante la AEAT, asumiendo que el incumplimiento de los plazos legales puede derivar en responsabilidades, sanciones o recargos según la Ley General Tributaria.`,
-      plTemplate: (direccion: string, cp: string, provincia: string, comunidad: string) => `Że KLIENT oświadcza, iż posiada status nierezydenta podatkowego w Hiszpanii, zgodnie z postanowieniami Królewskiego Dekretu Legislacyjnego 5/2004, oraz jest właścicielem, bezpośrednio lub wspólnie z innymi współwłaścicielami, nieruchomości położonej pod adresem ${direccion}, kod pocztowy ${cp}, ${provincia} (${comunidad}). Jako posiadacz dochodów z nieruchomości na terytorium hiszpańskim, wyraźnie uznaje swój status podatnika oraz prawny obowiązek samodzielnego rozliczenia Podatku Dochodowego od Nierezydentów (Formularz 210) przed AEAT, przyjmując do wiadomości, że niedotrzymanie terminów ustawowych może skutkować odpowiedzialnością, sankcjami lub dopłatami zgodnie z Ogólną Ordynacją Podatkową.`
+      esTemplate: (direccion: string, cp: string, provincia: string, comunidad: string) => `Que EL CLIENTE declara su condición de no residente fiscal en España conforme al Real Decreto Legislativo 5/2004, y es titular del bien inmueble sito en ${direccion}, CP ${cp}, ${provincia} (${comunidad}). Como titular de rentas inmobiliarias en territorio español, reconoce su obligación de autoliquidar el Impuesto sobre la Renta de No Residentes (Modelo 210) ante la AEAT.`,
+      plTemplate: (direccion: string, cp: string, provincia: string, comunidad: string) => `Że KLIENT oświadcza, iż posiada status nierezydenta podatkowego w Hiszpanii zgodnie z Królewskim Dekretem Legislacyjnym 5/2004, oraz jest właścicielem nieruchomości położonej pod adresem ${direccion}, kod pocztowy ${cp}, ${provincia} (${comunidad}). Jako posiadacz dochodów z nieruchomości na terytorium hiszpańskim, uznaje swój obowiązek samodzielnego rozliczenia Podatku Dochodowego od Nierezydentów (Formularz 210) przed AEAT.`
     },
     {
       numeral: "III.",
-      es: "Que EL CLIENTE, consciente de la complejidad técnica de la normativa fiscal aplicable a no residentes, manifiesta su interés en contar con el asesoramiento profesional de EL PRESTADOR para el adecuado cumplimiento de sus obligaciones tributarias en España, incluyendo la confección, cálculo, revisión y presentación telemática de las correspondientes autoliquidaciones del IRNR, así como de las actuaciones complementarias o accesorias que resulten necesarias en relación con las rentas obtenidas en territorio español sin mediación de establecimiento permanente.",
-      pl: "Że KLIENT, świadomy złożoności technicznej przepisów podatkowych mających zastosowanie do nierezydentów, wyraża zainteresowanie skorzystaniem z profesjonalnego doradztwa USŁUGODAWCY w celu właściwego wypełnienia swoich obowiązków podatkowych w Hiszpanii, w tym sporządzenia, obliczenia, weryfikacji i elektronicznego złożenia odpowiednich deklaracji IRNR, jak również działań uzupełniających lub pomocniczych, które okażą się niezbędne w związku z dochodami uzyskanymi na terytorium hiszpańskim bez pośrednictwa stałego zakładu."
+      es: "Que EL CLIENTE manifiesta su interés en contar con el asesoramiento profesional de EL PRESTADOR para el cumplimiento de sus obligaciones tributarias en España.",
+      pl: "Że KLIENT wyraża zainteresowanie skorzystaniem z profesjonalnego doradztwa USŁUGODAWCY w celu wypełnienia swoich obowiązków podatkowych w Hiszpanii."
     },
     {
       numeral: "IV.",
-      es: "Que ambas partes han acordado suscribir el presente contrato de prestación de servicios conforme a la normativa aplicable y a las siguientes:",
-      pl: "Że obie strony uzgodniły zawarcie niniejszej umowy o świadczenie usług zgodnie z obowiązującymi przepisami oraz następującymi postanowieniami:"
+      es: "Que ambas partes han acordado suscribir el presente contrato conforme a las siguientes:",
+      pl: "Że obie strony uzgodniły zawarcie niniejszej umowy zgodnie z następującymi postanowieniami:"
     }
   ]
 };
 
 // ===========================================
-// CLÁUSULAS DEL CONTRATO
+// CLÁUSULAS DEL CONTRATO (28 CLÁUSULAS)
 // ===========================================
 export const clauses: ContractClause[] = [
   {
     number: "PRIMERA",
-    titleEs: "PRIMERA. - OBJETO Y ALCANCE",
-    titlePl: "PIERWSZA. - PRZEDMIOT I ZAKRES",
+    titleEs: "PRIMERA. OBJETO Y ALCANCE DEL CONTRATO",
+    titlePl: "PIERWSZA. PRZEDMIOT I ZAKRES UMOWY",
     sections: [
       {
         id: "1.1",
-        contentEs: "El objeto del presente contrato es la prestación de servicios de asesoramiento, gestión y cumplimiento de las obligaciones fiscales en España del CLIENTE, en su condición de no residente, a cargo de EL PRESTADOR, conforme a los términos y condiciones establecidos en el presente contrato.",
-        contentPl: "Przedmiotem niniejszej umowy jest świadczenie usług doradztwa, zarządzania i wypełniania obowiązków podatkowych w Hiszpanii KLIENTA, w jego charakterze nierezydenta, przez USŁUGODAWCĘ, zgodnie z warunkami określonymi w niniejszej umowie."
+        contentEs: "El objeto del presente contrato es la prestación de servicios de asesoramiento y gestión fiscal del Impuesto sobre la Renta de No Residentes (IRNR) del CLIENTE por parte de EL PRESTADOR, correspondiente al ejercicio fiscal indicado, en relación con el inmueble descrito en el presente contrato, con su referencia catastral correspondiente y los cotitulares indicados. Los servicios comprenderán la preparación, cálculo, cumplimentación y presentación telemática ante la AEAT de las autoliquidaciones del IRNR (Modelo 210) procedentes. El servicio se limita a la primera presentación ordinaria del Modelo 210 del ejercicio indicado, quedando expresamente excluidas declaraciones complementarias, rectificativas o sustitutivas posteriores, salvo que se contraten de forma independiente.",
+        contentPl: "Przedmiotem niniejszej umowy jest świadczenie usług doradztwa i zarządzania podatkowego w zakresie Podatku Dochodowego od Nierezydentów (IRNR) KLIENTA przez USŁUGODAWCĘ, za wskazany rok podatkowy, w odniesieniu do nieruchomości opisanej w niniejszej umowie, wraz z odpowiednim numerem katastralnym i wskazanymi współwłaścicielami. Usługi obejmują przygotowanie, obliczenie, wypełnienie i elektroniczne złożenie przed AEAT deklaracji IRNR (Formularz 210). Usługa ogranicza się do pierwszego zwykłego złożenia Formularza 210 za wskazany rok, przy czym wyraźnie wyłączone są późniejsze deklaracje uzupełniające, korygujące lub zastępcze, chyba że zostaną zakontraktowane odrębnie."
       },
       {
         id: "1.2",
-        contentEs: "Los servicios específicos que se prestarán en virtud de este contrato son, exclusivamente, los que se detallan en el CLÁUSULA QUINTA - SERVICIOS CONTRATADOS, HONORARIOS Y FORMA DE PAGO.",
-        contentPl: "Konkretne usługi, które będą świadczone na mocy niniejszej umowy, to wyłącznie te, które zostały wyszczególnione w KLAUZULI PIĄTEJ - ZAKONTRAKTOWANE USŁUGI, HONORARIA I FORMA PŁATNOŚCI."
-      },
-      {
-        id: "1.3",
-        contentEs: "Queda expresamente excluido del objeto de este contrato cualquier servicio no especificado en la Cláusula Quinta. Cualquier servicio adicional o modificación del alcance deberá formalizarse por escrito mediante documento de \"Modificación de Servicios\" aceptado por ambas partes.",
-        contentPl: "Z przedmiotu niniejszej umowy wyraźnie wyłączona jest każda usługa niewymieniona w Klauzuli Piątej. Każda dodatkowa usługa lub modyfikacja zakresu musi zostać sformalizowana na piśmie poprzez dokument \"Modyfikacji Usług\" zaakceptowany przez obie strony."
+        contentEs: "Los servicios específicos incluidos se detallan en la Cláusula Segunda. Cualquier servicio adicional requerirá documento de 'Modificación de Servicios' firmado por ambas partes, que deberá incluir: (i) identificación de las partes, (ii) descripción del servicio adicional, (iii) precio y forma de pago, (iv) plazo de ejecución, (v) firmas.",
+        contentPl: "Konkretne usługi objęte umową są wyszczególnione w Klauzuli Drugiej. Każda dodatkowa usługa wymaga dokumentu 'Modyfikacji Usług' podpisanego przez obie strony, który musi zawierać: (i) identyfikację stron, (ii) opis dodatkowej usługi, (iii) cenę i formę płatności, (iv) termin realizacji, (v) podpisy."
       }
     ]
   },
   {
     number: "SEGUNDA",
-    titleEs: "SEGUNDA. - SERVICIOS CONTRATADOS Y EJECUCIÓN TÉCNICA",
-    titlePl: "DRUGA. - ZAKONTRAKTOWANE USŁUGI I REALIZACJA TECHNICZNA",
+    titleEs: "SEGUNDA. SERVICIOS INCLUIDOS",
+    titlePl: "DRUGA. USŁUGI OBJĘTE UMOWĄ",
     sections: [
       {
         id: "2.1",
-        contentEs: "EL PRESTADOR ejecutará los servicios objeto de este contrato a través de su propio equipo técnico o profesionales colaboradores bajo su directa supervisión y responsabilidad. EL PRESTADOR garantiza que las actuaciones que requieran titulación específica serán validadas por profesionales debidamente cualificados y, en su caso, colegiados.",
-        contentPl: "USŁUGODAWCA będzie wykonywał usługi objęte niniejszą umową poprzez własny zespół techniczny lub współpracujących specjalistów pod jego bezpośrednim nadzorem i odpowiedzialnością. USŁUGODAWCA gwarantuje, że działania wymagające specjalistycznych kwalifikacji będą zatwierdzane przez odpowiednio wykwalifikowanych specjalistów, a w stosownych przypadkach, przez członków samorządów zawodowych."
+        contentEs: "Modelo 210 – Imputación de rentas inmobiliarias: Presentación de declaración individual por cada cotitular del ejercicio indicado, cálculo de base imponible, aplicación del tipo impositivo según residencia fiscal y presentación telemática dentro del plazo reglamentario.",
+        contentPl: "Formularz 210 – Przypisanie dochodów z nieruchomości: Złożenie indywidualnej deklaracji za każdego współwłaściciela za wskazany rok, obliczenie podstawy opodatkowania, zastosowanie stawki podatkowej według rezydencji podatkowej i elektroniczne złożenie w ustawowym terminie."
       },
       {
         id: "2.2",
-        contentEs: "EL PRESTADOR actuará con total autonomía e independencia de criterio profesional en el desempeño de sus funciones, aplicando sus conocimientos conforme a la normativa vigente y a la lex artis profesional.",
-        contentPl: "USŁUGODAWCA będzie działał z pełną autonomią i niezależnością profesjonalnego osądu w wykonywaniu swoich funkcji, stosując swoją wiedzę zgodnie z obowiązującymi przepisami i lex artis zawodową."
+        contentEs: "Modelo 210 – Rendimientos del arrendamiento (si procede): Presentación de declaraciones individuales por cada cotitular, determinación del rendimiento incluyendo gastos deducibles distribuidos según porcentajes de titularidad, y aplicación del tipo impositivo correspondiente.",
+        contentPl: "Formularz 210 – Dochody z najmu (jeśli dotyczy): Złożenie indywidualnych deklaracji za każdego współwłaściciela, ustalenie dochodu z uwzględnieniem kosztów podlegających odliczeniu rozdzielonych według udziałów własnościowych, oraz zastosowanie odpowiedniej stawki podatkowej."
       },
       {
         id: "2.3",
-        contentEs: "EL PRESTADOR garantiza que la prestación de los servicios se realizará por profesionales debidamente cualificados, y que mantiene en vigor una póliza de responsabilidad civil profesional adecuada a la naturaleza de los servicios contratados, comprometiéndose a aportar acreditación de la misma cuando sea razonablemente requerida por el CLIENTE.",
-        contentPl: "USŁUGODAWCA gwarantuje, że świadczenie usług będzie realizowane przez odpowiednio wykwalifikowanych specjalistów oraz że posiada ważną polisę odpowiedzialności cywilnej zawodowej odpowiednią do charakteru zakontraktowanych usług, zobowiązując się do przedstawienia jej potwierdzenia na uzasadnione żądanie KLIENTA."
+        contentEs: "Gestión administrativa y técnica: Análisis de documentación aportada, tramitación de apoderamientos necesarios ante la AEAT, entrega de justificantes oficiales de presentación y custodia de documentación conforme a la normativa (4 años).",
+        contentPl: "Zarządzanie administracyjne i techniczne: Analiza dostarczonej dokumentacji, przetwarzanie niezbędnych pełnomocnictw przed AEAT, dostarczenie oficjalnych potwierdzeń złożenia i przechowywanie dokumentacji zgodnie z przepisami (4 lata)."
       },
       {
         id: "2.4",
-        contentEs: "Toda comunicación relacionada con la ejecución del presente contrato se realizará directamente entre EL CLIENTE y EL PRESTADOR, quien actuará como único interlocutor a todos los efectos. Las comunicaciones se realizarán en idioma español, pudiendo facilitarse, para la mejor comprensión del CLIENTE, traducciones al idioma polaco, que tendrán carácter informativo, siendo vinculante en todo caso la versión en español.",
-        contentPl: "Wszelka komunikacja związana z wykonaniem niniejszej umowy będzie odbywać się bezpośrednio pomiędzy KLIENTEM a USŁUGODAWCĄ, który będzie działał jako jedyny rozmówca we wszystkich sprawach. Komunikacja będzie prowadzona w języku hiszpańskim, przy czym dla lepszego zrozumienia przez KLIENTA mogą być dostarczane tłumaczenia na język polski, które będą miały charakter informacyjny, a wiążąca będzie w każdym przypadku wersja hiszpańska."
+        contentEs: "Informe técnico-fiscal: Emisión de informe firmado por el equipo profesional, disponible en español y polaco (siendo la versión española la única con validez legal).",
+        contentPl: "Raport techniczno-podatkowy: Wydanie raportu podpisanego przez zespół profesjonalistów, dostępnego w języku hiszpańskim i polskim (przy czym wersja hiszpańska jest jedyną mającą moc prawną)."
       }
     ]
   },
   {
     number: "TERCERA",
-    titleEs: "TERCERA. - OBLIGACIONES DEL PRESTADOR",
-    titlePl: "TRZECIA. - OBOWIĄZKI USŁUGODAWCY",
+    titleEs: "TERCERA. EJECUCIÓN Y CUALIFICACIÓN PROFESIONAL",
+    titlePl: "TRZECIA. REALIZACJA I KWALIFIKACJE ZAWODOWE",
     sections: [
       {
         id: "3.1",
-        contentEs: "EL PRESTADOR se compromete a prestar los servicios objeto del presente contrato con la diligencia profesional exigible, conforme a la normativa fiscal aplicable y a las buenas prácticas del sector, sin asumir en ningún caso obligaciones de resultado, más allá de las legalmente exigibles.",
-        contentPl: "USŁUGODAWCA zobowiązuje się do świadczenia usług objętych niniejszą umową z wymaganą starannością zawodową, zgodnie z obowiązującymi przepisami podatkowymi i dobrymi praktykami branżowymi, bez przyjmowania w żadnym przypadku zobowiązań rezultatu, wykraczających poza wymagane prawnie."
+        contentEs: "EL PRESTADOR ejecutará los servicios a través de su propio equipo técnico o profesionales colaboradores bajo su directa supervisión, garantizando que las actuaciones que requieran titulación específica serán validadas por profesionales cualificados.",
+        contentPl: "USŁUGODAWCA będzie wykonywał usługi poprzez własny zespół techniczny lub współpracujących specjalistów pod swoim bezpośrednim nadzorem, gwarantując, że działania wymagające specjalistycznych kwalifikacji będą zatwierdzane przez wykwalifikowanych specjalistów."
       },
       {
         id: "3.2",
-        contentEs: "EL PRESTADOR realizará la gestión organizativa y administrativa necesaria para la correcta ejecución de los servicios contratados, sobre la base de la información y documentación que le sea facilitada por EL CLIENTE, sin que dicha gestión implique la asunción de funciones de supervisión general, control permanente o garantía del cumplimiento de plazos cuya observancia dependa del CLIENTE o de terceros.",
-        contentPl: "USŁUGODAWCA przeprowadzi zarządzanie organizacyjne i administracyjne niezbędne do prawidłowego wykonania zakontraktowanych usług, na podstawie informacji i dokumentacji dostarczonej przez KLIENTA, przy czym zarządzanie to nie oznacza przyjęcia funkcji ogólnego nadzoru, stałej kontroli lub gwarancji dotrzymania terminów, których przestrzeganie zależy od KLIENTA lub osób trzecich."
+        contentEs: "EL PRESTADOR actuará con autonomía e independencia de criterio profesional en el desempeño de sus funciones, aplicando sus conocimientos conforme a la normativa vigente y a la lex artis profesional.",
+        contentPl: "USŁUGODAWCA będzie działał z autonomią i niezależnością profesjonalnego osądu w wykonywaniu swoich funkcji, stosując swoją wiedzę zgodnie z obowiązującymi przepisami i lex artis zawodową."
       },
       {
         id: "3.3",
-        contentEs: "EL PRESTADOR mantendrá informado al CLIENTE, de forma razonable, del estado de tramitación de las actuaciones realizadas, facilitándole, cuando proceda, copia de las autoliquidaciones o modelos presentados y los justificantes de su presentación, sin que ello suponga una obligación de seguimiento continuado o de asesoramiento permanente no expresamente contratado.",
-        contentPl: "USŁUGODAWCA będzie rozsądnie informował KLIENTA o stanie realizacji przeprowadzonych działań, dostarczając mu, gdy będzie to właściwe, kopie złożonych deklaracji lub formularzy oraz potwierdzenia ich złożenia, bez obowiązku ciągłego monitorowania lub stałego doradztwa, które nie zostało wyraźnie zakontraktowane."
+        contentEs: "EL PRESTADOR mantiene en vigor una póliza de responsabilidad civil profesional adecuada a la naturaleza de los servicios contratados, comprometiéndose a aportar copia del certificado de seguro en vigor en un plazo máximo de diez (10) días hábiles desde su solicitud por escrito por parte del CLIENTE.",
+        contentPl: "USŁUGODAWCA posiada ważną polisę odpowiedzialności cywilnej zawodowej odpowiednią do charakteru zakontraktowanych usług, zobowiązując się do przedstawienia kopii aktualnego certyfikatu ubezpieczenia w maksymalnym terminie dziesięciu (10) dni roboczych od pisemnego żądania KLIENTA."
       },
       {
         id: "3.4",
-        contentEs: "EL PRESTADOR guardará estricto deber de confidencialidad respecto de la información y documentación facilitada por EL CLIENTE, comprometiéndose a utilizarlas exclusivamente para la ejecución de los servicios contratados y a custodiarlas con la diligencia razonable durante la vigencia del contrato o mientras exista obligación legal de conservación.",
-        contentPl: "USŁUGODAWCA zachowa ścisły obowiązek poufności w odniesieniu do informacji i dokumentacji dostarczonej przez KLIENTA, zobowiązując się do wykorzystywania ich wyłącznie w celu wykonania zakontraktowanych usług oraz do przechowywania ich z należytą starannością przez okres obowiązywania umowy lub przez okres, w którym istnieje prawny obowiązek przechowywania."
+        contentEs: "Toda comunicación relacionada con la ejecución del contrato se realizará directamente entre EL CLIENTE y EL PRESTADOR, quien actuará como único interlocutor. Las comunicaciones se realizarán en idioma español, pudiendo facilitarse traducciones al idioma polaco con carácter informativo, prevaleciendo siempre la versión en español.",
+        contentPl: "Wszelka komunikacja związana z wykonaniem umowy będzie odbywać się bezpośrednio między KLIENTEM a USŁUGODAWCĄ, który będzie działał jako jedyny rozmówca. Komunikacja będzie prowadzona w języku hiszpańskim, przy czym mogą być dostarczane tłumaczenia na język polski o charakterze informacyjnym, a wersja hiszpańska zawsze ma pierwszeństwo."
       }
     ]
   },
   {
     number: "CUARTA",
-    titleEs: "CUARTA. - OBLIGACIONES DEL CLIENTE",
-    titlePl: "CZWARTA. - OBOWIĄZKI KLIENTA",
+    titleEs: "CUARTA. OBLIGACIONES DE EL PRESTADOR",
+    titlePl: "CZWARTA. OBOWIĄZKI USŁUGODAWCY",
     sections: [
       {
         id: "4.1",
-        contentEs: "EL CLIENTE se compromete a colaborar activamente con EL PRESTADOR, facilitando de forma veraz, completa y actualizada toda la información y documentación que resulte necesaria para la correcta prestación de los servicios contratados, dentro de los plazos que razonablemente le sean indicados.",
-        contentPl: "KLIENT zobowiązuje się do aktywnej współpracy z USŁUGODAWCĄ, dostarczając w sposób prawdziwy, kompletny i aktualny wszystkie informacje i dokumentację niezbędne do prawidłowego świadczenia zakontraktowanych usług, w rozsądnych terminach, które zostaną mu wskazane."
+        contentEs: "EL PRESTADOR prestará los servicios con la diligencia profesional exigible y conforme a las buenas prácticas del sector.",
+        contentPl: "USŁUGODAWCA będzie świadczył usługi z wymaganą starannością zawodową i zgodnie z dobrymi praktykami branżowymi."
       },
       {
         id: "4.2",
-        contentEs: "EL CLIENTE es único responsable de la veracidad, exactitud e integridad de los datos, documentos y manifestaciones que facilite. EL PRESTADOR no asumirá responsabilidad alguna por las consecuencias que pudieran derivarse de la omisión, inexactitud, falsedad o falta de actualización de dicha información.",
-        contentPl: "KLIENT ponosi wyłączną odpowiedzialność za prawdziwość, dokładność i kompletność dostarczonych danych, dokumentów i oświadczeń. USŁUGODAWCA nie ponosi żadnej odpowiedzialności za konsekwencje, które mogą wyniknąć z pominięcia, niedokładności, fałszywości lub braku aktualizacji tych informacji."
+        contentEs: "EL PRESTADOR realizará la gestión organizativa y administrativa necesaria para la correcta ejecución de los servicios contratados, sobre la base de la información facilitada por EL CLIENTE. Esta gestión no implica funciones de supervisión general ni control permanente sobre plazos dependientes del CLIENTE o de terceros. No obstante, EL PRESTADOR informará al CLIENTE de los plazos reglamentarios de presentación (Modelo 210: del 1 de enero al 31 de diciembre del año siguiente al devengo para imputación de rentas inmobiliarias; trimestral para rendimientos de arrendamiento) en el momento de solicitar la documentación o con antelación razonable a su vencimiento, siempre que disponga de la información completa.",
+        contentPl: "USŁUGODAWCA przeprowadzi zarządzanie organizacyjne i administracyjne niezbędne do prawidłowego wykonania zakontraktowanych usług, na podstawie informacji dostarczonych przez KLIENTA. Zarządzanie to nie obejmuje funkcji ogólnego nadzoru ani stałej kontroli terminów zależnych od KLIENTA lub osób trzecich. Niemniej jednak, USŁUGODAWCA poinformuje KLIENTA o ustawowych terminach składania (Formularz 210: od 1 stycznia do 31 grudnia roku następującego po roku powstania obowiązku dla przypisania dochodów z nieruchomości; kwartalnie dla dochodów z najmu) w momencie żądania dokumentacji lub z rozsądnym wyprzedzeniem przed upływem terminu, pod warunkiem posiadania pełnych informacji."
       },
       {
         id: "4.3",
-        contentEs: "EL CLIENTE se obliga a abonar los honorarios profesionales correspondientes a los servicios contratados en la cuantía, forma y plazos establecidos en el presente contrato.",
-        contentPl: "KLIENT zobowiązuje się do uiszczenia honorariów zawodowych odpowiadających zakontraktowanym usługom w wysokości, formie i terminach określonych w niniejszej umowie."
-      },
-      {
-        id: "4.4",
-        contentEs: "EL CLIENTE deberá comunicar de forma inmediata a EL PRESTADOR cualquier modificación de sus datos personales, fiscales o de sus circunstancias que pudiera tener relevancia tributaria, incluyendo, a título meramente enunciativo, cambios de residencia fiscal, titularidad, porcentajes de participación o situación del inmueble.",
-        contentPl: "KLIENT zobowiązany jest niezwłocznie powiadomić USŁUGODAWCĘ o wszelkich zmianach swoich danych osobowych, podatkowych lub okoliczności, które mogą mieć znaczenie podatkowe, w tym, tytułem przykładu, o zmianach rezydencji podatkowej, własności, udziałów procentowych lub stanu nieruchomości."
+        contentEs: "EL PRESTADOR mantendrá informado al CLIENTE del estado de tramitación de las actuaciones, facilitándole copia de las autoliquidaciones presentadas y los justificantes oficiales.",
+        contentPl: "USŁUGODAWCA będzie informował KLIENTA o stanie realizacji działań, dostarczając mu kopie złożonych deklaracji i oficjalne potwierdzenia."
       }
     ]
   },
   {
     number: "QUINTA",
-    titleEs: "QUINTA. – SERVICIOS CONTRATADOS, HONORARIOS Y FORMA DE PAGO",
-    titlePl: "PIĄTA. – ZAKONTRAKTOWANE USŁUGI, HONORARIA I FORMA PŁATNOŚCI",
+    titleEs: "QUINTA. OBLIGACIONES DE EL CLIENTE",
+    titlePl: "PIĄTA. OBOWIĄZKI KLIENTA",
     sections: [
       {
         id: "5.1",
-        contentEs: "EL CLIENTE contrata a EL PRESTADOR la gestión fiscal del Impuesto sobre la Renta de No Residentes (IRNR) correspondiente al ejercicio indicado, en relación con el inmueble descrito en el presente contrato. Los servicios comprenderán la preparación, cálculo, cumplimentación y presentación telemática ante la Agencia Estatal de Administración Tributaria (AEAT) de las autoliquidaciones del IRNR (Modelo 210) que resulten procedentes, conforme a la normativa vigente y a las rentas obtenidas.",
-        contentPl: "KLIENT zleca USŁUGODAWCY zarządzanie podatkowe w zakresie Podatku Dochodowego od Nierezydentów (IRNR) za wskazany rok podatkowy, w odniesieniu do nieruchomości opisanej w niniejszej umowie. Usługi obejmą przygotowanie, obliczenie, wypełnienie i elektroniczne złożenie przed Państwową Agencją Administracji Podatkowej (AEAT) deklaracji IRNR (Formularz 210), które okażą się właściwe, zgodnie z obowiązującymi przepisami i uzyskanymi dochodami."
+        contentEs: "EL CLIENTE se compromete a facilitar de forma veraz, completa y actualizada toda la información y documentación necesaria para la prestación de los servicios, dentro de los plazos indicados. EL CLIENTE es único responsable de la exactitud e integridad de los datos aportados. EL PRESTADOR no asumirá responsabilidad por las consecuencias derivadas de información omitida, inexacta o no actualizada.",
+        contentPl: "KLIENT zobowiązuje się dostarczać w sposób prawdziwy, kompletny i aktualny wszystkie informacje i dokumentację niezbędne do świadczenia usług, w wskazanych terminach. KLIENT ponosi wyłączną odpowiedzialność za dokładność i kompletność dostarczonych danych. USŁUGODAWCA nie ponosi odpowiedzialności za konsekwencje wynikające z informacji pominiętych, niedokładnych lub nieaktualnych."
       },
       {
-        id: "5.2a",
-        contentEs: "a) Modelo 210 – Imputación de rentas inmobiliarias:\n\t- Presentación de una declaración individual por cada cotitular correspondiente al ejercicio indicado.\n\t- Cálculo de la base imponible conforme a la normativa vigente (valor catastral o porcentaje aplicable).\n\t- Aplicación del tipo impositivo correspondiente según residencia fiscal (UE/EEE o terceros países).\n\t- Presentación telemática dentro del plazo reglamentario.",
-        contentPl: "a) Formularz 210 – Przypisanie dochodów z nieruchomości:\n\t- Złożenie indywidualnej deklaracji za każdego współwłaściciela za wskazany rok podatkowy.\n\t- Obliczenie podstawy opodatkowania zgodnie z obowiązującymi przepisami (wartość katastralna lub odpowiedni procent).\n\t- Zastosowanie odpowiedniej stawki podatkowej według rezydencji podatkowej (UE/EOG lub państwa trzecie).\n\t- Elektroniczne złożenie w ustawowym terminie."
-      },
-      {
-        id: "5.2b",
-        contentEs: "b) Modelo 210 – Rendimientos derivados del arrendamiento (si procede):\n\t- Presentación de las declaraciones individuales correspondientes a cada cotitular.\n\t- Determinación del rendimiento conforme a la normativa aplicable, incluyendo ingresos y gastos deducibles que procedan, distribuidos según los porcentajes de titularidad.\n\t- Aplicación del tipo impositivo conforme a la residencia fiscal.",
-        contentPl: "b) Formularz 210 – Dochody z najmu (jeśli dotyczy):\n\t- Złożenie indywidualnych deklaracji odpowiadających każdemu współwłaścicielowi.\n\t- Ustalenie dochodu zgodnie z obowiązującymi przepisami, w tym przychodów i kosztów podlegających odliczeniu, rozdzielonych według udziałów własnościowych.\n\t- Zastosowanie stawki podatkowej zgodnej z rezydencją podatkową."
-      },
-      {
-        id: "5.2c",
-        contentEs: "c) Servicios administrativos y técnicos asociados:\n\t- Revisión preliminar de la documentación facilitada por EL CLIENTE.\n\t- Tramitación de apoderamientos ante la AEAT, cuando resulte necesario para la presentación en nombre del CLIENTE.\n\t- Remisión al CLIENTE de los justificantes oficiales de presentación.\n\t- Custodia digital de la documentación durante el plazo legal de conservación.",
-        contentPl: "c) Powiązane usługi administracyjne i techniczne:\n\t- Wstępny przegląd dokumentacji dostarczonej przez KLIENTA.\n\t- Przetwarzanie pełnomocnictw przed AEAT, gdy będzie to konieczne do składania w imieniu KLIENTA.\n\t- Przesłanie KLIENTOWI oficjalnych potwierdzeń złożenia.\n\t- Cyfrowe przechowywanie dokumentacji przez ustawowy okres przechowywania."
+        id: "5.2",
+        contentEs: "EL CLIENTE se obliga a abonar los honorarios profesionales en la cuantía, forma y plazos establecidos en el presente contrato.",
+        contentPl: "KLIENT zobowiązuje się do uiszczenia honorariów zawodowych w wysokości, formie i terminach określonych w niniejszej umowie."
       },
       {
         id: "5.3",
-        contentEs: "El CLIENTE facilitará, en los SIETE (7) días siguientes a la firma del contrato, la documentación completa, veraz y actualizada, incluyendo:\n\t- NIE de cada cotitular.\n\t- Escritura de compraventa de la propiedad.\n\t- Recibo IBI del año en curso.\n\t- Contrato de arrendamiento y/o detalles o justificantes de cobro de rentas.\n\t- Gastos deducibles vinculados al inmueble (facturas/recibos).\nLa falta de entrega en plazo o la entrega incompleta podrá ocasionar retrasos o imposibilidad de presentar, sin responsabilidad para EL PRESTADOR por tales consecuencias no imputables.",
-        contentPl: "KLIENT dostarczy, w ciągu SIEDMIU (7) dni od podpisania umowy, kompletną, prawdziwą i aktualną dokumentację, w tym:\n\t- NIE każdego współwłaściciela.\n\t- Akt notarialny nabycia nieruchomości.\n\t- Pokwitowanie IBI za bieżący rok.\n\t- Umowę najmu i/lub szczegóły lub potwierdzenia pobierania czynszów.\n\t- Koszty podlegające odliczeniu związane z nieruchomością (faktury/rachunki).\nNiedostarczenie w terminie lub niekompletne dostarczenie może spowodować opóźnienia lub niemożność złożenia, bez odpowiedzialności USŁUGODAWCY za takie konsekwencje, za które nie ponosi winy."
+        contentEs: "EL CLIENTE deberá comunicar inmediatamente a EL PRESTADOR cualquier modificación de sus datos personales, fiscales o circunstancias con relevancia tributaria, incluyendo cambios de residencia fiscal, titularidad, porcentajes de participación o situación del inmueble.",
+        contentPl: "KLIENT jest zobowiązany niezwłocznie powiadomić USŁUGODAWCĘ o wszelkich zmianach swoich danych osobowych, podatkowych lub okoliczności mających znaczenie podatkowe, w tym o zmianach rezydencji podatkowej, własności, udziałów procentowych lub stanu nieruchomości."
       },
       {
         id: "5.4",
-        contentEs: "Como contraprestación por los servicios descritos en los apartados anteriores, los honorarios profesionales de EL PRESTADOR ascienden a la cantidad indicada en el presente contrato (más los impuestos indirectos que resulten aplicables). Este importe incluye: La gestión integral de las declaraciones de los cotitulares (imputación, alquiler y anejos como garajes/trasteros si proceden). Emisión de un informe técnico-fiscal firmado por el equipo profesional de EL PRESTADOR, disponible en español y polaco (siendo la versión española la única con validez legal). Custodia digital de la documentación durante el plazo legal de 4 años.",
-        contentPl: "Jako wynagrodzenie za usługi opisane w poprzednich punktach, honoraria zawodowe USŁUGODAWCY wynoszą kwotę wskazaną w niniejszej umowie (plus odpowiednie podatki pośrednie). Kwota ta obejmuje: Kompleksowe zarządzanie deklaracjami współwłaścicieli (przypisanie, najem i aneksy jak garaże/komórki lokatorskie, jeśli dotyczy). Wydanie raportu techniczno-podatkowego podpisanego przez zespół profesjonalistów USŁUGODAWCY, dostępnego w języku hiszpańskim i polskim (przy czym wersja hiszpańska jest jedyną mającą moc prawną). Cyfrowe przechowywanie dokumentacji przez ustawowy okres 4 lat."
-      },
-      {
-        id: "5.5",
-        contentEs: "La tributación indirecta se determinará conforme a la Ley del IVA y normativa de desarrollo, en función de la condición del CLIENTE (empresario/profesional o consumidor final) y de las reglas de localización del servicio. Cualquier modificación sobrevenida será regularizada conforme a derecho. Si, por cambio de condición o por información sobrevenida, se modificase la calificación, EL PRESTADOR podrá rectificar la facturación y EL CLIENTE abonará la diferencia correspondiente.",
-        contentPl: "Opodatkowanie pośrednie zostanie określone zgodnie z Ustawą o VAT i przepisami wykonawczymi, w zależności od statusu KLIENTA (przedsiębiorca/profesjonalista lub konsument końcowy) oraz zasad lokalizacji usługi. Wszelkie późniejsze zmiany zostaną uregulowane zgodnie z prawem. Jeśli, z powodu zmiany statusu lub późniejszych informacji, kwalifikacja ulegnie zmianie, USŁUGODAWCA może skorygować fakturowanie, a KLIENT uiści odpowiednią różnicę."
-      },
-      {
-        id: "5.6",
-        contentEs: "Los honorarios se facturarán según acuerdo, y deberán abonarse en el plazo indicado desde la emisión de la factura, mediante transferencia bancaria a la cuenta indicada. El inicio de los trabajos queda condicionado a la recepción del pago y de la documentación requerida.",
-        contentPl: "Honoraria będą fakturowane zgodnie z ustaleniami i muszą zostać uiszczone w terminie wskazanym od wystawienia faktury, przelewem bankowym na wskazane konto. Rozpoczęcie prac jest uzależnione od otrzymania płatności i wymaganej dokumentacji."
-      },
-      {
-        id: "5.7",
-        contentEs: "El impago total o parcial facultará a EL PRESTADOR para suspender los servicios, resolver el contrato y reclamar las cantidades debidas, sin que ello exonere al CLIENTE del cumplimiento de sus obligaciones fiscales frente a la AEAT.",
-        contentPl: "Całkowity lub częściowy brak płatności upoważni USŁUGODAWCĘ do zawieszenia usług, rozwiązania umowy i dochodzenia należnych kwot, bez zwalniania KLIENTA z wypełnienia jego obowiązków podatkowych wobec AEAT."
-      },
-      {
-        id: "5.8",
-        contentEs: "No se incluyen:\n\t- Modelo 210 por ganancias patrimoniales (venta).\n\t- Impuesto sobre el Patrimonio (714).\n\t- Tributos locales (p. ej., IIVTNU).\n\t- Representación en comprobaciones y/o inspecciones.\n\t- Recursos y requerimientos no imputables al PRESTADOR.\n\t- Planificación fiscal internacional.\n\t- Contabilidad o auditoría.\n\t- Cualquier otro servicio no descrito en 5.2.\nEstos servicios requerirán presupuesto independiente.",
-        contentPl: "Nie obejmuje:\n\t- Formularza 210 za zyski kapitałowe (sprzedaż).\n\t- Podatku od Majątku (714).\n\t- Podatków lokalnych (np. IIVTNU).\n\t- Reprezentacji w kontrolach i/lub inspekcjach.\n\t- Odwołań i wymogów nieleżących po stronie USŁUGODAWCY.\n\t- Międzynarodowego planowania podatkowego.\n\t- Księgowości lub audytu.\n\t- Żadnych innych usług nieopisanych w pkt 5.2.\nUsługi te wymagają odrębnej wyceny."
-      },
-      {
-        id: "5.9",
-        contentEs: "Cualquier modificación del alcance, nº de titulares, periodicidad o precio exigirá documento de \"Modificación de Servicios\" firmado por ambas partes. No procede aceptación tácita en estos extremos.",
-        contentPl: "Wszelkie modyfikacje zakresu, liczby właścicieli, częstotliwości lub ceny wymagają dokumentu \"Modyfikacji Usług\" podpisanego przez obie strony. Milcząca akceptacja nie ma zastosowania w tych kwestiach."
+        contentEs: "EL CLIENTE se compromete a informar a EL PRESTADOR en un plazo máximo de tres (3) días hábiles de cualquier comunicación de la Administración Tributaria relacionada con las declaraciones objeto del presente contrato. La gestión de dichas comunicaciones no está incluida en los servicios del presente contrato y requerirá presupuesto adicional. El incumplimiento de este deber liberará a EL PRESTADOR de cualquier responsabilidad derivada de la falta de respuesta en plazo.",
+        contentPl: "KLIENT zobowiązuje się poinformować USŁUGODAWCĘ w maksymalnym terminie trzech (3) dni roboczych o każdej komunikacji od Administracji Podatkowej związanej z deklaracjami będącymi przedmiotem niniejszej umowy. Obsługa tych komunikatów nie jest objęta usługami niniejszej umowy i wymaga dodatkowej wyceny. Niedopełnienie tego obowiązku zwalnia USŁUGODAWCĘ z jakiejkolwiek odpowiedzialności wynikającej z braku odpowiedzi w terminie."
       }
     ]
   },
   {
     number: "SEXTA",
-    titleEs: "SEXTA. - DURACIÓN Y VIGENCIA",
-    titlePl: "SZÓSTA. - CZAS TRWANIA I OBOWIĄZYWANIE",
+    titleEs: "SEXTA. DOCUMENTACIÓN REQUERIDA",
+    titlePl: "SZÓSTA. WYMAGANA DOKUMENTACJA",
     sections: [
       {
         id: "6.1",
-        contentEs: "El presente contrato entrará en vigor en la fecha de su firma.",
-        contentPl: "Niniejsza umowa wchodzi w życie z dniem jej podpisania."
-      },
-      {
-        id: "6.2",
-        contentEs: "El contrato tendrá una duración inicial de un (1) año. A su vencimiento, se prorrogará tácitamente por períodos anuales sucesivos, salvo que alguna de las partes notifique su voluntad de no renovarlo con una antelación mínima de treinta (30) días a la fecha de vencimiento.",
-        contentPl: "Umowa będzie obowiązywać przez okres początkowy jednego (1) roku. Po jego upływie będzie milcząco przedłużana na kolejne okresy roczne, chyba że którakolwiek ze stron powiadomi o zamiarze nieprzedłużania z wyprzedzeniem co najmniej trzydziestu (30) dni przed datą wygaśnięcia."
+        contentEs: "EL CLIENTE se obliga a facilitar la siguiente documentación completa, veraz y actualizada en un plazo máximo de siete (7) días hábiles desde la firma del contrato:\n- NIE de cada cotitular\n- Escritura de compraventa de la propiedad\n- Recibo del Impuesto sobre Bienes Inmuebles (IBI) del ejercicio fiscal para el que se contrata la declaración\n- Contrato de arrendamiento y justificantes de cobro de rentas del ejercicio correspondiente (si procede)\n- Facturas o recibos justificativos de gastos deducibles vinculados al inmueble del ejercicio correspondiente (comunidad de propietarios, seguros, suministros si no arrendado, reparaciones, etc.)",
+        contentPl: "KLIENT zobowiązuje się dostarczyć następującą kompletną, prawdziwą i aktualną dokumentację w maksymalnym terminie siedmiu (7) dni roboczych od podpisania umowy:\n- NIE każdego współwłaściciela\n- Akt notarialny nabycia nieruchomości\n- Pokwitowanie Podatku od Nieruchomości (IBI) za rok podatkowy objęty deklaracją\n- Umowę najmu i potwierdzenia pobierania czynszów za odpowiedni rok (jeśli dotyczy)\n- Faktury lub rachunki potwierdzające koszty podlegające odliczeniu związane z nieruchomością za odpowiedni rok (wspólnota mieszkaniowa, ubezpieczenia, media jeśli nie wynajmowane, remonty itp.)"
       }
     ]
   },
   {
     number: "SÉPTIMA",
-    titleEs: "SÉPTIMA. - DERECHO DE DESISTIMIENTO",
-    titlePl: "SIÓDMA. - PRAWO DO ODSTĄPIENIA",
+    titleEs: "SÉPTIMA. CONSECUENCIAS DE NO ENTREGA DE DOCUMENTACIÓN",
+    titlePl: "SIÓDMA. KONSEKWENCJE NIEDOSTARCZENIA DOKUMENTACJI",
     sections: [
       {
         id: "7.1",
-        contentEs: "De conformidad con la normativa vigente en materia de consumidores y usuarios, EL CLIENTE, cuando ostente la condición legal de consumidor y el contrato se haya celebrado a distancia o fuera de establecimiento mercantil, dispondrá de un plazo de catorce (14) días naturales desde la firma del contrato para ejercer su derecho de desistimiento, sin necesidad de justificación ni penalización.",
-        contentPl: "Zgodnie z obowiązującymi przepisami dotyczącymi konsumentów i użytkowników, KLIENT, gdy posiada status prawny konsumenta i umowa została zawarta na odległość lub poza lokalem przedsiębiorstwa, będzie miał okres czternastu (14) dni kalendarzowych od podpisania umowy na wykonanie prawa do odstąpienia, bez konieczności uzasadnienia ani kary."
+        contentEs: "Si transcurridos los siete (7) días hábiles el CLIENTE no hubiera aportado la documentación completa, EL PRESTADOR notificará por escrito requiriendo su entrega en un plazo adicional de tres (3) días hábiles.",
+        contentPl: "Jeśli po upływie siedmiu (7) dni roboczych KLIENT nie dostarczy kompletnej dokumentacji, USŁUGODAWCA powiadomi pisemnie, żądając jej dostarczenia w dodatkowym terminie trzech (3) dni roboczych."
       },
       {
         id: "7.2",
-        contentEs: "El ejercicio del derecho de desistimiento deberá comunicarse a EL PRESTADOR mediante una declaración inequívoca, por cualquier medio que permita dejar constancia de su envío y recepción (por ejemplo, correo electrónico).",
-        contentPl: "Wykonanie prawa do odstąpienia musi zostać zakomunikowane USŁUGODAWCY poprzez jednoznaczne oświadczenie, za pomocą dowolnego środka umożliwiającego potwierdzenie wysłania i odbioru (na przykład e-mail)."
+        contentEs: "Si transcurrido dicho plazo adicional persiste el incumplimiento y resulta imposible presentar las declaraciones en plazo reglamentario, EL PRESTADOR quedará liberado de cualquier responsabilidad derivada de presentación fuera de plazo, recargos, intereses o sanciones.",
+        contentPl: "Jeśli po upływie tego dodatkowego terminu niedotrzymanie obowiązku utrzymuje się i niemożliwe jest złożenie deklaracji w ustawowym terminie, USŁUGODAWCA zostaje zwolniony z jakiejkolwiek odpowiedzialności wynikającej z złożenia po terminie, dopłat, odsetek lub sankcji."
       },
       {
         id: "7.3",
-        contentEs: "En caso de que EL CLIENTE solicite expresamente que la prestación de los servicios se inicie durante el período de desistimiento: Si los servicios hubieran sido completamente ejecutados, EL CLIENTE perderá su derecho de desistimiento; Si los servicios se hubieran ejecutado parcialmente, EL CLIENTE deberá abonar el importe proporcional correspondiente a los servicios efectivamente prestados hasta la fecha de desistimiento.",
-        contentPl: "W przypadku, gdy KLIENT wyraźnie zażąda rozpoczęcia świadczenia usług w okresie odstąpienia: Jeśli usługi zostały w pełni wykonane, KLIENT utraci prawo do odstąpienia; Jeśli usługi zostały wykonane częściowo, KLIENT musi zapłacić proporcjonalną kwotę odpowiadającą usługom faktycznie wykonanym do daty odstąpienia."
+        contentEs: "En tal caso, EL PRESTADOR podrá optar por: (i) resolver el contrato con derecho a percibir compensación por los trabajos efectivamente realizados y los gastos incurridos hasta la fecha, debidamente justificados mediante relación detallada de las actuaciones llevadas a cabo, o (ii) mantener el contrato y presentar las declaraciones cuando disponga de la documentación completa, informando al CLIENTE de las posibles consecuencias tributarias del retraso.",
+        contentPl: "W takim przypadku USŁUGODAWCA może wybrać: (i) rozwiązanie umowy z prawem do otrzymania rekompensaty za faktycznie wykonane prace i poniesione koszty do dnia rozwiązania, należycie udokumentowane szczegółowym zestawieniem przeprowadzonych działań, lub (ii) utrzymanie umowy i złożenie deklaracji gdy będzie dysponował kompletną dokumentacją, informując KLIENTA o możliwych konsekwencjach podatkowych opóźnienia."
       },
       {
         id: "7.4",
-        contentEs: "El derecho de desistimiento regulado en la presente cláusula no resultará aplicable cuando EL CLIENTE no tenga la condición de consumidor o cuando el contrato no se haya celebrado a distancia o fuera de establecimiento mercantil.",
-        contentPl: "Prawo do odstąpienia uregulowane w niniejszej klauzuli nie będzie miało zastosowania, gdy KLIENT nie ma statusu konsumenta lub gdy umowa nie została zawarta na odległość lub poza lokalem przedsiębiorstwa."
+        contentEs: "A efectos exclusivamente internos de responsabilidad contractual entre las partes, el cómputo de los plazos para la prestación del servicio se entenderá iniciado desde la recepción completa de la documentación por EL PRESTADOR, quedando constancia fehaciente de dicha fecha. Lo anterior se entiende sin perjuicio de los plazos reglamentarios establecidos por la normativa tributaria, que son independientes y vinculan al obligado tributario.",
+        contentPl: "Wyłącznie dla celów wewnętrznych odpowiedzialności kontraktowej między stronami, bieg terminów świadczenia usługi rozpoczyna się od kompletnego otrzymania dokumentacji przez USŁUGODAWCĘ, przy czym data ta musi być wiarygodnie udokumentowana. Powyższe pozostaje bez uszczerbku dla ustawowych terminów określonych przepisami podatkowymi, które są niezależne i wiążące dla podatnika."
       }
     ]
   },
   {
     number: "OCTAVA",
-    titleEs: "OCTAVA. - CAUSAS DE RESOLUCIÓN DEL CONTRATO",
-    titlePl: "ÓSMA. - PRZYCZYNY ROZWIĄZANIA UMOWY",
+    titleEs: "OCTAVA. HONORARIOS PROFESIONALES",
+    titlePl: "ÓSMA. HONORARIA PROFESJONALNE",
     sections: [
       {
         id: "8.1",
-        contentEs: "Las partes podrán resolver el presente contrato en cualquier momento por mutuo acuerdo escrito.",
-        contentPl: "Strony mogą rozwiązać niniejszą umowę w dowolnym momencie za obopólnym pisemnym porozumieniem."
+        contentEs: "Como contraprestación por los servicios descritos, los honorarios profesionales de EL PRESTADOR ascienden a la cantidad indicada en el presente contrato, que no incluye el Impuesto sobre el Valor Añadido (IVA) cuando resulte legalmente exigible conforme a la Ley 37/1992 del IVA, el cual se repercutirá adicionalmente en su caso.",
+        contentPl: "Jako wynagrodzenie za opisane usługi, honoraria zawodowe USŁUGODAWCY wynoszą kwotę wskazaną w niniejszej umowie, która nie obejmuje Podatku od Wartości Dodanej (IVA), gdy jest on prawnie wymagany zgodnie z Ustawą 37/1992 o IVA, który zostanie dodatkowo naliczony w stosownych przypadkach."
       },
       {
         id: "8.2",
-        contentEs: "Cualquiera de las partes podrá resolver el contrato en caso de incumplimiento grave de las obligaciones de la otra. Tendrá la consideración de incumplimiento grave por parte del CLIENTE el impago de los honorarios o la falta de suministro de información necesaria. La parte que resuelva el contrato deberá notificarlo a la incumplidora, otorgándole un plazo de quince (15) días para subsanar, si fuera posible.",
-        contentPl: "Każda ze stron może rozwiązać umowę w przypadku poważnego naruszenia obowiązków przez drugą stronę. Za poważne naruszenie ze strony KLIENTA uważa się brak zapłaty honorariów lub niedostarczenie niezbędnych informacji. Strona rozwiązująca umowę musi powiadomić stronę naruszającą, dając jej okres piętnastu (15) dni na naprawę, jeśli to możliwe."
+        contentEs: "Este importe incluye la gestión integral de las declaraciones de los cotitulares, emisión de informe técnico-fiscal y custodia digital de documentación durante el plazo legal de 4 años. El precio tiene carácter cerrado para los servicios incluidos.",
+        contentPl: "Kwota ta obejmuje kompleksowe zarządzanie deklaracjami współwłaścicieli, wydanie raportu techniczno-podatkowego i cyfrowe przechowywanie dokumentacji przez ustawowy okres 4 lat. Cena ma charakter zamknięty dla objętych usług."
       }
     ]
   },
   {
     number: "NOVENA",
-    titleEs: "NOVENA. – RESPONSABILIDAD Y AUTORIZACIONES",
-    titlePl: "DZIEWIĄTA. – ODPOWIEDZIALNOŚĆ I UPOWAŻNIENIA",
+    titleEs: "NOVENA. FORMA Y PLAZO DE PAGO",
+    titlePl: "DZIEWIĄTA. FORMA I TERMIN PŁATNOŚCI",
     sections: [
       {
         id: "9.1",
-        contentEs: "EL PRESTADOR responderá exclusivamente por los daños directos que, en su caso, se deriven de una actuación negligente en la prestación de los servicios contratados, siempre que exista relación de causalidad directa y debidamente acreditada.",
-        contentPl: "USŁUGODAWCA odpowiada wyłącznie za szkody bezpośrednie, które ewentualnie wynikną z zaniedbania w świadczeniu zakontraktowanych usług, pod warunkiem istnienia bezpośredniego i należycie udowodnionego związku przyczynowego."
+        contentEs: "Los honorarios se facturarán por adelantado y deberán abonarse en el plazo máximo de cinco (5) días hábiles desde la emisión de la factura, mediante transferencia bancaria a los datos bancarios indicados.",
+        contentPl: "Honoraria będą fakturowane z góry i muszą zostać uiszczone w maksymalnym terminie pięciu (5) dni roboczych od wystawienia faktury, przelewem bankowym na wskazane dane bankowe."
       },
       {
         id: "9.2",
-        contentEs: "En ningún caso será responsable EL PRESTADOR de los perjuicios que pudieran derivarse para EL CLIENTE como consecuencia de: la aportación de información o documentación incompleta, inexacta, falsa o fuera de plazo, decisiones adoptadas por EL CLIENTE, actuaciones u omisiones de la Administración Tributaria u otros terceros.",
-        contentPl: "W żadnym wypadku USŁUGODAWCA nie ponosi odpowiedzialności za szkody, które mogą wyniknąć dla KLIENTA w wyniku: dostarczenia niepełnych, niedokładnych, fałszywych lub spóźnionych informacji lub dokumentacji, decyzji podjętych przez KLIENTA, działań lub zaniechań Administracji Podatkowej lub innych osób trzecich."
-      },
-      {
-        id: "9.3",
-        contentEs: "La responsabilidad económica máxima de EL PRESTADOR por los daños directos derivados del presente contrato quedará limitada, como máximo, al importe total de los honorarios efectivamente abonados por EL CLIENTE por el servicio concreto que haya dado lugar a la reclamación. Esta limitación no será aplicable en supuestos de dolo o culpa grave, ni en aquellos casos en que resulte legalmente imperativa una responsabilidad distinta, incluida la normativa de consumidores y usuarios y la normativa de protección de datos.",
-        contentPl: "Maksymalna odpowiedzialność finansowa USŁUGODAWCY za szkody bezpośrednie wynikające z niniejszej umowy jest ograniczona maksymalnie do całkowitej kwoty honorariów faktycznie zapłaconych przez KLIENTA za konkretną usługę, która dała podstawę do reklamacji. To ograniczenie nie ma zastosowania w przypadkach winy umyślnej lub rażącego niedbalstwa, ani w przypadkach, w których prawo nakazuje inną odpowiedzialność, w tym przepisy dotyczące konsumentów i użytkowników oraz przepisy o ochronie danych."
-      },
-      {
-        id: "9.4",
-        contentEs: "EL CLIENTE autoriza expresamente a EL PRESTADOR para realizar, en su nombre, las presentaciones telemáticas de declaraciones, autoliquidaciones o comunicaciones ante la Agencia Estatal de Administración Tributaria que resulten necesarias para la ejecución de los servicios contratados, ya sea directamente o mediante los correspondientes apoderamientos administrativos.",
-        contentPl: "KLIENT wyraźnie upoważnia USŁUGODAWCĘ do dokonywania, w jego imieniu, elektronicznego składania deklaracji, zeznań podatkowych lub komunikatów przed Państwową Agencją Administracji Podatkowej, które okażą się niezbędne do wykonania zakontraktowanych usług, bezpośrednio lub poprzez odpowiednie pełnomocnictwa administracyjne."
+        contentEs: "El inicio de los trabajos queda condicionado a: (a) la recepción íntegra del pago de los honorarios, y (b) la recepción completa de la documentación establecida en la Cláusula Sexta. EL PRESTADOR notificará al CLIENTE en un plazo máximo de cuarenta y ocho (48) horas desde la recepción si la documentación está incompleta, especificando qué documentos o datos faltan. No se procederá a la presentación de ninguna declaración ante la AEAT hasta que ambas condiciones se hayan cumplido.",
+        contentPl: "Rozpoczęcie prac jest uzależnione od: (a) pełnego otrzymania płatności honorariów, oraz (b) kompletnego otrzymania dokumentacji określonej w Klauzuli Szóstej. USŁUGODAWCA powiadomi KLIENTA w maksymalnym terminie czterdziestu ośmiu (48) godzin od otrzymania, jeśli dokumentacja jest niekompletna, określając, jakich dokumentów lub danych brakuje. Żadna deklaracja nie zostanie złożona przed AEAT, dopóki oba warunki nie zostaną spełnione."
       }
     ]
   },
   {
     number: "DÉCIMA",
-    titleEs: "DÉCIMA. - CONFIDENCIALIDAD Y PROTECCIÓN DE DATOS",
-    titlePl: "DZIESIĄTA. - POUFNOŚĆ I OCHRONA DANYCH",
+    titleEs: "DÉCIMA. CONSECUENCIAS DEL IMPAGO",
+    titlePl: "DZIESIĄTA. KONSEKWENCJE BRAKU PŁATNOŚCI",
     sections: [
       {
         id: "10.1",
-        contentEs: "De conformidad con el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), las partes acuerdan que, a los efectos de la prestación de los servicios objeto del presente contrato, EL CLIENTE actuará como Responsable del Tratamiento y EL PRESTADOR como Encargado del Tratamiento, en los términos previstos en el artículo 28 del RGPD.",
-        contentPl: "Zgodnie z Rozporządzeniem (UE) 2016/679 (RODO) i Ustawą Organiczną 3/2018 (LOPDGDD), strony uzgadniają, że na potrzeby świadczenia usług objętych niniejszą umową, KLIENT będzie działał jako Administrator Danych, a USŁUGODAWCA jako Podmiot Przetwarzający, zgodnie z warunkami przewidzianymi w art. 28 RODO."
-      },
-      {
-        id: "10.2",
-        contentEs: "La única finalidad del tratamiento de los datos será la prestación de los servicios fiscales detallados en la CLÁUSULA QUINTA del presente contrato.",
-        contentPl: "Jedynym celem przetwarzania danych będzie świadczenie usług podatkowych szczegółowo opisanych w KLAUZULI PIĄTEJ niniejszej umowy."
-      },
-      {
-        id: "10.3",
-        contentEs: "Obligaciones del Encargado (EL PRESTADOR): a) Tratar los datos personales únicamente siguiendo instrucciones documentadas del CLIENTE. b) Garantizar que las personas autorizadas para tratar los datos se hayan comprometido a respetar la confidencialidad. c) Tomar todas las medidas de seguridad necesarias de conformidad con el artículo 32 del RGPD. d) No subcontratar el tratamiento sin la autorización previa por escrito del CLIENTE. e) Asistir al CLIENTE para que este pueda cumplir con su obligación de responder a las solicitudes de ejercicio de derechos de los interesados. f) Una vez finalice la prestación de los servicios, y a elección del CLIENTE, suprimir o devolver todos los datos personales y las copias existentes. g) Poner a disposición del CLIENTE toda la información necesaria para demostrar el cumplimiento de sus obligaciones.",
-        contentPl: "Obowiązki Podmiotu Przetwarzającego (USŁUGODAWCY): a) Przetwarzać dane osobowe wyłącznie zgodnie z udokumentowanymi instrukcjami KLIENTA. b) Zapewnić, że osoby upoważnione do przetwarzania danych zobowiązały się do zachowania poufności. c) Podjąć wszelkie niezbędne środki bezpieczeństwa zgodnie z art. 32 RODO. d) Nie zlecać przetwarzania podwykonawcom bez uprzedniej pisemnej zgody KLIENTA. e) Pomagać KLIENTOWI w wypełnianiu obowiązku odpowiadania na żądania wykonania praw osób, których dane dotyczą. f) Po zakończeniu świadczenia usług, według wyboru KLIENTA, usunąć lub zwrócić wszystkie dane osobowe i istniejące kopie. g) Udostępnić KLIENTOWI wszystkie informacje niezbędne do wykazania wypełnienia swoich obowiązków."
-      },
-      {
-        id: "10.4",
-        contentEs: "Las categorías de datos personales objeto de tratamiento podrán incluir, entre otros, datos identificativos, datos de características personales y datos económicos y financieros, estrictamente necesarios para la prestación del servicio.",
-        contentPl: "Kategorie danych osobowych podlegających przetwarzaniu mogą obejmować, między innymi, dane identyfikacyjne, dane dotyczące cech osobowych oraz dane ekonomiczne i finansowe, ściśle niezbędne do świadczenia usługi."
-      },
-      {
-        id: "10.5",
-        contentEs: "EL CLIENTE podrá ejercer sus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad dirigiéndose a EL PRESTADOR a través del correo electrónico: admin@pgkhiszpania.com.",
-        contentPl: "KLIENT może wykonywać swoje prawa dostępu, sprostowania, usunięcia, sprzeciwu, ograniczenia przetwarzania i przenoszenia, kontaktując się z USŁUGODAWCĄ pod adresem e-mail: admin@pgkhiszpania.com."
-      },
-      {
-        id: "10.6",
-        contentEs: "Ambas partes garantizarán la confidencialidad de la información y de los datos personales tratados, extendiendo el deber a su personal y subcontratistas autorizados, durante la vigencia y con carácter postcontractual.",
-        contentPl: "Obie strony zapewnią poufność informacji i przetwarzanych danych osobowych, rozciągając ten obowiązek na swój personel i upoważnionych podwykonawców, w okresie obowiązywania umowy i po jej zakończeniu."
+        contentEs: "Si transcurrido el plazo de diez (10) días hábiles desde la emisión de la factura no se hubiera recibido el pago, EL PRESTADOR enviará un requerimiento final al CLIENTE concediendo un plazo adicional de tres (3) días hábiles para regularizar el pago. Transcurrido este plazo sin que se haya recibido el importe íntegro, EL PRESTADOR podrá resolver el contrato sin más trámite, sin perjuicio de su derecho a reclamar los honorarios devengados por trabajos preliminares efectivamente realizados y a suspender los servicios hasta que se regularice el pago.",
+        contentPl: "Jeśli po upływie dziesięciu (10) dni roboczych od wystawienia faktury płatność nie zostanie otrzymana, USŁUGODAWCA wyśle ostateczne wezwanie do KLIENTA, przyznając dodatkowy termin trzech (3) dni roboczych na uregulowanie płatności. Po upływie tego terminu bez otrzymania pełnej kwoty, USŁUGODAWCA może rozwiązać umowę bez dalszych formalności, bez uszczerbku dla swojego prawa do dochodzenia honorariów należnych za faktycznie wykonane prace wstępne oraz do zawieszenia usług do czasu uregulowania płatności."
       }
     ]
   },
   {
     number: "UNDÉCIMA",
-    titleEs: "UNDÉCIMA. - COMUNICACIONES",
-    titlePl: "JEDENASTA. - KOMUNIKACJA",
+    titleEs: "UNDÉCIMA. SERVICIOS NO INCLUIDOS",
+    titlePl: "JEDENASTA. USŁUGI NIEOBJĘTE UMOWĄ",
     sections: [
       {
         id: "11.1",
-        contentEs: "Todas las comunicaciones entre las partes relacionadas con el presente contrato deberán realizarse por escrito, preferentemente por correo electrónico, a las direcciones indicadas en el encabezamiento del contrato o a la siguiente dirección habilitada por EL PRESTADOR: klient@pgkhiszpania.com.",
-        contentPl: "Wszelka komunikacja między stronami związana z niniejszą umową musi odbywać się na piśmie, najlepiej drogą elektroniczną, na adresy wskazane w nagłówku umowy lub na następujący adres udostępniony przez USŁUGODAWCĘ: klient@pgkhiszpania.com."
-      },
-      {
-        id: "11.2",
-        contentEs: "Cualquier cambio en las direcciones de contacto deberá ser comunicado por escrito a la otra parte. En tanto no se notifique dicho cambio, se considerarán válidas las comunicaciones realizadas a las direcciones inicialmente indicadas.",
-        contentPl: "Wszelkie zmiany adresów kontaktowych muszą być przekazane drugiej stronie na piśmie. Dopóki taka zmiana nie zostanie zgłoszona, komunikacja kierowana na pierwotnie wskazane adresy będzie uważana za ważną."
+        contentEs: "Quedan expresamente excluidos del presente contrato y requerirán presupuesto independiente los siguientes servicios:\n- Modelo 210 por ganancias patrimoniales (venta de inmueble)\n- Impuesto sobre el Patrimonio (Modelo 714)\n- Tributos locales (ej. IIVTNU - plusvalía municipal)\n- Representación en comprobaciones, inspecciones, recursos o alegaciones ante la AEAT\n- Atención a requerimientos de la Administración Tributaria\n- Rectificación de declaraciones por errores no imputables a EL PRESTADOR\n- Planificación fiscal internacional\n- Servicios de contabilidad o auditoría\n- Cualquier otro servicio no descrito en la Cláusula Segunda",
+        contentPl: "Wyraźnie wyłączone z niniejszej umowy i wymagające odrębnej wyceny są następujące usługi:\n- Formularz 210 za zyski kapitałowe (sprzedaż nieruchomości)\n- Podatek od Majątku (Formularz 714)\n- Podatki lokalne (np. IIVTNU - podatek od wzrostu wartości gruntów miejskich)\n- Reprezentacja w kontrolach, inspekcjach, odwołaniach lub zarzutach przed AEAT\n- Obsługa wezwań od Administracji Podatkowej\n- Korekta deklaracji z powodu błędów nieleżących po stronie USŁUGODAWCY\n- Międzynarodowe planowanie podatkowe\n- Usługi księgowe lub audytorskie\n- Wszelkie inne usługi nieopisane w Klauzuli Drugiej"
       }
     ]
   },
   {
     number: "DUODÉCIMA",
-    titleEs: "DUODÉCIMA. - PROPIEDAD INTELECTUAL",
-    titlePl: "DWUNASTA. - WŁASNOŚĆ INTELEKTUALNA",
+    titleEs: "DUODÉCIMA. MODIFICACIONES DEL CONTRATO",
+    titlePl: "DWUNASTA. ZMIANY UMOWY",
     sections: [
       {
         id: "12.1",
-        contentEs: "La propiedad intelectual de los informes, cálculos, hojas de trabajo, documentos técnicos y cualquier otro material elaborado por EL PRESTADOR en ejecución del presente contrato le corresponderá en exclusiva.",
-        contentPl: "Własność intelektualna raportów, obliczeń, arkuszy roboczych, dokumentów technicznych i wszelkich innych materiałów opracowanych przez USŁUGODAWCĘ w wykonaniu niniejszej umowy należy wyłącznie do niego."
-      },
-      {
-        id: "12.2",
-        contentEs: "No obstante lo anterior, EL CLIENTE adquiere un derecho de uso no exclusivo, intransferible y limitado sobre dichos materiales, exclusivamente para la finalidad para la que fueron elaborados y en relación con sus propias obligaciones fiscales, quedando expresamente prohibida su reproducción, cesión o utilización para fines distintos sin autorización previa y por escrito de EL PRESTADOR.",
-        contentPl: "Niezależnie od powyższego, KLIENT nabywa niewyłączne, niezbywalne i ograniczone prawo do korzystania z tych materiałów, wyłącznie w celu, dla którego zostały opracowane i w związku z własnymi obowiązkami podatkowymi, z wyraźnym zakazem ich powielania, cesji lub wykorzystywania do innych celów bez uprzedniej pisemnej zgody USŁUGODAWCY."
+        contentEs: "Cualquier modificación del alcance, número de titulares, periodicidad o precio requerirá la firma de un documento escrito de 'Modificación de Servicios' por ambas partes. No se considerará válida la aceptación tácita, verbal o por correo electrónico, siendo necesaria la firma manuscrita, electrónica avanzada o cualificada conforme al Reglamento eIDAS.",
+        contentPl: "Wszelkie modyfikacje zakresu, liczby właścicieli, częstotliwości lub ceny wymagają podpisania przez obie strony pisemnego dokumentu 'Modyfikacji Usług'. Milcząca, ustna lub e-mailowa akceptacja nie będzie uważana za ważną; wymagany jest podpis odręczny, zaawansowany elektroniczny lub kwalifikowany zgodnie z Rozporządzeniem eIDAS."
       }
     ]
   },
   {
     number: "DECIMOTERCERA",
-    titleEs: "DECIMOTERCERA. - MODIFICACIONES DEL CONTRATO",
-    titlePl: "TRZYNASTA. - ZMIANY UMOWY",
+    titleEs: "DECIMOTERCERA. DURACIÓN Y VIGENCIA",
+    titlePl: "TRZYNASTA. CZAS TRWANIA I OBOWIĄZYWANIE",
     sections: [
       {
         id: "13.1",
-        contentEs: "Cualquier modificación del presente contrato deberá formalizarse por escrito y contar con la aceptación expresa de ambas partes.",
-        contentPl: "Wszelkie zmiany niniejszej umowy muszą być sformalizowane na piśmie i wymagają wyraźnej akceptacji obu stron."
+        contentEs: "El presente contrato tiene por objeto la prestación de servicios correspondientes al ejercicio fiscal indicado en la Cláusula Primera y entrará en vigor en la fecha de su firma.",
+        contentPl: "Niniejsza umowa ma na celu świadczenie usług za rok podatkowy wskazany w Klauzuli Pierwszej i wchodzi w życie z dniem jej podpisania."
       },
       {
         id: "13.2",
-        contentEs: "Las modificaciones de carácter menor, técnico u operativo, que no afecten al objeto principal del contrato, su duración, honorarios, régimen de responsabilidad, legislación aplicable o jurisdicción, podrán comunicarse por correo electrónico y se considerarán aceptadas si no se formula objeción expresa y motivada en el plazo de diez (10) días hábiles desde su recepción. En ningún caso se considerarán modificaciones menores aquellas que afecten a los elementos esenciales del contrato.",
-        contentPl: "Zmiany o charakterze drobnym, technicznym lub operacyjnym, które nie wpływają na główny przedmiot umowy, jej czas trwania, honoraria, reżim odpowiedzialności, prawo właściwe lub jurysdykcję, mogą być komunikowane drogą elektroniczną i zostaną uznane za zaakceptowane, jeśli nie zostanie zgłoszony wyraźny i uzasadniony sprzeciw w terminie dziesięciu (10) dni roboczych od ich otrzymania. W żadnym wypadku zmiany wpływające na istotne elementy umowy nie będą uznawane za drobne."
+        contentEs: "El contrato se extinguirá automáticamente una vez prestados completamente los servicios descritos y transcurrido el plazo legal de conservación de documentación (4 años), salvo obligaciones que por su naturaleza deban subsistir (confidencialidad, protección de datos).",
+        contentPl: "Umowa wygasa automatycznie po pełnym wykonaniu opisanych usług i upływie ustawowego okresu przechowywania dokumentacji (4 lata), z wyjątkiem obowiązków, które z natury muszą trwać (poufność, ochrona danych)."
+      },
+      {
+        id: "13.3",
+        contentEs: "Si las partes desean contratar los servicios para ejercicios fiscales posteriores, deberán formalizar un nuevo contrato o suscribir un documento de renovación que identifique el nuevo ejercicio fiscal y confirme la vigencia de las demás condiciones.",
+        contentPl: "Jeśli strony chcą zakontraktować usługi za kolejne lata podatkowe, muszą sformalizować nową umowę lub podpisać dokument odnowienia identyfikujący nowy rok podatkowy i potwierdzający obowiązywanie pozostałych warunków."
       }
     ]
   },
   {
     number: "DECIMOCUARTA",
-    titleEs: "DECIMOCUARTA. - LEGISLACIÓN APLICABLE Y JURISDICCIÓN",
-    titlePl: "CZTERNASTA. - PRAWO WŁAŚCIWE I JURYSDYKCJA",
+    titleEs: "DECIMOCUARTA. DERECHO DE DESISTIMIENTO",
+    titlePl: "CZTERNASTA. PRAWO DO ODSTĄPIENIA",
     sections: [
       {
         id: "14.1",
+        contentEs: "De conformidad con lo establecido en los artículos 102 y siguientes del Real Decreto Legislativo 1/2007, de 16 de noviembre, por el que se aprueba el texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios, EL CLIENTE dispondrá de un plazo de catorce (14) días naturales desde la firma del contrato para ejercer su derecho de desistimiento sin necesidad de justificación.",
+        contentPl: "Zgodnie z postanowieniami artykułów 102 i następnych Królewskiego Dekretu Legislacyjnego 1/2007 z dnia 16 listopada, zatwierdzającego tekst jednolity Ogólnej Ustawy o Ochronie Konsumentów i Użytkowników, KLIENT będzie miał okres czternastu (14) dni kalendarzowych od podpisania umowy na wykonanie prawa do odstąpienia bez konieczności uzasadnienia."
+      },
+      {
+        id: "14.2",
+        contentEs: "El ejercicio del derecho de desistimiento deberá comunicarse a EL PRESTADOR mediante declaración inequívoca dirigida a: Correo electrónico: klient@pgkhiszpania.com, Asunto: 'DESISTIMIENTO - Contrato IRNR [Nombre del cliente]'. EL PRESTADOR confirmará la recepción del desistimiento en un plazo máximo de 24 horas.",
+        contentPl: "Wykonanie prawa do odstąpienia musi być zakomunikowane USŁUGODAWCY poprzez jednoznaczne oświadczenie skierowane na: E-mail: klient@pgkhiszpania.com, Temat: 'ODSTĄPIENIE - Umowa IRNR [Imię i nazwisko klienta]'. USŁUGODAWCA potwierdzi otrzymanie odstąpienia w maksymalnym terminie 24 godzin."
+      },
+      {
+        id: "14.3",
+        contentEs: "En caso de que EL CLIENTE solicite que la prestación de los servicios se inicie durante el período de desistimiento: a) Si los servicios hubieran sido completamente ejecutados, EL CLIENTE perderá su derecho de desistimiento. b) Si los servicios se hubieran ejecutado parcialmente, EL CLIENTE deberá abonar el importe proporcional correspondiente a los servicios efectivamente prestados hasta la fecha de desistimiento.",
+        contentPl: "W przypadku, gdy KLIENT zażąda rozpoczęcia świadczenia usług w okresie odstąpienia: a) Jeśli usługi zostały w pełni wykonane, KLIENT utraci prawo do odstąpienia. b) Jeśli usługi zostały wykonane częściowo, KLIENT musi zapłacić proporcjonalną kwotę odpowiadającą usługom faktycznie wykonanym do daty odstąpienia."
+      }
+    ]
+  },
+  {
+    number: "DECIMOQUINTA",
+    titleEs: "DECIMOQUINTA. RESOLUCIÓN DEL CONTRATO",
+    titlePl: "PIĘTNASTA. ROZWIĄZANIE UMOWY",
+    sections: [
+      {
+        id: "15.1",
+        contentEs: "Las partes podrán resolver el presente contrato en cualquier momento por mutuo acuerdo escrito.",
+        contentPl: "Strony mogą rozwiązać niniejszą umowę w dowolnym momencie za obopólnym pisemnym porozumieniem."
+      },
+      {
+        id: "15.2",
+        contentEs: "Cualquiera de las partes podrá resolver el contrato en caso de incumplimiento grave de las obligaciones de la otra. Se considerará incumplimiento grave por parte del CLIENTE el impago de los honorarios o la falta de suministro de información necesaria tras requerimiento. La parte que resuelva el contrato deberá notificarlo a la incumplidora, otorgándole un plazo de quince (15) días para subsanar si fuera posible.",
+        contentPl: "Każda ze stron może rozwiązać umowę w przypadku poważnego naruszenia obowiązków przez drugą stronę. Za poważne naruszenie ze strony KLIENTA uważa się brak zapłaty honorariów lub niedostarczenie niezbędnych informacji po wezwaniu. Strona rozwiązująca umowę musi powiadomić stronę naruszającą, dając jej okres piętnastu (15) dni na naprawę, jeśli to możliwe."
+      }
+    ]
+  },
+  {
+    number: "DECIMOSEXTA",
+    titleEs: "DECIMOSEXTA. EFECTOS DE LA RESOLUCIÓN",
+    titlePl: "SZESNASTA. SKUTKI ROZWIĄZANIA",
+    sections: [
+      {
+        id: "16.1",
+        contentEs: "Resolución por incumplimiento del CLIENTE: EL PRESTADOR tendrá derecho a percibir los honorarios correspondientes a los servicios efectivamente prestados hasta la fecha de resolución. Si los honorarios fueron abonados por adelantado, EL PRESTADOR retendrá la parte proporcional y reembolsará el excedente en un plazo de quince (15) días hábiles.",
+        contentPl: "Rozwiązanie z powodu niewykonania obowiązków przez KLIENTA: USŁUGODAWCA ma prawo do otrzymania honorariów odpowiadających usługom faktycznie wykonanym do daty rozwiązania. Jeśli honoraria zostały uiszczone z góry, USŁUGODAWCA zatrzyma proporcjonalną część i zwróci nadwyżkę w terminie piętnastu (15) dni roboczych."
+      },
+      {
+        id: "16.2",
+        contentEs: "Resolución por incumplimiento de EL PRESTADOR: EL CLIENTE tendrá derecho al reembolso íntegro de los honorarios abonados si los servicios no han sido iniciados. Si los servicios se hubieran iniciado, se reembolsará la parte proporcional no ejecutada. EL PRESTADOR facilitará toda la documentación e información necesaria para que el CLIENTE pueda cumplir sus obligaciones tributarias.",
+        contentPl: "Rozwiązanie z powodu niewykonania obowiązków przez USŁUGODAWCĘ: KLIENT ma prawo do pełnego zwrotu uiszczonych honorariów, jeśli usługi nie zostały rozpoczęte. Jeśli usługi zostały rozpoczęte, zwrócona zostanie proporcjonalna część niewykonana. USŁUGODAWCA dostarczy całą dokumentację i informacje niezbędne do wypełnienia przez KLIENTA jego obowiązków podatkowych."
+      }
+    ]
+  },
+  {
+    number: "DECIMOSÉPTIMA",
+    titleEs: "DECIMOSÉPTIMA. RESPONSABILIDAD",
+    titlePl: "SIEDEMNASTA. ODPOWIEDZIALNOŚĆ",
+    sections: [
+      {
+        id: "17.1",
+        contentEs: "EL PRESTADOR responderá exclusivamente por los daños directos que se deriven de una actuación negligente en la prestación de los servicios contratados, siempre que exista relación de causalidad directa y debidamente acreditada.",
+        contentPl: "USŁUGODAWCA odpowiada wyłącznie za szkody bezpośrednie wynikające z zaniedbania w świadczeniu zakontraktowanych usług, pod warunkiem istnienia bezpośredniego i należycie udowodnionego związku przyczynowego."
+      },
+      {
+        id: "17.2",
+        contentEs: "En ningún caso será responsable EL PRESTADOR de los perjuicios que pudieran derivarse de: (a) aportación de información o documentación incompleta, inexacta, falsa o fuera de plazo, (b) decisiones adoptadas por EL CLIENTE, (c) actuaciones u omisiones de la Administración Tributaria u otros terceros.",
+        contentPl: "W żadnym wypadku USŁUGODAWCA nie ponosi odpowiedzialności za szkody mogące wyniknąć z: (a) dostarczenia niepełnych, niedokładnych, fałszywych lub spóźnionych informacji lub dokumentacji, (b) decyzji podjętych przez KLIENTA, (c) działań lub zaniechań Administracji Podatkowej lub innych osób trzecich."
+      },
+      {
+        id: "17.3",
+        contentEs: "Sin perjuicio de lo dispuesto en la normativa imperativa de protección de consumidores y usuarios, y en ningún caso en supuestos de dolo o culpa grave, la responsabilidad económica máxima de EL PRESTADOR por daños directos derivados de una actuación negligente quedará limitada al importe de los honorarios efectivamente abonados por el CLIENTE por el servicio concreto que haya dado lugar a la reclamación. EL CLIENTE declara haber sido informado expresamente de esta limitación y aceptarla de forma específica, reconociendo que el precio pactado ha sido establecido teniendo en cuenta dicha limitación.",
+        contentPl: "Bez uszczerbku dla bezwzględnie obowiązujących przepisów o ochronie konsumentów i użytkowników, i w żadnym wypadku w przypadku umyślnego działania lub rażącego niedbalstwa, maksymalna odpowiedzialność finansowa USŁUGODAWCY za szkody bezpośrednie wynikające z zaniedbania jest ograniczona do kwoty honorariów faktycznie uiszczonych przez KLIENTA za konkretną usługę, która dała podstawę do reklamacji. KLIENT oświadcza, że został wyraźnie poinformowany o tym ograniczeniu i akceptuje je w sposób konkretny, uznając, że uzgodniona cena została ustalona z uwzględnieniem tego ograniczenia."
+      },
+      {
+        id: "17.4",
+        contentEs: "Esta limitación no será aplicable en casos de dolo, culpa grave o negligencia profesional manifiesta, cuando resulte contraria a normativa imperativa de consumidores y usuarios, en materia de protección de datos personales (donde se aplicará el régimen sancionador del RGPD), o en supuestos de responsabilidad objetiva establecida legalmente.",
+        contentPl: "To ograniczenie nie ma zastosowania w przypadkach umyślnego działania, rażącego niedbalstwa lub oczywistego zaniedbania zawodowego, gdy jest sprzeczne z bezwzględnie obowiązującymi przepisami o ochronie konsumentów i użytkowników, w sprawach ochrony danych osobowych (gdzie stosuje się reżim sankcji RODO), lub w przypadkach odpowiedzialności obiektywnej ustanowionej prawnie."
+      },
+      {
+        id: "17.5",
+        contentEs: "En todo caso, EL PRESTADOR únicamente responderá de los daños directos y efectivamente acreditados, quedando excluidos los daños indirectos, lucro cesante, pérdida de oportunidades o daños morales, salvo que deriven de dolo o culpa grave debidamente probada.",
+        contentPl: "W każdym przypadku USŁUGODAWCA odpowiada wyłącznie za szkody bezpośrednie i faktycznie udokumentowane, z wyłączeniem szkód pośrednich, utraconych korzyści, utraty możliwości lub szkód moralnych, chyba że wynikają z umyślnego działania lub rażącego niedbalstwa należycie udowodnionego."
+      }
+    ]
+  },
+  {
+    number: "DECIMOCTAVA",
+    titleEs: "DECIMOCTAVA. AUTORIZACIÓN PARA PRESENTACIONES",
+    titlePl: "OSIEMNASTA. UPOWAŻNIENIE DO SKŁADANIA DEKLARACJI",
+    sections: [
+      {
+        id: "18.1",
+        contentEs: "EL CLIENTE autoriza y se compromete a otorgar a EL PRESTADOR los apoderamientos necesarios para realizar, en su nombre y por el período de vigencia del presente contrato, las presentaciones telemáticas de declaraciones, autoliquidaciones o comunicaciones ante la AEAT. Esta autorización deberá formalizarse obligatoriamente mediante: (a) apoderamiento telemático en el sistema Cl@ve PIN de la AEAT, o (b) representación conforme a certificado digital de EL PRESTADOR, previa inscripción del apoderamiento en el registro correspondiente de la AEAT. Sin el otorgamiento efectivo de dicho apoderamiento, EL PRESTADOR no podrá proceder a la presentación de las declaraciones, sin que ello genere responsabilidad alguna por su parte.",
+        contentPl: "KLIENT upoważnia i zobowiązuje się udzielić USŁUGODAWCY niezbędnych pełnomocnictw do dokonywania w jego imieniu i przez okres obowiązywania niniejszej umowy elektronicznych zgłoszeń deklaracji, rozliczeń lub komunikatów przed AEAT. Upoważnienie to musi być obowiązkowo sformalizowane poprzez: (a) pełnomocnictwo elektroniczne w systemie Cl@ve PIN AEAT, lub (b) reprezentację zgodną z certyfikatem cyfrowym USŁUGODAWCY, po uprzednim wpisie pełnomocnictwa do odpowiedniego rejestru AEAT. Bez skutecznego udzielenia tego pełnomocnictwa USŁUGODAWCA nie może przystąpić do składania deklaracji, co nie generuje żadnej odpowiedzialności z jego strony."
+      },
+      {
+        id: "18.2",
+        contentEs: "EL CLIENTE podrá revocar esta autorización en cualquier momento mediante comunicación escrita con antelación mínima de diez (10) días hábiles, sin perjuicio del derecho de EL PRESTADOR a percibir los honorarios por servicios ya prestados.",
+        contentPl: "KLIENT może cofnąć to upoważnienie w dowolnym momencie poprzez pisemną komunikację z wyprzedzeniem co najmniej dziesięciu (10) dni roboczych, bez uszczerbku dla prawa USŁUGODAWCY do otrzymania honorariów za już wykonane usługi."
+      }
+    ]
+  },
+  {
+    number: "DECIMONOVENA",
+    titleEs: "DECIMONOVENA. RECTIFICACIÓN DE DECLARACIONES",
+    titlePl: "DZIEWIĘTNASTA. KOREKTA DEKLARACJI",
+    sections: [
+      {
+        id: "19.1",
+        contentEs: "Si con posterioridad a la presentación de las declaraciones se detectaran errores u omisiones:\na) Imputables a EL PRESTADOR: Este asumirá la presentación de las declaraciones complementarias o rectificativas necesarias sin coste adicional y responderá de los intereses de demora generados, sin perjuicio de la limitación de responsabilidad establecida.\nb) Imputables a información incorrecta del CLIENTE: La presentación de declaraciones rectificativas o complementarias requerirá presupuesto adicional y los intereses, recargos o sanciones serán de cuenta del CLIENTE.\nc) Por cambios normativos o interpretativos posteriores: Serán de cuenta del CLIENTE, pudiendo contratar los servicios de rectificación mediante presupuesto adicional. En ningún caso implicará responsabilidad de EL PRESTADOR el haber aplicado la normativa vigente y los criterios interpretativos de la Administración Tributaria existentes en el momento de la presentación de las declaraciones.",
+        contentPl: "Jeśli po złożeniu deklaracji zostaną wykryte błędy lub pominięcia:\na) Leżące po stronie USŁUGODAWCY: USŁUGODAWCA przejmie złożenie niezbędnych deklaracji uzupełniających lub korygujących bez dodatkowych kosztów i odpowie za wygenerowane odsetki za zwłokę, bez uszczerbku dla ustalonego ograniczenia odpowiedzialności.\nb) Leżące po stronie nieprawidłowych informacji KLIENTA: Złożenie deklaracji korygujących lub uzupełniających wymaga dodatkowej wyceny, a odsetki, dopłaty lub sankcje obciążają KLIENTA.\nc) Z powodu późniejszych zmian normatywnych lub interpretacyjnych: Obciążają KLIENTA, który może zakontraktować usługi korekty poprzez dodatkową wycenę. W żadnym wypadku USŁUGODAWCA nie ponosi odpowiedzialności za zastosowanie obowiązujących przepisów i kryteriów interpretacyjnych Administracji Podatkowej istniejących w momencie składania deklaracji."
+      }
+    ]
+  },
+  {
+    number: "VIGÉSIMA",
+    titleEs: "VIGÉSIMA. CONFIDENCIALIDAD Y PROTECCIÓN DE DATOS",
+    titlePl: "DWUDZIESTA. POUFNOŚĆ I OCHRONA DANYCH",
+    sections: [
+      {
+        id: "20.1",
+        contentEs: "Conforme al Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), EL CLIENTE actuará como Responsable del Tratamiento y EL PRESTADOR como Encargado del Tratamiento conforme al art. 28 RGPD. La base jurídica del tratamiento es la ejecución del presente contrato (art. 6.1.b RGPD) y el cumplimiento de obligaciones legales en materia tributaria (art. 6.1.c RGPD).",
+        contentPl: "Zgodnie z Rozporządzeniem (UE) 2016/679 (RODO) i Ustawą Organiczną 3/2018 (LOPDGDD), KLIENT działa jako Administrator Danych, a USŁUGODAWCA jako Podmiot Przetwarzający zgodnie z art. 28 RODO. Podstawą prawną przetwarzania jest wykonanie niniejszej umowy (art. 6.1.b RODO) i wypełnienie obowiązków prawnych w sprawach podatkowych (art. 6.1.c RODO)."
+      },
+      {
+        id: "20.2",
+        contentEs: "La única finalidad del tratamiento de los datos será la prestación de los servicios fiscales detallados en el presente contrato.",
+        contentPl: "Jedynym celem przetwarzania danych jest świadczenie usług podatkowych szczegółowo opisanych w niniejszej umowie."
+      },
+      {
+        id: "20.3",
+        contentEs: "EL PRESTADOR se obliga a: (a) tratar los datos personales únicamente siguiendo instrucciones del CLIENTE, (b) garantizar confidencialidad, (c) implementar y mantener medidas técnicas y organizativas apropiadas conforme al artículo 32 del RGPD, incluyendo el cifrado de datos, control de accesos, copias de seguridad y registro de actividades de tratamiento, (d) no subcontratar sin autorización previa y por escrito del CLIENTE, (e) asistir al CLIENTE en el ejercicio de derechos de los interesados, (f) suprimir o devolver datos una vez finalizada la prestación, (g) poner a disposición del CLIENTE toda la información necesaria para demostrar el cumplimiento de las obligaciones del RGPD.",
+        contentPl: "USŁUGODAWCA zobowiązuje się do: (a) przetwarzania danych osobowych wyłącznie zgodnie z instrukcjami KLIENTA, (b) gwarantowania poufności, (c) wdrażania i utrzymywania odpowiednich środków technicznych i organizacyjnych zgodnie z art. 32 RODO, w tym szyfrowania danych, kontroli dostępu, kopii zapasowych i rejestru czynności przetwarzania, (d) niepodzlecania bez uprzedniej pisemnej zgody KLIENTA, (e) wspomagania KLIENTA w wykonywaniu praw osób, których dane dotyczą, (f) usunięcia lub zwrotu danych po zakończeniu świadczenia, (g) udostępnienia KLIENTOWI wszystkich informacji niezbędnych do wykazania zgodności z obowiązkami RODO."
+      },
+      {
+        id: "20.4",
+        contentEs: "Las categorías de datos personales objeto de tratamiento incluyen datos identificativos, datos de características personales y datos económicos y financieros, estrictamente necesarios para la prestación del servicio.",
+        contentPl: "Kategorie danych osobowych objętych przetwarzaniem obejmują dane identyfikacyjne, dane dotyczące cech osobowych oraz dane ekonomiczne i finansowe, ściśle niezbędne do świadczenia usługi."
+      },
+      {
+        id: "20.5",
+        contentEs: "EL CLIENTE podrá ejercer sus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad dirigiéndose a EL PRESTADOR: admin@pgkhiszpania.com.",
+        contentPl: "KLIENT może wykonywać swoje prawa dostępu, sprostowania, usunięcia, sprzeciwu, ograniczenia przetwarzania i przenoszenia, kontaktując się z USŁUGODAWCĄ: admin@pgkhiszpania.com."
+      },
+      {
+        id: "20.6",
+        contentEs: "Los datos personales serán conservados durante el plazo de vigencia del contrato y, posteriormente, durante el plazo de prescripción de las obligaciones tributarias (4 años desde la finalización del plazo de presentación de la declaración).",
+        contentPl: "Dane osobowe będą przechowywane przez okres obowiązywania umowy, a następnie przez okres przedawnienia zobowiązań podatkowych (4 lata od zakończenia terminu składania deklaracji)."
+      },
+      {
+        id: "20.7",
+        contentEs: "EL PRESTADOR no realizará transferencias internacionales de datos fuera del Espacio Económico Europeo sin el consentimiento previo y por escrito del CLIENTE y sin garantizar un nivel de protección adecuado conforme al Capítulo V del RGPD.",
+        contentPl: "USŁUGODAWCA nie będzie dokonywał międzynarodowych transferów danych poza Europejski Obszar Gospodarczy bez uprzedniej pisemnej zgody KLIENTA i bez zapewnienia odpowiedniego poziomu ochrony zgodnie z Rozdziałem V RODO."
+      }
+    ]
+  },
+  {
+    number: "VIGÉSIMA PRIMERA",
+    titleEs: "VIGÉSIMA PRIMERA. COMUNICACIONES",
+    titlePl: "DWUDZIESTA PIERWSZA. KOMUNIKACJA",
+    sections: [
+      {
+        id: "21.1",
+        contentEs: "Todas las comunicaciones entre las partes relacionadas con el presente contrato deberán realizarse por escrito, preferentemente por correo electrónico, a: klient@pgkhiszpania.com.",
+        contentPl: "Wszelka komunikacja między stronami związana z niniejszą umową musi odbywać się na piśmie, najlepiej drogą elektroniczną, na adres: klient@pgkhiszpania.com."
+      },
+      {
+        id: "21.2",
+        contentEs: "Las comunicaciones por correo electrónico se considerarán recibidas: (a) en el mismo día, si se envían antes de las 15:00 horas de un día hábil, (b) al día hábil siguiente, si se envían después de las 15:00 horas o en día inhábil. Se considerarán días inhábiles los sábados, domingos y festivos nacionales en España.",
+        contentPl: "Komunikaty przesłane pocztą elektroniczną uważa się za otrzymane: (a) tego samego dnia, jeśli wysłane przed godziną 15:00 w dniu roboczym, (b) następnego dnia roboczego, jeśli wysłane po godzinie 15:00 lub w dniu wolnym od pracy. Za dni wolne od pracy uważa się soboty, niedziele i święta narodowe w Hiszpanii."
+      }
+    ]
+  },
+  {
+    number: "VIGÉSIMA SEGUNDA",
+    titleEs: "VIGÉSIMA SEGUNDA. PROPIEDAD INTELECTUAL",
+    titlePl: "DWUDZIESTA DRUGA. WŁASNOŚĆ INTELEKTUALNA",
+    sections: [
+      {
+        id: "22.1",
+        contentEs: "Titularidad: La propiedad intelectual de los informes, cálculos, metodologías y cualquier material elaborado por EL PRESTADOR corresponde en exclusiva a EL PRESTADOR.",
+        contentPl: "Własność: Własność intelektualna raportów, obliczeń, metodologii i wszelkich materiałów opracowanych przez USŁUGODAWCĘ należy wyłącznie do USŁUGODAWCY."
+      },
+      {
+        id: "22.2",
+        contentEs: "Licencia de uso: EL CLIENTE adquiere un derecho de uso no exclusivo e intransferible sobre los materiales entregados, exclusivamente para cumplimiento de sus obligaciones tributarias. Quedan prohibidos: reproducción para terceros, cesión, venta, uso comercial, ingeniería inversa, eliminación de marcas de EL PRESTADOR, modificación o publicación.",
+        contentPl: "Licencja użytkowania: KLIENT nabywa niewyłączne i niezbywalne prawo do korzystania z dostarczonych materiałów, wyłącznie w celu wypełnienia swoich obowiązków podatkowych. Zabronione jest: powielanie dla osób trzecich, cesja, sprzedaż, użycie komercyjne, inżynieria wsteczna, usuwanie znaków USŁUGODAWCY, modyfikacja lub publikacja."
+      },
+      {
+        id: "22.3",
+        contentEs: "Consecuencias del uso indebido: En caso de incumplimiento de las prohibiciones establecidas en el apartado 22.2, EL PRESTADOR podrá: a) Exigir el cese inmediato del uso no autorizado. b) Resolver el contrato de forma inmediata, sin perjuicio de las responsabilidades ya nacidas. c) Reclamar la indemnización de los daños y perjuicios efectivamente causados y debidamente acreditados, incluyendo el lucro cesante derivado del uso no autorizado y los costes de defensa legal. d) Ejercer las acciones civiles y penales que correspondan conforme a la Ley de Propiedad Intelectual (Real Decreto Legislativo 1/1996).",
+        contentPl: "Konsekwencje niewłaściwego użycia: W przypadku naruszenia zakazów określonych w punkcie 22.2, USŁUGODAWCA może: a) Żądać natychmiastowego zaprzestania nieautoryzowanego użycia. b) Rozwiązać umowę ze skutkiem natychmiastowym, bez uszczerbku dla już powstałych zobowiązań. c) Dochodzić odszkodowania za faktycznie poniesione i należycie udokumentowane szkody, w tym utracone korzyści wynikające z nieautoryzowanego użycia i koszty obrony prawnej. d) Podjąć działania cywilne i karne zgodnie z Ustawą o Własności Intelektualnej (Królewski Dekret Legislacyjny 1/1996)."
+      },
+      {
+        id: "22.4",
+        contentEs: "Propiedad de datos del CLIENTE: Todos los datos personales, documentos originales y demás información aportada por EL CLIENTE son y seguirán siendo de su exclusiva propiedad.",
+        contentPl: "Własność danych KLIENTA: Wszystkie dane osobowe, oryginalne dokumenty i inne informacje dostarczone przez KLIENTA są i pozostaną jego wyłączną własnością."
+      }
+    ]
+  },
+  {
+    number: "VIGÉSIMA TERCERA",
+    titleEs: "VIGÉSIMA TERCERA. RESOLUCIÓN AMISTOSA DE CONFLICTOS",
+    titlePl: "DWUDZIESTA TRZECIA. POLUBOWNE ROZSTRZYGANIE SPORÓW",
+    sections: [
+      {
+        id: "23.1",
+        contentEs: "Las partes acuerdan que, en caso de cualquier discrepancia relacionada con el presente contrato, intentarán resolverla de buena fe mediante negociación directa antes de acudir a los tribunales.",
+        contentPl: "Strony uzgadniają, że w przypadku jakiejkolwiek rozbieżności związanej z niniejszą umową, będą próbować rozwiązać ją w dobrej wierze poprzez bezpośrednie negocjacje przed zwróceniem się do sądów."
+      },
+      {
+        id: "23.2",
+        contentEs: "Si en el plazo de quince (15) días naturales desde que una parte comunique a la otra su disconformidad no se alcanza un acuerdo, cualquiera de las partes podrá: (a) acudir a una entidad de mediación de consumo acreditada, de forma voluntaria y gratuita para el consumidor, conforme a la Ley 7/2017 de resolución alternativa de litigios en materia de consumo, o (b) iniciar las acciones judiciales que considere oportunas.",
+        contentPl: "Jeśli w terminie piętnastu (15) dni kalendarzowych od momentu, gdy jedna strona zakomunikuje drugiej swoją niezgodę, nie zostanie osiągnięte porozumienie, każda ze stron może: (a) zwrócić się do akredytowanego podmiotu mediacji konsumenckiej, dobrowolnie i bezpłatnie dla konsumenta, zgodnie z Ustawą 7/2017 o alternatywnym rozstrzyganiu sporów konsumenckich, lub (b) wszcząć postępowanie sądowe, które uzna za stosowne."
+      },
+      {
+        id: "23.3",
+        contentEs: "El sometimiento a mediación no es obligatorio, pero EL PRESTADOR se compromete a participar en ella de buena fe si EL CLIENTE así lo solicita.",
+        contentPl: "Poddanie się mediacji nie jest obowiązkowe, ale USŁUGODAWCA zobowiązuje się uczestniczyć w niej w dobrej wierze, jeśli KLIENT tego zażąda."
+      },
+      {
+        id: "23.4",
+        contentEs: "Durante el proceso de mediación se suspenderán los plazos de prescripción y caducidad de las acciones.",
+        contentPl: "W trakcie procesu mediacji terminy przedawnienia i wygaśnięcia roszczeń ulegają zawieszeniu."
+      }
+    ]
+  },
+  {
+    number: "VIGÉSIMA CUARTA",
+    titleEs: "VIGÉSIMA CUARTA. FUERZA MAYOR",
+    titlePl: "DWUDZIESTA CZWARTA. SIŁA WYŻSZA",
+    sections: [
+      {
+        id: "24.1",
+        contentEs: "Ninguna de las partes será responsable del incumplimiento de sus obligaciones cuando este sea consecuencia de eventos de fuerza mayor (acontecimientos extraordinarios, imprevisibles e inevitables). Se considerarán eventos de fuerza mayor: catástrofes naturales, guerras, disturbios, actos terroristas, huelgas generales, caída de sistemas informáticos de la AEAT que impidan la presentación telemática, o pandemias oficialmente declaradas.",
+        contentPl: "Żadna ze stron nie ponosi odpowiedzialności za niewykonanie swoich zobowiązań, gdy wynika ono z zdarzeń siły wyższej (zdarzeń nadzwyczajnych, nieprzewidywalnych i nieuniknionych). Za zdarzenia siły wyższej uważa się: katastrofy naturalne, wojny, zamieszki, akty terrorystyczne, strajki generalne, awarię systemów informatycznych AEAT uniemożliwiającą elektroniczne składanie deklaracji, lub oficjalnie ogłoszone pandemie."
+      },
+      {
+        id: "24.2",
+        contentEs: "La parte afectada deberá notificar a la otra en cuarenta y ocho (48) horas. Si el evento persiste más de treinta (30) días, cualquiera de las partes podrá resolver el contrato sin penalización, liquidándose los servicios efectivamente prestados.",
+        contentPl: "Strona dotknięta zobowiązana jest powiadomić drugą stronę w ciągu czterdziestu ośmiu (48) godzin. Jeśli zdarzenie trwa dłużej niż trzydzieści (30) dni, każda ze stron może rozwiązać umowę bez kary, z rozliczeniem faktycznie wykonanych usług."
+      }
+    ]
+  },
+  {
+    number: "VIGÉSIMA QUINTA",
+    titleEs: "VIGÉSIMA QUINTA. CESIÓN",
+    titlePl: "DWUDZIESTA PIĄTA. CESJA",
+    sections: [
+      {
+        id: "25.1",
+        contentEs: "El presente contrato tiene carácter personal e intuitu personae. Ninguna de las partes podrá ceder, transferir o subcontratar total o parcialmente sus derechos u obligaciones sin el consentimiento previo y por escrito de la otra parte. Excepción: EL PRESTADOR podrá subcontratar servicios auxiliares (traducciones, notificaciones) manteniendo la responsabilidad directa frente al CLIENTE y las obligaciones de confidencialidad y protección de datos.",
+        contentPl: "Niniejsza umowa ma charakter osobisty i intuitu personae. Żadna ze stron nie może cedować, przenosić ani podzlecać całkowicie lub częściowo swoich praw lub obowiązków bez uprzedniej pisemnej zgody drugiej strony. Wyjątek: USŁUGODAWCA może podzlecać usługi pomocnicze (tłumaczenia, powiadomienia), zachowując bezpośrednią odpowiedzialność wobec KLIENTA oraz obowiązki poufności i ochrony danych."
+      }
+    ]
+  },
+  {
+    number: "VIGÉSIMA SEXTA",
+    titleEs: "VIGÉSIMA SEXTA. INTEGRIDAD DEL CONTRATO",
+    titlePl: "DWUDZIESTA SZÓSTA. INTEGRALNOŚĆ UMOWY",
+    sections: [
+      {
+        id: "26.1",
+        contentEs: "El presente contrato constituye el acuerdo íntegro entre las partes y sustituye cualquier negociación, acuerdo o comunicación previa, oral o escrita. En caso de contradicción entre el contrato y sus anexos, prevalecerá el texto del contrato principal, salvo que expresamente se establezca lo contrario.",
+        contentPl: "Niniejsza umowa stanowi pełne porozumienie między stronami i zastępuje wszelkie wcześniejsze negocjacje, umowy lub komunikaty, ustne lub pisemne. W przypadku sprzeczności między umową a jej załącznikami, pierwszeństwo ma tekst umowy głównej, chyba że wyraźnie postanowiono inaczej."
+      }
+    ]
+  },
+  {
+    number: "VIGÉSIMA SÉPTIMA",
+    titleEs: "VIGÉSIMA SÉPTIMA. LEGISLACIÓN APLICABLE Y JURISDICCIÓN",
+    titlePl: "DWUDZIESTA SIÓDMA. PRAWO WŁAŚCIWE I JURYSDYKCJA",
+    sections: [
+      {
+        id: "27.1",
         contentEs: "El presente contrato se regirá e interpretará conforme a la legislación española, incluyendo la normativa imperativa en materia de protección de consumidores y usuarios.",
         contentPl: "Niniejsza umowa podlega prawu hiszpańskiemu i będzie interpretowana zgodnie z nim, w tym z bezwzględnie obowiązującymi przepisami dotyczącymi ochrony konsumentów i użytkowników."
       },
       {
-        id: "14.2",
-        contentEs: "Cuando EL CLIENTE tenga la condición de consumidor, cualquier controversia que derive de la interpretación, validez, ejecución o resolución del contrato se someterá a los Juzgados y Tribunales del domicilio del consumidor, sin perjuicio de los fueros imperativos previstos en la Ley de Enjuiciamiento Civil y del Reglamento (UE) 1215/2012, no siendo válida ninguna sumisión previa que prive al consumidor de dicha protección.",
-        contentPl: "Gdy KLIENT ma status konsumenta, wszelkie spory wynikające z interpretacji, ważności, wykonania lub rozwiązania umowy będą poddane sądom właściwym dla miejsca zamieszkania konsumenta, bez uszczerbku dla obowiązkowych jurysdykcji przewidzianych w Ustawie o postępowaniu cywilnym i Rozporządzeniu (UE) 1215/2012, przy czym nieważne jest jakiekolwiek wcześniejsze poddanie jurysdykcji pozbawiające konsumenta tej ochrony."
+        id: "27.2",
+        contentEs: "Cualquier controversia derivada de la interpretación, validez, ejecución o resolución del contrato se someterá a los Juzgados y Tribunales del domicilio del consumidor, sin perjuicio de los fueros imperativos previstos en la Ley de Enjuiciamiento Civil y del Reglamento (UE) 1215/2012.",
+        contentPl: "Wszelkie spory wynikające z interpretacji, ważności, wykonania lub rozwiązania umowy będą poddane sądom właściwym dla miejsca zamieszkania konsumenta, bez uszczerbku dla obowiązkowych jurysdykcji przewidzianych w Ustawie o postępowaniu cywilnym i Rozporządzeniu (UE) 1215/2012."
       },
       {
-        id: "14.3",
-        contentEs: "Cuando EL CLIENTE no tenga la condición de consumidor, las partes se someten, con renuncia expresa a cualquier otro fuero que pudiera corresponderles, a los Juzgados y Tribunales de Alicante (España), sin perjuicio de los fueros imperativos que resulten de aplicación.",
-        contentPl: "Gdy KLIENT nie ma statusu konsumenta, strony poddają się, z wyraźnym zrzeczeniem się wszelkich innych jurysdykcji, które mogłyby im przysługiwać, sądom w Alicante (Hiszpania), bez uszczerbku dla obowiązkowych jurysdykcji, które mogą mieć zastosowanie."
-      },
-      {
-        id: "14.4",
+        id: "27.3",
         contentEs: "En contratos con consumidores residentes en otro Estado miembro de la Unión Europea, la elección de la legislación española no privará al consumidor de la protección que le otorguen las disposiciones imperativas de su país de residencia habitual, conforme al artículo 6 del Reglamento (CE) 593/2008 (Roma I).",
         contentPl: "W umowach z konsumentami zamieszkałymi w innym państwie członkowskim Unii Europejskiej, wybór prawa hiszpańskiego nie pozbawi konsumenta ochrony przyznanej mu przez bezwzględnie obowiązujące przepisy kraju jego zwykłego pobytu, zgodnie z art. 6 Rozporządzenia (WE) 593/2008 (Rzym I)."
       },
       {
-        id: "14.5",
-        contentEs: "Para cualquier reclamación o consulta durante la vigencia del contrato, EL CLIENTE podrá dirigirse a EL PRESTADOR en la siguiente dirección: C/ Matilde Peñaranda, 27, 5.º A, 03183 Torrevieja (Alicante) o al correo electrónico: info@pgkhiszpania.com. Se facilitarán, cuando proceda, hojas oficiales de reclamaciones y acceso a sistemas de resolución alternativa de litigios conforme a la Ley 7/2017.",
-        contentPl: "W przypadku jakichkolwiek reklamacji lub zapytań w okresie obowiązywania umowy, KLIENT może skontaktować się z USŁUGODAWCĄ pod następującym adresem: C/ Matilde Peñaranda, 27, 5.º A, 03183 Torrevieja (Alicante) lub pod adresem e-mail: info@pgkhiszpania.com. W stosownych przypadkach zostaną udostępnione oficjalne arkusze reklamacyjne oraz dostęp do systemów alternatywnego rozstrzygania sporów zgodnie z Ustawą 7/2017."
+        id: "27.4",
+        contentEs: "Para cualquier reclamación o consulta, EL CLIENTE podrá dirigirse a EL PRESTADOR: C/ Matilde Peñaranda, 27, 5.º A, 03183 Torrevieja (Alicante) o al correo electrónico: info@pgkhiszpania.com. Se facilitarán hojas oficiales de reclamaciones y acceso a sistemas de resolución alternativa de litigios conforme a la Ley 7/2017.",
+        contentPl: "W przypadku jakichkolwiek reklamacji lub zapytań, KLIENT może skontaktować się z USŁUGODAWCĄ: C/ Matilde Peñaranda, 27, 5.º A, 03183 Torrevieja (Alicante) lub pod adresem e-mail: info@pgkhiszpania.com. Zostaną udostępnione oficjalne arkusze reklamacyjne oraz dostęp do systemów alternatywnego rozstrzygania sporów zgodnie z Ustawą 7/2017."
       },
       {
-        id: "14.6",
+        id: "27.5",
         contentEs: "Las reclamaciones serán atendidas en un plazo máximo de diez (10) días hábiles desde su recepción.",
         contentPl: "Reklamacje będą rozpatrywane w maksymalnym terminie dziesięciu (10) dni roboczych od ich otrzymania."
       }
     ]
   },
   {
-    number: "DECIMOQUINTA",
-    titleEs: "DECIMOQUINTA. - IDIOMA DEL CONTRATO",
-    titlePl: "PIĘTNASTA. - JĘZYK UMOWY",
+    number: "VIGÉSIMA OCTAVA",
+    titleEs: "VIGÉSIMA OCTAVA. IDIOMA DEL CONTRATO",
+    titlePl: "DWUDZIESTA ÓSMA. JĘZYK UMOWY",
     sections: [
       {
-        id: "15.1",
-        contentEs: "El presente contrato se redacta y formaliza en dos idiomas: español y polaco, facilitándose la versión en polaco a efectos de mejor comprensión por parte del CLIENTE.",
-        contentPl: "Niniejsza umowa jest sporządzona i sformalizowana w dwóch językach: hiszpańskim i polskim, przy czym wersja polska jest udostępniana w celu lepszego zrozumienia przez KLIENTA."
-      },
-      {
-        id: "15.2",
-        contentEs: "Ambas versiones se consideran válidas; no obstante, en caso de discrepancia, divergencia interpretativa o conflicto entre ambas, prevalecerá la versión redactada en idioma español, que será la única jurídicamente vinculante.",
-        contentPl: "Obie wersje są uważane za ważne; jednakże w przypadku rozbieżności, różnic interpretacyjnych lub konfliktu między nimi, pierwszeństwo ma wersja sporządzona w języku hiszpańskim, która będzie jedyną prawnie wiążącą."
+        id: "28.1",
+        contentEs: "El presente contrato se redacta en español y polaco. Ambas versiones son válidas; no obstante, en caso de discrepancia, prevalecerá la versión en español, que será la única jurídicamente vinculante. EL CLIENTE declara expresamente comprender suficientemente el idioma español o haber recibido traducción adecuada que le permite conocer el contenido íntegro del contrato y sus implicaciones jurídicas.",
+        contentPl: "Niniejsza umowa jest sporządzona w języku hiszpańskim i polskim. Obie wersje są ważne; jednakże w przypadku rozbieżności, pierwszeństwo ma wersja hiszpańska, która będzie jedyną prawnie wiążącą. KLIENT oświadcza wyraźnie, że dostatecznie rozumie język hiszpański lub otrzymał odpowiednie tłumaczenie umożliwiające mu poznanie pełnej treści umowy i jej implikacji prawnych."
       }
     ]
   }
@@ -508,8 +691,8 @@ export const clauses: ContractClause[] = [
 // CIERRE Y FIRMAS
 // ===========================================
 export const closingSection = {
-  declarationEs: "Ambas partes declaran haber leído, comprendido y aceptado expresamente el contenido y alcance del presente contrato. Y en prueba de conformidad, firman el contrato por duplicado y a un solo efecto, en el lugar y fecha indicados en el encabezamiento, quedando un ejemplar en poder de cada parte.",
-  declarationPl: "Obie strony oświadczają, że przeczytały, zrozumiały i wyraźnie zaakceptowały treść i zakres niniejszej umowy. Na dowód zgodności podpisują umowę w dwóch egzemplarzach i w jednym celu, w miejscu i dacie wskazanych w nagłówku, przy czym każda ze stron zatrzymuje jeden egzemplarz.",
+  declarationEs: "Ambas partes declaran haber leído, comprendido y aceptado el contenido y alcance del presente contrato. En prueba de conformidad, ambas partes firman el presente contrato en duplicado, quedando un ejemplar en poder de cada una.",
+  declarationPl: "Obie strony oświadczają, że przeczytały, zrozumiały i zaakceptowały treść i zakres niniejszej umowy. Na dowód zgodności, obie strony podpisują niniejszą umowę w dwóch egzemplarzach, przy czym każda ze stron zatrzymuje jeden egzemplarz.",
   
   signatures: {
     prestador: {
