@@ -292,19 +292,19 @@ const GeneradorContratoIRNR = () => {
             </div>
           </div>
 
-          {/* ==================== ÍNDICE BILINGÜE CON LÍNEAS DE PUNTOS ==================== */}
+          {/* ==================== ÍNDICE ESPAÑOL - PÁGINA 2 ==================== */}
           <div className="index-page relative" style={{ pageBreakAfter: 'always' }}>
             {/* Número de página */}
             <div className="absolute bottom-4 right-0 left-0 text-center text-xs text-muted-foreground">2</div>
             
-            {/* Cabecera del índice */}
+            {/* Cabecera del índice español */}
             <div className="text-center mb-8">
               <h2 className="text-lg font-bold uppercase tracking-widest underline decoration-2 underline-offset-4" style={{ color: '#1e3a5f' }}>
                 {contractIndex.titleEs}
               </h2>
             </div>
             
-            {/* Lista del índice - solo español con líneas de puntos */}
+            {/* Lista del índice - español con líneas de puntos */}
             <div className="max-w-xl mx-auto space-y-1" style={{ color: '#1e3a5f' }}>
               {contractIndex.items.map((item, i) => (
                 <div key={i} className="flex items-baseline text-xs">
@@ -321,15 +321,21 @@ const GeneradorContratoIRNR = () => {
                 </div>
               ))}
             </div>
+          </div>
 
-            {/* Espacio y luego versión polaca */}
-            <div className="mt-10 text-center mb-8">
+          {/* ==================== ÍNDICE POLACO - PÁGINA 3 ==================== */}
+          <div className="index-page relative" style={{ pageBreakAfter: 'always' }}>
+            {/* Número de página */}
+            <div className="absolute bottom-4 right-0 left-0 text-center text-xs text-muted-foreground">3</div>
+            
+            {/* Cabecera del índice polaco */}
+            <div className="text-center mb-8">
               <h2 className="text-lg font-bold uppercase tracking-widest underline decoration-2 underline-offset-4 text-muted-foreground italic">
                 {contractIndex.titlePl}
               </h2>
             </div>
             
-            {/* Lista del índice - polaco */}
+            {/* Lista del índice - polaco con líneas de puntos */}
             <div className="max-w-xl mx-auto space-y-1 text-muted-foreground italic">
               {contractIndex.items.map((item, i) => (
                 <div key={i} className="flex items-baseline text-xs">
