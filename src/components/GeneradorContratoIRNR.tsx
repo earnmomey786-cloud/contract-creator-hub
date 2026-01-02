@@ -671,12 +671,12 @@ const GeneradorContratoIRNR = () => {
             <div className="flex justify-between mt-16">
               <div className="text-center w-2/5">
                 {/* Firma del prestador con imagen */}
-                <div className="mb-2" style={{ minHeight: '80px' }}>
+                <div className="mb-2" style={{ minHeight: '100px' }}>
                   <img 
                     src="/images/firma-pgk.png" 
                     alt="Firma PGK" 
                     className="mx-auto"
-                    style={{ maxHeight: '70px', maxWidth: '180px', objectFit: 'contain' }}
+                    style={{ maxHeight: '90px', maxWidth: '225px', objectFit: 'contain' }}
                   />
                 </div>
                 <div className="border-t-2 border-foreground w-full mb-3"></div>
