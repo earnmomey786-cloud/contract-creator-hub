@@ -595,10 +595,12 @@ const GeneradorContratoIRNR = () => {
                       );
                     }
 
-                    // Cláusula 6.1 - Documentación requerida (singular/plural según titulares)
+                    // Cláusula 6.1 - Documentación requerida (condicional según tipo de servicio y titulares)
                     if (clause.number === 'SEXTA' && section.id === '6.1') {
                       const nieTextEs = formData.titulares.length === 1 ? 'NIE del titular' : 'NIE de cada cotitular';
                       const nieTextPl = formData.titulares.length === 1 ? 'NIE właściciela' : 'NIE każdego współwłaściciela';
+                      const incluyeAlquiler = formData.tipoServicio === 'alquiler' || formData.tipoServicio === 'mixto';
+                      
                       return (
                         <tr key={section.id}>
                           <td className="p-3 align-top" style={{ textAlign: 'justify', whiteSpace: 'pre-line' }}>
@@ -606,16 +608,26 @@ const GeneradorContratoIRNR = () => {
                             {'\n'}- {nieTextEs}
                             {'\n'}- Escritura de compraventa de la propiedad
                             {'\n'}- Recibo del Impuesto sobre Bienes Inmuebles (IBI) del ejercicio fiscal para el que se contrata la declaración
-                            {'\n'}- Contrato de arrendamiento y justificantes de cobro de rentas del ejercicio correspondiente (si procede)
-                            {'\n'}- Facturas o recibos justificativos de gastos deducibles vinculados al inmueble del ejercicio correspondiente (comunidad de propietarios, seguros, suministros si no arrendado, reparaciones, etc.)
+                            {incluyeAlquiler && (
+                              <>
+                                {'\n'}- Contrato de arrendamiento y justificantes de cobro de rentas del ejercicio correspondiente
+                                {'\n'}- Informe de ingresos descargado de plataformas OTAs (Booking, Airbnb, Vrbo u otras) si el inmueble se alquila a través de dichas plataformas
+                                {'\n'}- Facturas o recibos justificativos de gastos deducibles vinculados al inmueble del ejercicio correspondiente (comunidad de propietarios, seguros, suministros, reparaciones, comisiones de gestión, etc.)
+                              </>
+                            )}
                           </td>
                           <td className="p-3 align-top" style={{ textAlign: 'justify', whiteSpace: 'pre-line' }}>
                             <span className="font-semibold">{section.id}.</span> KLIENT zobowiązuje się dostarczyć następującą kompletną, prawdziwą i aktualną dokumentację w maksymalnym terminie siedmiu (7) dni roboczych od podpisania umowy:
                             {'\n'}- {nieTextPl}
                             {'\n'}- Akt notarialny nabycia nieruchomości
                             {'\n'}- Pokwitowanie Podatku od Nieruchomości (IBI) za rok podatkowy objęty deklaracją
-                            {'\n'}- Umowę najmu i potwierdzenia pobierania czynszów za odpowiedni rok (jeśli dotyczy)
-                            {'\n'}- Faktury lub rachunki potwierdzające koszty podlegające odliczeniu związane z nieruchomością za odpowiedni rok (wspólnota mieszkaniowa, ubezpieczenia, media jeśli nie wynajmowane, remonty itp.)
+                            {incluyeAlquiler && (
+                              <>
+                                {'\n'}- Umowę najmu i potwierdzenia pobierania czynszów za odpowiedni rok
+                                {'\n'}- Raport dochodów pobrany z platform OTAs (Booking, Airbnb, Vrbo lub innych), jeśli nieruchomość jest wynajmowana za pośrednictwem tych platform
+                                {'\n'}- Faktury lub rachunki potwierdzające koszty podlegające odliczeniu związane z nieruchomością za odpowiedni rok (wspólnota mieszkaniowa, ubezpieczenia, media, remonty, prowizje za zarządzanie itp.)
+                              </>
+                            )}
                           </td>
                         </tr>
                       );
