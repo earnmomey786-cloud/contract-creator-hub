@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent } from '@/components/ui/card';
-import { ContractFormData, COMUNIDADES_PROVINCIAS, initialFormData, Titular, Anexo } from '@/types/contract';
+import { ContractFormData, COMUNIDADES_PROVINCIAS, initialFormData, Titular, Anexo, Inmueble } from '@/types/contract';
 import { 
   coverPage, contractIndex, partiesSection, manifestSection, 
   clauses, closingSection, bankDetails, months 
@@ -17,18 +17,17 @@ import { euroEnLetras, euroEnLetrasPl, diasEnLetras, diasEnLetrasPl } from '@/li
 const GeneradorContratoIRNR = () => {
   const navigate = useNavigate();
   const [paso, setPaso] = useState(1);
-  const [provinciasDisponibles, setProvinciasDisponibles] = useState(['Alicante', 'Castellón', 'Valencia']);
   const [formData, setFormData] = useState<ContractFormData>(initialFormData);
   const [mostrarContrato, setMostrarContrato] = useState(false);
   const totalPasos = 6;
 
+  // Provincias disponibles por inmueble
+  const getProvinciasForComunidad = (comunidad: string) => {
+    return COMUNIDADES_PROVINCIAS[comunidad] || [];
+  };
+
   const handleInputChange = (name: string, value: string) => {
-    if (name === 'inmuebleComunidad') {
-      setProvinciasDisponibles(COMUNIDADES_PROVINCIAS[value] || []);
-      setFormData(prev => ({ ...prev, [name]: value, inmuebleProvincia: '' }));
-    } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
-    }
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const agregarTitular = () => {
@@ -53,24 +52,57 @@ const GeneradorContratoIRNR = () => {
     setFormData(prev => ({ ...prev, titulares: nuevosTitulares }));
   };
 
-  const agregarAnexo = () => {
+  // ==================== MANEJO DE INMUEBLES ====================
+  const agregarInmueble = () => {
     setFormData(prev => ({
       ...prev,
-      anexos: [...prev.anexos, { tipo: 'Garaje', refCatastral: '' }]
+      inmuebles: [...prev.inmuebles, {
+        direccion: '',
+        cp: '',
+        provincia: '',
+        comunidad: 'Comunidad Valenciana',
+        refCatastral: '',
+        anexos: []
+      }]
     }));
   };
 
-  const eliminarAnexo = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      anexos: prev.anexos.filter((_, i) => i !== index)
-    }));
+  const eliminarInmueble = (index: number) => {
+    if (formData.inmuebles.length > 1) {
+      setFormData(prev => ({
+        ...prev,
+        inmuebles: prev.inmuebles.filter((_, i) => i !== index)
+      }));
+    }
   };
 
-  const handleAnexoChange = (index: number, field: keyof Anexo, value: string) => {
-    const nuevosAnexos = [...formData.anexos];
-    nuevosAnexos[index][field] = value;
-    setFormData(prev => ({ ...prev, anexos: nuevosAnexos }));
+  const handleInmuebleChange = (index: number, field: keyof Inmueble, value: string) => {
+    const nuevosInmuebles = [...formData.inmuebles];
+    if (field === 'comunidad') {
+      nuevosInmuebles[index].comunidad = value;
+      nuevosInmuebles[index].provincia = ''; // Reset provincia al cambiar comunidad
+    } else if (field !== 'anexos') {
+      (nuevosInmuebles[index] as any)[field] = value;
+    }
+    setFormData(prev => ({ ...prev, inmuebles: nuevosInmuebles }));
+  };
+
+  const agregarAnexoInmueble = (inmuebleIndex: number) => {
+    const nuevosInmuebles = [...formData.inmuebles];
+    nuevosInmuebles[inmuebleIndex].anexos.push({ tipo: 'Garaje', refCatastral: '' });
+    setFormData(prev => ({ ...prev, inmuebles: nuevosInmuebles }));
+  };
+
+  const eliminarAnexoInmueble = (inmuebleIndex: number, anexoIndex: number) => {
+    const nuevosInmuebles = [...formData.inmuebles];
+    nuevosInmuebles[inmuebleIndex].anexos = nuevosInmuebles[inmuebleIndex].anexos.filter((_, i) => i !== anexoIndex);
+    setFormData(prev => ({ ...prev, inmuebles: nuevosInmuebles }));
+  };
+
+  const handleAnexoInmuebleChange = (inmuebleIndex: number, anexoIndex: number, field: keyof Anexo, value: string) => {
+    const nuevosInmuebles = [...formData.inmuebles];
+    nuevosInmuebles[inmuebleIndex].anexos[anexoIndex][field] = value;
+    setFormData(prev => ({ ...prev, inmuebles: nuevosInmuebles }));
   };
 
   const validarPaso = (pasoActual: number) => {
@@ -78,7 +110,7 @@ const GeneradorContratoIRNR = () => {
       case 1: return formData.lugar && formData.fecha && formData.anoFirma && formData.ejercicioFiscal;
       case 2: return formData.clienteNombre && formData.clienteNIE && formData.clienteEmail && formData.clienteDomicilioFiscal;
       case 3: return formData.titulares.every(t => t.nombre && t.nie && t.participacion);
-      case 4: return formData.inmuebleDireccion && formData.inmuebleCP && formData.inmuebleProvincia && formData.inmuebleComunidad && formData.inmuebleRefCatastral;
+      case 4: return formData.inmuebles.every(i => i.direccion && i.cp && i.provincia && i.comunidad && i.refCatastral);
       case 5: return true;
       case 6: return formData.honorarios && formData.plazoPago;
       default: return true;
@@ -86,7 +118,7 @@ const GeneradorContratoIRNR = () => {
   };
 
   const generarContrato = () => {
-    if (!formData.clienteNombre || !formData.clienteNIE || !formData.inmuebleDireccion || !formData.honorarios) {
+    if (!formData.clienteNombre || !formData.clienteNIE || formData.inmuebles.length === 0 || !formData.honorarios) {
       alert('Por favor complete todos los campos obligatorios');
       return;
     }
@@ -116,13 +148,19 @@ const GeneradorContratoIRNR = () => {
     };
   };
 
-  // Traducciones de tipos de anexo (sin Parking - era duplicado de Garaje)
+  // Traducciones de tipos de anexo
   const tipoAnexoPl: Record<string, string> = {
     'Trastero': 'Komórka lokatorska',
     'Garaje': 'Garaż'
   };
 
   const nombreArchivo = `PGK_M210_${formData.clienteNIE}_${formData.ejercicioFiscal}_V1`;
+
+  // Contar total de anexos
+  const totalAnexos = formData.inmuebles.reduce((sum, inm) => sum + inm.anexos.length, 0);
+
+  // Primer inmueble para referencias simples en el contrato
+  const primerInmueble = formData.inmuebles[0];
 
   const descargarWord = () => {
     const contenido = document.querySelector('.contract-content');
@@ -233,6 +271,11 @@ const GeneradorContratoIRNR = () => {
               {formData.titulares.length > 1 && (
                 <p className="text-sm text-muted-foreground mt-2 italic">
                   y {formData.titulares.length - 1} cotitular{formData.titulares.length > 2 ? 'es' : ''} más
+                </p>
+              )}
+              {formData.inmuebles.length > 1 && (
+                <p className="text-sm text-muted-foreground mt-1 italic">
+                  {formData.inmuebles.length} inmuebles
                 </p>
               )}
             </div>
@@ -355,14 +398,14 @@ const GeneradorContratoIRNR = () => {
                   <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
                     <strong>{item.numeral}</strong>{' '}
                     {i === 1 
-                      ? `Que EL CLIENTE declara su condición de no residente fiscal en España, conforme a lo dispuesto en el Real Decreto Legislativo 5/2004, y es titular${formData.titulares.length > 1 ? ', conjuntamente con otros cotitulares,' : ''} del bien inmueble sito en ${formData.inmuebleDireccion}, CP ${formData.inmuebleCP}, ${formData.inmuebleProvincia} (${formData.inmuebleComunidad}). Como titular de rentas inmobiliarias en territorio español, reconoce expresamente su condición de obligado tributario y su deber legal de autoliquidar el Impuesto sobre la Renta de No Residentes (Modelo 210), ante la AEAT, asumiendo que el incumplimiento de los plazos legales puede derivar en responsabilidades, sanciones o recargos según la Ley General Tributaria.`
+                      ? `Que EL CLIENTE declara su condición de no residente fiscal en España, conforme a lo dispuesto en el Real Decreto Legislativo 5/2004, y es titular${formData.titulares.length > 1 ? ', conjuntamente con otros cotitulares,' : ''} de ${formData.inmuebles.length === 1 ? 'el bien inmueble sito en' : 'los bienes inmuebles sitos en'} ${formData.inmuebles.map(inm => `${inm.direccion}, CP ${inm.cp}, ${inm.provincia} (${inm.comunidad})`).join('; ')}. Como titular de rentas inmobiliarias en territorio español, reconoce expresamente su condición de obligado tributario y su deber legal de autoliquidar el Impuesto sobre la Renta de No Residentes (Modelo 210), ante la AEAT, asumiendo que el incumplimiento de los plazos legales puede derivar en responsabilidades, sanciones o recargos según la Ley General Tributaria.`
                       : item.es
                     }
                   </td>
                   <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
                     <strong>{item.numeral}</strong>{' '}
                     {i === 1 
-                      ? `Że KLIENT oświadcza, iż posiada status nierezydenta podatkowego w Hiszpanii, zgodnie z postanowieniami Królewskiego Dekretu Legislacyjnego 5/2004, oraz jest właścicielem${formData.titulares.length > 1 ? ', wspólnie z innymi współwłaścicielami,' : ''} nieruchomości położonej pod adresem ${formData.inmuebleDireccion}, kod pocztowy ${formData.inmuebleCP}, ${formData.inmuebleProvincia} (${formData.inmuebleComunidad}). Jako posiadacz dochodów z nieruchomości na terytorium hiszpańskim, wyraźnie uznaje swój status podatnika oraz prawny obowiązek samodzielnego rozliczenia Podatku Dochodowego od Nierezydentów (Formularz 210) przed AEAT, przyjmując do wiadomości, że niedotrzymanie terminów ustawowych może skutkować odpowiedzialnością, sankcjami lub dopłatami zgodnie z Ogólną Ordynacją Podatkową.`
+                      ? `Że KLIENT oświadcza, iż posiada status nierezydenta podatkowego w Hiszpanii, zgodnie z postanowieniami Królewskiego Dekretu Legislacyjnego 5/2004, oraz jest właścicielem${formData.titulares.length > 1 ? ', wspólnie z innymi współwłaścicielami,' : ''} ${formData.inmuebles.length === 1 ? 'nieruchomości położonej pod adresem' : 'nieruchomości położonych pod adresami'} ${formData.inmuebles.map(inm => `${inm.direccion}, kod pocztowy ${inm.cp}, ${inm.provincia} (${inm.comunidad})`).join('; ')}. Jako posiadacz dochodów z nieruchomości na terytorium hiszpańskim, wyraźnie uznaje swój status podatnika oraz prawny obowiązek samodzielnego rozliczenia Podatku Dochodowego od Nierezydentów (Formularz 210) przed AEAT, przyjmując do wiadomości, że niedotrzymanie terminów ustawowych może skutkować odpowiedzialnością, sankcjami lub dopłatami zgodnie z Ogólną Ordynacją Podatkową.`
                       : item.pl
                     }
                   </td>
@@ -388,7 +431,27 @@ const GeneradorContratoIRNR = () => {
                       return (
                         <tr key={section.id}>
                           <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
-                            <span className="font-semibold">{section.id}.</span> EL CLIENTE contrata a EL PRESTADOR la gestión fiscal del Impuesto sobre la Renta de No Residentes (IRNR) correspondiente al ejercicio <strong>{formData.ejercicioFiscal}</strong>, en relación con el inmueble sito en <strong>{formData.inmuebleDireccion}, {formData.inmuebleCP} {formData.inmuebleProvincia}</strong>, con referencia catastral <strong>{formData.inmuebleRefCatastral}</strong>, del que son cotitulares las siguientes personas físicas no residentes fiscales en España:
+                            <span className="font-semibold">{section.id}.</span> EL CLIENTE contrata a EL PRESTADOR la gestión fiscal del Impuesto sobre la Renta de No Residentes (IRNR) correspondiente al ejercicio <strong>{formData.ejercicioFiscal}</strong>, en relación con {formData.inmuebles.length === 1 ? 'el inmueble' : 'los inmuebles'} que se describen a continuación:
+                            
+                            {formData.inmuebles.map((inm, inmIdx) => (
+                              <div key={inmIdx} className="mt-3 mb-2 pl-2 border-l-2 border-muted">
+                                <p className="font-semibold">Inmueble {inmIdx + 1}:</p>
+                                <p>Dirección: <strong>{inm.direccion}, {inm.cp} {inm.provincia}</strong></p>
+                                <p>Ref. Catastral: <strong>{inm.refCatastral}</strong></p>
+                                {inm.anexos.length > 0 && (
+                                  <>
+                                    <p className="mt-1">Anexos:</p>
+                                    <ul className="list-disc ml-4">
+                                      {inm.anexos.map((a, aIdx) => (
+                                        <li key={aIdx}>{a.tipo}: Ref. Cat. {a.refCatastral}</li>
+                                      ))}
+                                    </ul>
+                                  </>
+                                )}
+                              </div>
+                            ))}
+                            
+                            <p className="mt-3">Cotitulares no residentes fiscales en España:</p>
                             <table className="w-full mt-2 text-xs">
                               <tbody>
                                 {formData.titulares.map((t, i) => (
@@ -401,19 +464,29 @@ const GeneradorContratoIRNR = () => {
                                 ))}
                               </tbody>
                             </table>
-                            {formData.anexos.length > 0 && (
-                              <>
-                                <p className="mt-2">Anexos del inmueble:</p>
-                                <ul className="list-disc ml-4">
-                                  {formData.anexos.map((a, i) => (
-                                    <li key={i}>{a.tipo}: Ref. Cat. {a.refCatastral}</li>
-                                  ))}
-                                </ul>
-                              </>
-                            )}
                           </td>
                           <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
-                            <span className="font-semibold">{section.id}.</span> KLIENT zleca USŁUGODAWCY zarządzanie podatkowe w zakresie Podatku Dochodowego od Nierezydentów (IRNR) za rok podatkowy <strong>{formData.ejercicioFiscal}</strong>, w odniesieniu do nieruchomości położonej pod adresem <strong>{formData.inmuebleDireccion}, {formData.inmuebleCP} {formData.inmuebleProvincia}</strong>, o numerze katastralnym <strong>{formData.inmuebleRefCatastral}</strong>, której współwłaścicielami są następujące osoby fizyczne niebędące rezydentami podatkowymi w Hiszpanii:
+                            <span className="font-semibold">{section.id}.</span> KLIENT zleca USŁUGODAWCY zarządzanie podatkowe w zakresie Podatku Dochodowego od Nierezydentów (IRNR) za rok podatkowy <strong>{formData.ejercicioFiscal}</strong>, w odniesieniu do {formData.inmuebles.length === 1 ? 'nieruchomości' : 'nieruchomości'} opisanych poniżej:
+                            
+                            {formData.inmuebles.map((inm, inmIdx) => (
+                              <div key={inmIdx} className="mt-3 mb-2 pl-2 border-l-2 border-muted">
+                                <p className="font-semibold">Nieruchomość {inmIdx + 1}:</p>
+                                <p>Adres: <strong>{inm.direccion}, {inm.cp} {inm.provincia}</strong></p>
+                                <p>Nr katastralny: <strong>{inm.refCatastral}</strong></p>
+                                {inm.anexos.length > 0 && (
+                                  <>
+                                    <p className="mt-1">Aneksy:</p>
+                                    <ul className="list-disc ml-4">
+                                      {inm.anexos.map((a, aIdx) => (
+                                        <li key={aIdx}>{tipoAnexoPl[a.tipo] || a.tipo}: Nr kat. {a.refCatastral}</li>
+                                      ))}
+                                    </ul>
+                                  </>
+                                )}
+                              </div>
+                            ))}
+                            
+                            <p className="mt-3">Współwłaściciele niebędący rezydentami podatkowymi w Hiszpanii:</p>
                             <table className="w-full mt-2 text-xs">
                               <tbody>
                                 {formData.titulares.map((t, i) => (
@@ -426,16 +499,6 @@ const GeneradorContratoIRNR = () => {
                                 ))}
                               </tbody>
                             </table>
-                            {formData.anexos.length > 0 && (
-                              <>
-                                <p className="mt-2">Aneksy nieruchomości:</p>
-                                <ul className="list-disc ml-4">
-                                  {formData.anexos.map((a, i) => (
-                                    <li key={i}>{tipoAnexoPl[a.tipo] || a.tipo}: Nr kat. {a.refCatastral}</li>
-                                  ))}
-                                </ul>
-                              </>
-                            )}
                           </td>
                         </tr>
                       );
@@ -450,7 +513,7 @@ const GeneradorContratoIRNR = () => {
                             <ul className="list-none mt-2 ml-2">
                               <li className="mb-1">– Presentación de una declaración individual por cada cotitular correspondiente al ejercicio fiscal <strong>{formData.ejercicioFiscal}</strong>.</li>
                               <li className="mb-1">– Cálculo de la base imponible conforme a la normativa vigente (valor catastral o porcentaje aplicable).</li>
-                              <li className="mb-1">– Gestión integral de {formData.titulares.length} cotitular{formData.titulares.length > 1 ? 'es' : ''} ({formData.tipoServicio === 'imputacion' ? 'imputación' : formData.tipoServicio === 'alquiler' ? 'alquiler' : 'imputación y alquiler'}{formData.anexos.length > 0 ? `, ${formData.anexos.length} anexo${formData.anexos.length > 1 ? 's' : ''}` : ''}).</li>
+                              <li className="mb-1">– Gestión integral de {formData.titulares.length} cotitular{formData.titulares.length > 1 ? 'es' : ''}, {formData.inmuebles.length} inmueble{formData.inmuebles.length > 1 ? 's' : ''} ({formData.tipoServicio === 'imputacion' ? 'imputación' : formData.tipoServicio === 'alquiler' ? 'alquiler' : 'imputación y alquiler'}{totalAnexos > 0 ? `, ${totalAnexos} anexo${totalAnexos > 1 ? 's' : ''}` : ''}).</li>
                               <li className="mb-1">– Emisión de un informe técnico-fiscal.</li>
                               <li className="mb-1">– Custodia digital de la documentación durante el plazo legal de 4 años.</li>
                             </ul>
@@ -460,7 +523,7 @@ const GeneradorContratoIRNR = () => {
                             <ul className="list-none mt-2 ml-2">
                               <li className="mb-1">– Złożenie indywidualnej deklaracji dla każdego współwłaściciela za rok podatkowy <strong>{formData.ejercicioFiscal}</strong>.</li>
                               <li className="mb-1">– Obliczenie podstawy opodatkowania zgodnie z obowiązującymi przepisami (wartość katastralna lub stosowny procent).</li>
-                              <li className="mb-1">– Kompleksowa obsługa {formData.titulares.length} współwłaściciel{formData.titulares.length > 1 ? 'i' : 'a'} ({formData.tipoServicio === 'imputacion' ? 'przypisanie' : formData.tipoServicio === 'alquiler' ? 'najem' : 'przypisanie i najem'}{formData.anexos.length > 0 ? `, ${formData.anexos.length} aneks${formData.anexos.length > 1 ? 'y' : ''}` : ''}).</li>
+                              <li className="mb-1">– Kompleksowa obsługa {formData.titulares.length} współwłaściciel{formData.titulares.length > 1 ? 'i' : 'a'}, {formData.inmuebles.length} nieruchomośc{formData.inmuebles.length > 1 ? 'i' : 'i'} ({formData.tipoServicio === 'imputacion' ? 'przypisanie' : formData.tipoServicio === 'alquiler' ? 'najem' : 'przypisanie i najem'}{totalAnexos > 0 ? `, ${totalAnexos} aneks${totalAnexos > 1 ? 'y' : ''}` : ''}).</li>
                               <li className="mb-1">– Wydanie raportu techniczno-podatkowego.</li>
                               <li className="mb-1">– Cyfrowe przechowywanie dokumentacji przez ustawowy okres 4 lat.</li>
                             </ul>
@@ -551,13 +614,36 @@ const GeneradorContratoIRNR = () => {
 
         <style>{`
           @media print {
+            @page {
+              size: A4;
+              margin: 2cm 1.5cm;
+            }
+            
+            /* Ocultar elementos de navegación */
             .no-print { display: none !important; }
-            .contract-content { box-shadow: none !important; padding: 0 !important; }
+            
+            /* Limpiar estilos del documento */
+            html, body {
+              -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
+            }
+            
+            .contract-content { 
+              box-shadow: none !important; 
+              padding: 0 !important;
+              margin: 0 !important;
+            }
+            
             .cover-page { page-break-after: always; }
             .index-page { page-break-after: always; }
             .page-break { page-break-before: always; }
-            body { font-size: 9pt; text-align: justify; }
+            
+            body { 
+              font-size: 9pt; 
+              text-align: justify;
+            }
           }
+          
           .bilingual-table { border-collapse: collapse; table-layout: fixed; width: 100%; }
           .bilingual-table td { vertical-align: top; }
           .section-title td { border-bottom: 1px solid hsl(var(--border)); }
@@ -603,7 +689,7 @@ const GeneradorContratoIRNR = () => {
               ))}
             </div>
             <p className="text-center text-sm text-muted-foreground">
-              Paso {paso}: {['Datos Básicos', 'Cliente', 'Titulares', 'Inmueble', 'Anexos', 'Honorarios'][paso - 1]}
+              Paso {paso}: {['Datos Básicos', 'Cliente', 'Titulares', 'Inmuebles', 'Anexos', 'Honorarios'][paso - 1]}
             </p>
           </CardContent>
         </Card>
@@ -678,55 +764,121 @@ const GeneradorContratoIRNR = () => {
 
             {paso === 4 && (
               <div className="space-y-4">
-                <div className="flex items-center gap-3 mb-4"><Home className="text-primary" /><h2 className="text-xl font-bold">Datos del Inmueble</h2></div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="col-span-2"><Label>Dirección completa *</Label><Input value={formData.inmuebleDireccion} onChange={(e) => handleInputChange('inmuebleDireccion', e.target.value)} /></div>
-                  <div><Label>Código Postal *</Label><Input value={formData.inmuebleCP} onChange={(e) => handleInputChange('inmuebleCP', e.target.value)} /></div>
-                  <div>
-                    <Label>Comunidad Autónoma *</Label>
-                    <Select value={formData.inmuebleComunidad} onValueChange={(v) => handleInputChange('inmuebleComunidad', v)}>
-                      <SelectTrigger><SelectValue /></SelectTrigger>
-                      <SelectContent>{Object.keys(COMUNIDADES_PROVINCIAS).map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <Label>Provincia *</Label>
-                    <Select value={formData.inmuebleProvincia} onValueChange={(v) => handleInputChange('inmuebleProvincia', v)}>
-                      <SelectTrigger><SelectValue /></SelectTrigger>
-                      <SelectContent>{provinciasDisponibles.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}</SelectContent>
-                    </Select>
-                  </div>
-                  <div><Label>Referencia Catastral *</Label><Input value={formData.inmuebleRefCatastral} onChange={(e) => handleInputChange('inmuebleRefCatastral', e.target.value)} /></div>
-                </div>
+                <div className="flex items-center gap-3 mb-4"><Home className="text-primary" /><h2 className="text-xl font-bold">Datos de los Inmuebles</h2></div>
+                <p className="text-sm text-muted-foreground">Añada todos los inmuebles del titular. Puede agregar múltiples propiedades.</p>
+                
+                {formData.inmuebles.map((inm, inmIdx) => (
+                  <Card key={inmIdx} className="p-4">
+                    <div className="flex justify-between mb-3">
+                      <span className="font-semibold text-lg">Inmueble {inmIdx + 1}</span>
+                      {formData.inmuebles.length > 1 && (
+                        <Button variant="ghost" size="sm" onClick={() => eliminarInmueble(inmIdx)}>
+                          <Trash2 className="h-4 w-4 text-destructive" />
+                        </Button>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="col-span-2">
+                        <Label>Dirección completa *</Label>
+                        <Input 
+                          value={inm.direccion} 
+                          onChange={(e) => handleInmuebleChange(inmIdx, 'direccion', e.target.value)} 
+                        />
+                      </div>
+                      <div>
+                        <Label>Código Postal *</Label>
+                        <Input 
+                          value={inm.cp} 
+                          onChange={(e) => handleInmuebleChange(inmIdx, 'cp', e.target.value)} 
+                        />
+                      </div>
+                      <div>
+                        <Label>Comunidad Autónoma *</Label>
+                        <Select 
+                          value={inm.comunidad} 
+                          onValueChange={(v) => handleInmuebleChange(inmIdx, 'comunidad', v)}
+                        >
+                          <SelectTrigger><SelectValue /></SelectTrigger>
+                          <SelectContent>
+                            {Object.keys(COMUNIDADES_PROVINCIAS).map(c => (
+                              <SelectItem key={c} value={c}>{c}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label>Provincia *</Label>
+                        <Select 
+                          value={inm.provincia} 
+                          onValueChange={(v) => handleInmuebleChange(inmIdx, 'provincia', v)}
+                        >
+                          <SelectTrigger><SelectValue /></SelectTrigger>
+                          <SelectContent>
+                            {getProvinciasForComunidad(inm.comunidad).map(p => (
+                              <SelectItem key={p} value={p}>{p}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label>Referencia Catastral *</Label>
+                        <Input 
+                          value={inm.refCatastral} 
+                          onChange={(e) => handleInmuebleChange(inmIdx, 'refCatastral', e.target.value)} 
+                        />
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+                
+                <Button variant="outline" className="w-full" onClick={agregarInmueble}>
+                  <Plus className="mr-2 h-4 w-4" />Agregar otro inmueble
+                </Button>
               </div>
             )}
 
             {paso === 5 && (
               <div className="space-y-4">
-                <div className="flex items-center gap-3 mb-4"><Building className="text-primary" /><h2 className="text-xl font-bold">Anexos del Inmueble (Opcional)</h2></div>
-                <p className="text-sm text-muted-foreground">Añada garajes, trasteros u otros anexos si los hay.</p>
-                {formData.anexos.length === 0 && (
-                  <p className="text-center text-muted-foreground py-8">No hay anexos añadidos</p>
-                )}
-                {formData.anexos.map((a, i) => (
-                  <Card key={i} className="p-4">
-                    <div className="flex justify-between mb-2">
-                      <span>Anexo {i + 1}</span>
-                      <Button variant="ghost" size="sm" onClick={() => eliminarAnexo(i)}><Trash2 className="h-4 w-4 text-destructive" /></Button>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <Select value={a.tipo} onValueChange={(v) => handleAnexoChange(i, 'tipo', v)}>
-                        <SelectTrigger><SelectValue /></SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Garaje">Garaje</SelectItem>
-                          <SelectItem value="Trastero">Trastero</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <Input placeholder="Referencia Catastral" value={a.refCatastral} onChange={(e) => handleAnexoChange(i, 'refCatastral', e.target.value)} />
-                    </div>
+                <div className="flex items-center gap-3 mb-4"><Building className="text-primary" /><h2 className="text-xl font-bold">Anexos de los Inmuebles (Opcional)</h2></div>
+                <p className="text-sm text-muted-foreground">Añada garajes, trasteros u otros anexos para cada inmueble si los hay.</p>
+                
+                {formData.inmuebles.map((inm, inmIdx) => (
+                  <Card key={inmIdx} className="p-4">
+                    <h3 className="font-semibold mb-3">Anexos del Inmueble {inmIdx + 1}: {inm.direccion || 'Sin dirección'}</h3>
+                    
+                    {inm.anexos.length === 0 && (
+                      <p className="text-center text-muted-foreground py-4 text-sm">No hay anexos añadidos para este inmueble</p>
+                    )}
+                    
+                    {inm.anexos.map((a, aIdx) => (
+                      <div key={aIdx} className="flex items-center gap-3 mb-3">
+                        <Select 
+                          value={a.tipo} 
+                          onValueChange={(v) => handleAnexoInmuebleChange(inmIdx, aIdx, 'tipo', v)}
+                        >
+                          <SelectTrigger className="w-32"><SelectValue /></SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Garaje">Garaje</SelectItem>
+                            <SelectItem value="Trastero">Trastero</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <Input 
+                          className="flex-1"
+                          placeholder="Referencia Catastral" 
+                          value={a.refCatastral} 
+                          onChange={(e) => handleAnexoInmuebleChange(inmIdx, aIdx, 'refCatastral', e.target.value)} 
+                        />
+                        <Button variant="ghost" size="sm" onClick={() => eliminarAnexoInmueble(inmIdx, aIdx)}>
+                          <Trash2 className="h-4 w-4 text-destructive" />
+                        </Button>
+                      </div>
+                    ))}
+                    
+                    <Button variant="outline" size="sm" onClick={() => agregarAnexoInmueble(inmIdx)}>
+                      <Plus className="mr-2 h-4 w-4" />Añadir anexo
+                    </Button>
                   </Card>
                 ))}
-                <Button variant="outline" className="w-full" onClick={agregarAnexo}><Plus className="mr-2 h-4 w-4" />Agregar anexo</Button>
               </div>
             )}
 

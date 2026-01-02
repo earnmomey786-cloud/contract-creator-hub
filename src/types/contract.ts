@@ -9,6 +9,15 @@ export interface Anexo {
   refCatastral: string;
 }
 
+export interface Inmueble {
+  direccion: string;
+  cp: string;
+  provincia: string;
+  comunidad: string;
+  refCatastral: string;
+  anexos: Anexo[];
+}
+
 export interface ContractFormData {
   lugar: string;
   fecha: string;
@@ -20,12 +29,7 @@ export interface ContractFormData {
   clienteEmail: string;
   clienteDomicilioFiscal: string;
   titulares: Titular[];
-  inmuebleDireccion: string;
-  inmuebleCP: string;
-  inmuebleProvincia: string;
-  inmuebleComunidad: string;
-  inmuebleRefCatastral: string;
-  anexos: Anexo[];
+  inmuebles: Inmueble[];
   honorarios: string;
   formaPago: 'adelantado' | 'entrega';
   plazoPago: string;
@@ -68,12 +72,14 @@ export const initialFormData: ContractFormData = {
     nie: '',
     participacion: '100'
   }],
-  inmuebleDireccion: '',
-  inmuebleCP: '',
-  inmuebleProvincia: '',
-  inmuebleComunidad: 'Comunidad Valenciana',
-  inmuebleRefCatastral: '',
-  anexos: [],
+  inmuebles: [{
+    direccion: '',
+    cp: '',
+    provincia: '',
+    comunidad: 'Comunidad Valenciana',
+    refCatastral: '',
+    anexos: []
+  }],
   honorarios: '',
   formaPago: 'adelantado',
   plazoPago: '7'
