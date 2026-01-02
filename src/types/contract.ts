@@ -63,24 +63,58 @@ export const initialFormData: ContractFormData = {
   anoFirma: new Date().getFullYear().toString(),
   ejercicioFiscal: (new Date().getFullYear() - 1).toString(),
   tipoServicio: 'imputacion',
-  clienteNombre: '',
-  clienteNIE: '',
-  clienteEmail: '',
-  clienteDomicilioFiscal: '',
+  clienteNombre: 'Robert Rytel',
+  clienteNIE: 'Y9882227-S',
+  clienteEmail: 'monika.chmielewska@ubojniarytel.pl',
+  clienteDomicilioFiscal: 'Podgórze ul. Polna 4, 18-400 Łomża, Polonia',
   titulares: [{
-    nombre: '',
-    nie: '',
+    nombre: 'Robert Rytel',
+    nie: 'Y9882227-S',
     participacion: '100'
   }],
-  inmuebles: [{
-    direccion: '',
-    cp: '',
-    provincia: '',
-    comunidad: 'Comunidad Valenciana',
-    refCatastral: '',
-    anexos: []
-  }],
-  honorarios: '',
+  inmuebles: [
+    {
+      direccion: 'Av. del Trenc d\'Alba 45, bl.2, piso 44',
+      cp: '03738',
+      provincia: 'Alicante',
+      comunidad: 'Comunidad Valenciana',
+      refCatastral: '',
+      anexos: []
+    },
+    {
+      direccion: 'C/ Joan Fuster 12, Bjo C',
+      cp: '03730',
+      provincia: 'Alicante',
+      comunidad: 'Comunidad Valenciana',
+      refCatastral: '',
+      anexos: []
+    },
+    {
+      direccion: 'C/ Joan Fuster 12, 2B',
+      cp: '03730',
+      provincia: 'Alicante',
+      comunidad: 'Comunidad Valenciana',
+      refCatastral: '',
+      anexos: []
+    },
+    {
+      direccion: 'C/ Joan Fuster 12, 1D',
+      cp: '03730',
+      provincia: 'Alicante',
+      comunidad: 'Comunidad Valenciana',
+      refCatastral: '',
+      anexos: []
+    },
+    {
+      direccion: 'C/ Joan Fuster 12, 1A',
+      cp: '03730',
+      provincia: 'Alicante',
+      comunidad: 'Comunidad Valenciana',
+      refCatastral: '',
+      anexos: []
+    }
+  ],
+  honorarios: '250',
   formaPago: 'adelantado',
   plazoPago: '7'
 };
