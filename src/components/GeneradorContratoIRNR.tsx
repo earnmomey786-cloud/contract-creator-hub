@@ -451,12 +451,12 @@ const GeneradorContratoIRNR = () => {
                               </div>
                             ))}
                             
-                            <p className="mt-3">Cotitulares no residentes fiscales en España:</p>
+                            <p className="mt-3">{formData.titulares.length === 1 ? 'Titular no residente fiscal en España' : 'Cotitulares no residentes fiscales en España'}:</p>
                             <table className="w-full mt-2 text-xs">
                               <tbody>
                                 {formData.titulares.map((t, i) => (
                                   <tr key={i}>
-                                    <td className="py-1">Titular {i+1}:</td>
+                                    <td className="py-1">{formData.titulares.length === 1 ? 'Titular:' : `Titular ${i+1}:`}</td>
                                     <td className="py-1">{t.nombre}</td>
                                     <td className="py-1">NIE {t.nie}</td>
                                     <td className="py-1">{t.participacion}%</td>
@@ -486,12 +486,12 @@ const GeneradorContratoIRNR = () => {
                               </div>
                             ))}
                             
-                            <p className="mt-3">Współwłaściciele niebędący rezydentami podatkowymi w Hiszpanii:</p>
+                            <p className="mt-3">{formData.titulares.length === 1 ? 'Właściciel niebędący rezydentem podatkowym w Hiszpanii' : 'Współwłaściciele niebędący rezydentami podatkowymi w Hiszpanii'}:</p>
                             <table className="w-full mt-2 text-xs">
                               <tbody>
                                 {formData.titulares.map((t, i) => (
                                   <tr key={i}>
-                                    <td className="py-1">Właściciel {i+1}:</td>
+                                    <td className="py-1">{formData.titulares.length === 1 ? 'Właściciel:' : `Właściciel ${i+1}:`}</td>
                                     <td className="py-1">{t.nombre}</td>
                                     <td className="py-1">NIE {t.nie}</td>
                                     <td className="py-1">{t.participacion}%</td>
@@ -559,6 +559,25 @@ const GeneradorContratoIRNR = () => {
                                 <tr><td className="py-1">Tytuł:</td><td className="py-1">IRNR {formData.ejercicioFiscal} – {formData.clienteNombre} {formData.clienteNIE}</td></tr>
                               </tbody>
                             </table>
+                          </td>
+                        </tr>
+                      );
+                    }
+
+                    // Omitir cláusula 2.2 si solo es imputación (sin alquiler)
+                    if (clause.number === 'SEGUNDA' && section.id === '2.2' && formData.tipoServicio === 'imputacion') {
+                      return null;
+                    }
+
+                    // Cláusula 2.2 sin "(si procede)" cuando incluye alquiler
+                    if (clause.number === 'SEGUNDA' && section.id === '2.2') {
+                      return (
+                        <tr key={section.id}>
+                          <td className="p-3 align-top" style={{ textAlign: 'justify', whiteSpace: 'pre-line' }}>
+                            <span className="font-semibold">{section.id}.</span> Modelo 210 – Rendimientos del arrendamiento: Presentación de declaraciones individuales por cada cotitular, determinación del rendimiento incluyendo gastos deducibles distribuidos según porcentajes de titularidad, y aplicación del tipo impositivo correspondiente.
+                          </td>
+                          <td className="p-3 align-top" style={{ textAlign: 'justify', whiteSpace: 'pre-line' }}>
+                            <span className="font-semibold">{section.id}.</span> Formularz 210 – Dochody z najmu: Złożenie indywidualnych deklaracji za każdego współwłaściciela, ustalenie dochodu z uwzględnieniem kosztów podlegających odliczeniu rozdzielonych według udziałów własnościowych, oraz zastosowanie odpowiedniej stawki podatkowej.
                           </td>
                         </tr>
                       );
