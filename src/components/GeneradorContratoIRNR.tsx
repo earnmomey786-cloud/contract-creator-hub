@@ -427,93 +427,104 @@ const GeneradorContratoIRNR = () => {
                   </tr>
                   {clause.sections.map((section) => {
                     // Contenido dinámico para cláusula QUINTA
-                    if (clause.number === 'QUINTA' && section.id === '5.1') {
+                    // Contenido dinámico para inmuebles - ahora en SEGUNDA (2.5)
+                    if (clause.number === 'SEGUNDA' && section.id === '2.4') {
                       return (
-                        <tr key={section.id}>
-                          <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
-                            <span className="font-semibold">{section.id}.</span> EL CLIENTE contrata a EL PRESTADOR la gestión fiscal del Impuesto sobre la Renta de No Residentes (IRNR) correspondiente al ejercicio <strong>{formData.ejercicioFiscal}</strong>, en relación con {formData.inmuebles.length === 1 ? 'el inmueble' : 'los inmuebles'} que se describen a continuación:
-                            
-                            {formData.inmuebles.map((inm, inmIdx) => (
-                              <div key={inmIdx} className="mt-3 mb-2 pl-2 border-l-2 border-muted">
-                                <p className="font-semibold">Inmueble {inmIdx + 1}:</p>
-                                <p>Dirección: <strong>{inm.direccion}, {inm.cp} {inm.provincia}</strong></p>
-                                <p>Ref. Catastral: <strong>{inm.refCatastral}</strong></p>
-                                {inm.anexos.length > 0 && (
-                                  <>
-                                    <p className="mt-1">Anexos:</p>
-                                    <ul className="list-disc ml-4">
-                                      {inm.anexos.map((a, aIdx) => (
-                                        <li key={aIdx}>{a.tipo}: Ref. Cat. {a.refCatastral}</li>
-                                      ))}
-                                    </ul>
-                                  </>
-                                )}
-                              </div>
-                            ))}
-                            
-                            <p className="mt-3">{formData.titulares.length === 1 ? 'Titular no residente fiscal en España' : 'Cotitulares no residentes fiscales en España'}:</p>
-                            <table className="w-full mt-2 text-xs">
-                              <tbody>
-                                {formData.titulares.map((t, i) => (
-                                  <tr key={i}>
-                                    <td className="py-1">{formData.titulares.length === 1 ? 'Titular:' : `Titular ${i+1}:`}</td>
-                                    <td className="py-1">{t.nombre}</td>
-                                    <td className="py-1">NIE {t.nie}</td>
-                                    <td className="py-1">{t.participacion}%</td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          </td>
-                          <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
-                            <span className="font-semibold">{section.id}.</span> KLIENT zleca USŁUGODAWCY zarządzanie podatkowe w zakresie Podatku Dochodowego od Nierezydentów (IRNR) za rok podatkowy <strong>{formData.ejercicioFiscal}</strong>, w odniesieniu do {formData.inmuebles.length === 1 ? 'nieruchomości' : 'nieruchomości'} opisanych poniżej:
-                            
-                            {formData.inmuebles.map((inm, inmIdx) => (
-                              <div key={inmIdx} className="mt-3 mb-2 pl-2 border-l-2 border-muted">
-                                <p className="font-semibold">Nieruchomość {inmIdx + 1}:</p>
-                                <p>Adres: <strong>{inm.direccion}, {inm.cp} {inm.provincia}</strong></p>
-                                <p>Nr katastralny: <strong>{inm.refCatastral}</strong></p>
-                                {inm.anexos.length > 0 && (
-                                  <>
-                                    <p className="mt-1">Aneksy:</p>
-                                    <ul className="list-disc ml-4">
-                                      {inm.anexos.map((a, aIdx) => (
-                                        <li key={aIdx}>{tipoAnexoPl[a.tipo] || a.tipo}: Nr kat. {a.refCatastral}</li>
-                                      ))}
-                                    </ul>
-                                  </>
-                                )}
-                              </div>
-                            ))}
-                            
-                            <p className="mt-3">{formData.titulares.length === 1 ? 'Właściciel niebędący rezydentem podatkowym w Hiszpanii' : 'Współwłaściciele niebędący rezydentami podatkowymi w Hiszpanii'}:</p>
-                            <table className="w-full mt-2 text-xs">
-                              <tbody>
-                                {formData.titulares.map((t, i) => (
-                                  <tr key={i}>
-                                    <td className="py-1">{formData.titulares.length === 1 ? 'Właściciel:' : `Właściciel ${i+1}:`}</td>
-                                    <td className="py-1">{t.nombre}</td>
-                                    <td className="py-1">NIE {t.nie}</td>
-                                    <td className="py-1">{t.participacion}%</td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
+                        <>
+                          <tr key={section.id}>
+                            <td className="p-3 align-top" style={{ textAlign: 'justify', whiteSpace: 'pre-line' }}>
+                              <span className="font-semibold">{section.id}.</span> {section.contentEs}
+                            </td>
+                            <td className="p-3 align-top" style={{ textAlign: 'justify', whiteSpace: 'pre-line' }}>
+                              <span className="font-semibold">{section.id}.</span> {section.contentPl}
+                            </td>
+                          </tr>
+                          <tr key="2.5">
+                            <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
+                              <span className="font-semibold">2.5.</span> Los servicios descritos se prestan en relación con {formData.inmuebles.length === 1 ? 'el siguiente inmueble' : 'los siguientes inmuebles'}:
+                              
+                              {formData.inmuebles.map((inm, inmIdx) => (
+                                <div key={inmIdx} className="mt-3 mb-2 pl-2 border-l-2 border-muted">
+                                  <p className="font-semibold">Inmueble {inmIdx + 1}:</p>
+                                  <p>Dirección: <strong>{inm.direccion}, {inm.cp} {inm.provincia}</strong></p>
+                                  <p>Ref. Catastral: <strong>{inm.refCatastral}</strong></p>
+                                  {inm.anexos.length > 0 && (
+                                    <>
+                                      <p className="mt-1">Anexos:</p>
+                                      <ul className="list-disc ml-4">
+                                        {inm.anexos.map((a, aIdx) => (
+                                          <li key={aIdx}>{a.tipo}: Ref. Cat. {a.refCatastral}</li>
+                                        ))}
+                                      </ul>
+                                    </>
+                                  )}
+                                </div>
+                              ))}
+                              
+                              <p className="mt-3">{formData.titulares.length === 1 ? 'Titular no residente fiscal en España' : 'Cotitulares no residentes fiscales en España'}:</p>
+                              <table className="w-full mt-2 text-xs">
+                                <tbody>
+                                  {formData.titulares.map((t, i) => (
+                                    <tr key={i}>
+                                      <td className="py-1">{formData.titulares.length === 1 ? 'Titular:' : `Titular ${i+1}:`}</td>
+                                      <td className="py-1">{t.nombre}</td>
+                                      <td className="py-1">NIE {t.nie}</td>
+                                      <td className="py-1">{t.participacion}%</td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </td>
+                            <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
+                              <span className="font-semibold">2.5.</span> Opisane usługi świadczone są w odniesieniu do {formData.inmuebles.length === 1 ? 'następującej nieruchomości' : 'następujących nieruchomości'}:
+                              
+                              {formData.inmuebles.map((inm, inmIdx) => (
+                                <div key={inmIdx} className="mt-3 mb-2 pl-2 border-l-2 border-muted">
+                                  <p className="font-semibold">Nieruchomość {inmIdx + 1}:</p>
+                                  <p>Adres: <strong>{inm.direccion}, {inm.cp} {inm.provincia}</strong></p>
+                                  <p>Nr katastralny: <strong>{inm.refCatastral}</strong></p>
+                                  {inm.anexos.length > 0 && (
+                                    <>
+                                      <p className="mt-1">Aneksy:</p>
+                                      <ul className="list-disc ml-4">
+                                        {inm.anexos.map((a, aIdx) => (
+                                          <li key={aIdx}>{tipoAnexoPl[a.tipo] || a.tipo}: Nr kat. {a.refCatastral}</li>
+                                        ))}
+                                      </ul>
+                                    </>
+                                  )}
+                                </div>
+                              ))}
+                              
+                              <p className="mt-3">{formData.titulares.length === 1 ? 'Właściciel niebędący rezydentem podatkowym w Hiszpanii' : 'Współwłaściciele niebędący rezydentami podatkowymi w Hiszpanii'}:</p>
+                              <table className="w-full mt-2 text-xs">
+                                <tbody>
+                                  {formData.titulares.map((t, i) => (
+                                    <tr key={i}>
+                                      <td className="py-1">{formData.titulares.length === 1 ? 'Właściciel:' : `Właściciel ${i+1}:`}</td>
+                                      <td className="py-1">{t.nombre}</td>
+                                      <td className="py-1">NIE {t.nie}</td>
+                                      <td className="py-1">{t.participacion}%</td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </>
                       );
                     }
 
-                    // Contenido dinámico para honorarios con detalle de servicios
-                    if (clause.number === 'QUINTA' && section.id === '5.4') {
+                    // Contenido dinámico para honorarios - ahora en OCTAVA (8.1)
+                    if (clause.number === 'OCTAVA' && section.id === '8.1') {
                       return (
                         <tr key={section.id}>
                           <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
                             <span className="font-semibold">{section.id}.</span> Como contraprestación por los servicios descritos, los honorarios profesionales de EL PRESTADOR ascienden a <strong>{euroEnLetras(formData.honorarios)}</strong> (más los impuestos indirectos que resulten aplicables). Este importe incluye:
                             <ul className="list-none mt-2 ml-2">
-                              <li className="mb-1">– Presentación de una declaración individual por cada cotitular correspondiente al ejercicio fiscal <strong>{formData.ejercicioFiscal}</strong>.</li>
+                              <li className="mb-1">– Presentación de una declaración individual por cada {formData.titulares.length === 1 ? 'titular' : 'cotitular'} correspondiente al ejercicio fiscal <strong>{formData.ejercicioFiscal}</strong>.</li>
                               <li className="mb-1">– Cálculo de la base imponible conforme a la normativa vigente (valor catastral o porcentaje aplicable).</li>
-                              <li className="mb-1">– Gestión integral de {formData.titulares.length} cotitular{formData.titulares.length > 1 ? 'es' : ''}, {formData.inmuebles.length} inmueble{formData.inmuebles.length > 1 ? 's' : ''} ({formData.tipoServicio === 'imputacion' ? 'imputación' : formData.tipoServicio === 'alquiler' ? 'alquiler' : 'imputación y alquiler'}{totalAnexos > 0 ? `, ${totalAnexos} anexo${totalAnexos > 1 ? 's' : ''}` : ''}).</li>
+                              <li className="mb-1">– Gestión integral de {formData.titulares.length} {formData.titulares.length === 1 ? 'titular' : 'cotitulares'}, {formData.inmuebles.length} inmueble{formData.inmuebles.length > 1 ? 's' : ''} ({formData.tipoServicio === 'imputacion' ? 'imputación' : formData.tipoServicio === 'alquiler' ? 'alquiler' : 'imputación y alquiler'}{totalAnexos > 0 ? `, ${totalAnexos} anexo${totalAnexos > 1 ? 's' : ''}` : ''}).</li>
                               <li className="mb-1">– Emisión de un informe técnico-fiscal.</li>
                               <li className="mb-1">– Custodia digital de la documentación durante el plazo legal de 4 años.</li>
                             </ul>
@@ -521,9 +532,9 @@ const GeneradorContratoIRNR = () => {
                           <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
                             <span className="font-semibold">{section.id}.</span> Jako wynagrodzenie za opisane usługi, honoraria zawodowe USŁUGODAWCY wynoszą <strong>{euroEnLetrasPl(formData.honorarios)}</strong> (plus odpowiednie podatki pośrednie). Kwota ta obejmuje:
                             <ul className="list-none mt-2 ml-2">
-                              <li className="mb-1">– Złożenie indywidualnej deklaracji dla każdego współwłaściciela za rok podatkowy <strong>{formData.ejercicioFiscal}</strong>.</li>
+                              <li className="mb-1">– Złożenie indywidualnej deklaracji dla każdego {formData.titulares.length === 1 ? 'właściciela' : 'współwłaściciela'} za rok podatkowy <strong>{formData.ejercicioFiscal}</strong>.</li>
                               <li className="mb-1">– Obliczenie podstawy opodatkowania zgodnie z obowiązującymi przepisami (wartość katastralna lub stosowny procent).</li>
-                              <li className="mb-1">– Kompleksowa obsługa {formData.titulares.length} współwłaściciel{formData.titulares.length > 1 ? 'i' : 'a'}, {formData.inmuebles.length} nieruchomośc{formData.inmuebles.length > 1 ? 'i' : 'i'} ({formData.tipoServicio === 'imputacion' ? 'przypisanie' : formData.tipoServicio === 'alquiler' ? 'najem' : 'przypisanie i najem'}{totalAnexos > 0 ? `, ${totalAnexos} aneks${totalAnexos > 1 ? 'y' : ''}` : ''}).</li>
+                              <li className="mb-1">– Kompleksowa obsługa {formData.titulares.length} {formData.titulares.length === 1 ? 'właściciela' : 'współwłaścicieli'}, {formData.inmuebles.length} nieruchomośc{formData.inmuebles.length > 1 ? 'i' : 'i'} ({formData.tipoServicio === 'imputacion' ? 'przypisanie' : formData.tipoServicio === 'alquiler' ? 'najem' : 'przypisanie i najem'}{totalAnexos > 0 ? `, ${totalAnexos} aneks${totalAnexos > 1 ? 'y' : ''}` : ''}).</li>
                               <li className="mb-1">– Wydanie raportu techniczno-podatkowego.</li>
                               <li className="mb-1">– Cyfrowe przechowywanie dokumentacji przez ustawowy okres 4 lat.</li>
                             </ul>
@@ -532,8 +543,8 @@ const GeneradorContratoIRNR = () => {
                       );
                     }
 
-                    // Contenido dinámico para forma de pago
-                    if (clause.number === 'QUINTA' && section.id === '5.6') {
+                    // Contenido dinámico para forma de pago - ahora en NOVENA (9.1)
+                    if (clause.number === 'NOVENA' && section.id === '9.1') {
                       return (
                         <tr key={section.id}>
                           <td className="p-3 align-top" style={{ textAlign: 'justify' }}>
@@ -563,6 +574,7 @@ const GeneradorContratoIRNR = () => {
                         </tr>
                       );
                     }
+
 
                     // Omitir cláusula 2.2 si solo es imputación (sin alquiler)
                     if (clause.number === 'SEGUNDA' && section.id === '2.2' && formData.tipoServicio === 'imputacion') {
