@@ -45,7 +45,7 @@
 @media print {
   @page {
     size: A4;
-    margin: 22mm 20mm 25mm 20mm;
+    margin: 18mm 15mm 22mm 15mm;
     @bottom-center {
       content: counter(page);
       font-size: 10pt;
