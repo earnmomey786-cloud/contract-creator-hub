@@ -667,10 +667,19 @@ const GeneradorContratoIRNR = () => {
           </table>
 
           {/* ==================== FIRMAS ==================== */}
-          <div className="signature-section mt-12 pt-8">
-            <div className="flex justify-between mt-16">
-              <div className="text-center w-2/5">
-                {/* Firma del prestador con imagen */}
+          {/* Sección de firmas con break-inside: avoid para evitar huérfanas */}
+          <div className="signature-section mt-12 pt-8" style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
+            {/* Texto ancla para evitar que las firmas queden huérfanas */}
+            <p className="text-center text-sm mb-8 italic text-muted-foreground">
+              Y en prueba de conformidad, las partes firman el presente documento por duplicado en el lugar y fecha indicados.
+            </p>
+            <p className="text-center text-sm mb-12 italic text-muted-foreground">
+              Na dowód zgodności strony podpisują niniejszy dokument w dwóch egzemplarzach w miejscu i dacie wskazanych powyżej.
+            </p>
+            
+            <div className="flex justify-between items-end">
+              {/* Firma del prestador */}
+              <div className="text-center w-[45%]">
                 <div className="mb-2" style={{ minHeight: '180px' }}>
                   <img 
                     src="/images/firma-pgk.png" 
@@ -685,8 +694,11 @@ const GeneradorContratoIRNR = () => {
                 <p className="text-sm mt-2">{closingSection.signatures.prestador.companyName}</p>
                 <p className="text-xs text-muted-foreground">{closingSection.signatures.prestador.representative}</p>
               </div>
-              <div className="text-center w-2/5">
-                <div className="border-t-2 border-foreground w-full mb-3 mt-20"></div>
+              
+              {/* Firma del cliente */}
+              <div className="text-center w-[45%]">
+                <div className="mb-2" style={{ minHeight: '180px' }}></div>
+                <div className="border-t-2 border-foreground w-full mb-3"></div>
                 <p className="font-bold">{closingSection.signatures.cliente.labelEs}</p>
                 <p className="font-bold text-muted-foreground">{closingSection.signatures.cliente.labelPl}</p>
                 <p className="text-sm mt-2">{formData.clienteNombre}</p>
