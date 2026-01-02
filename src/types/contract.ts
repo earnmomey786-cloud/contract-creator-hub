@@ -74,43 +74,43 @@ export const initialFormData: ContractFormData = {
   }],
   inmuebles: [
     {
-      direccion: 'Av. del Trenc d\'Alba 45, bl.2, piso 44',
-      cp: '03738',
-      provincia: 'Alicante',
-      comunidad: 'Comunidad Valenciana',
-      refCatastral: '',
-      anexos: []
-    },
-    {
-      direccion: 'C/ Joan Fuster 12, Bjo C',
+      direccion: 'Av. del Trenc d\'Alba 45, Esc.1, 1º 44',
       cp: '03730',
       provincia: 'Alicante',
       comunidad: 'Comunidad Valenciana',
-      refCatastral: '',
+      refCatastral: '4475719BC5947N0044AO',
       anexos: []
     },
     {
-      direccion: 'C/ Joan Fuster 12, 2B',
+      direccion: 'C/ Joan Fuster 12, Bajo C',
       cp: '03730',
       provincia: 'Alicante',
       comunidad: 'Comunidad Valenciana',
-      refCatastral: '',
+      refCatastral: '4977314BC5947N0003YE',
       anexos: []
     },
     {
-      direccion: 'C/ Joan Fuster 12, 1D',
+      direccion: 'C/ Joan Fuster 12, 2º B',
       cp: '03730',
       provincia: 'Alicante',
       comunidad: 'Comunidad Valenciana',
-      refCatastral: '',
+      refCatastral: '4977314BC5947N0009SO',
       anexos: []
     },
     {
-      direccion: 'C/ Joan Fuster 12, 1A',
+      direccion: 'C/ Joan Fuster 12, 1º D',
       cp: '03730',
       provincia: 'Alicante',
       comunidad: 'Comunidad Valenciana',
-      refCatastral: '',
+      refCatastral: '4977314BC5947N0007PU',
+      anexos: []
+    },
+    {
+      direccion: 'C/ Joan Fuster 12, 1º A',
+      cp: '03730',
+      provincia: 'Alicante',
+      comunidad: 'Comunidad Valenciana',
+      refCatastral: '4977314BC5947N0004UR',
       anexos: []
     }
   ],
